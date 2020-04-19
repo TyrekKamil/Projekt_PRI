@@ -1,4 +1,5 @@
-### Projekt inøynierski
+### Projekt in≈ºynierski
 #### Kamil Tyrek
 #### Jakub Kozubal
-#### Mateusz Hypú
+#### Mateusz Hyp≈õ  
+Gra w Unity
