@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3052188, y: 0.30200002}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.3474, y: -34.809185}
+  m_AnchoredPosition: {x: 359.73, y: -255.84}
   m_SizeDelta: {x: 2908.871, y: 511.68964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49995135
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 978023178}
   - component: {fileID: 978023177}
   m_Layer: 5
-  m_Name: Image
+  m_Name: about-background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
