@@ -277,7 +277,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 33658041}
   m_TextComponent: {fileID: 156487442}
   m_Placeholder: {fileID: 1742094337}
@@ -591,7 +591,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 221882956}
   m_TextComponent: {fileID: 1854343377}
   m_Placeholder: {fileID: 621419816}
@@ -731,7 +731,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 298285319}
   m_TextComponent: {fileID: 1283789596}
   m_Placeholder: {fileID: 947560720}
@@ -1235,8 +1235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ebb8d097fa2cd4faed136a77b6dd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickCursor: {fileID: 21300000, guid: bac6a31cbd009514da8304242713b39c, type: 3}
-  normalCursor: {fileID: 21300000, guid: 644f20f3aa3580f41836eefed1712af2, type: 3}
 --- !u!212 &683713512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1284,7 +1282,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &919015433
@@ -1631,7 +1629,7 @@ PrefabInstance:
     - target: {fileID: 3240205832693586507, guid: 3c614e9cd35bf468b8d2f1689cc4cca8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3240205832693586507, guid: 3c614e9cd35bf468b8d2f1689cc4cca8,
         type: 3}
@@ -1878,7 +1876,7 @@ RectTransform:
   - {fileID: 14326615}
   - {fileID: 919015434}
   m_Father: {fileID: 1344412720}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2056,9 +2054,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1089604961}
+  - {fileID: 1236512606}
   - {fileID: 1522800400}
   - {fileID: 138514488}
-  - {fileID: 1236512606}
   - {fileID: 1045540473}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2927,7 +2925,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1994043531}
   m_TextComponent: {fileID: 941875075}
   m_Placeholder: {fileID: 513900361}
