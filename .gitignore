@@ -1,10 +1,11 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-
+/Menu/[Ll]ibrary/
+/Menu/[Tt]emp/
+/Menu/[Oo]bj/
+/Menu/[Bb]uild/
+/Menu/[Bb]uilds/
+/Menu/[Ll]ogs/
+/Menu/Menu_Data/
+/Menu/MonoBleedingEdge/
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
 
@@ -31,6 +32,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.meta
+*.exe
+*.dll
 
 # Unity3D generated meta files
 *.pidb.meta
