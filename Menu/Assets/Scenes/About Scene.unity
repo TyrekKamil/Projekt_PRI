@@ -544,7 +544,7 @@ Animator:
   m_GameObject: {fileID: 675623007}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1656800d657ac154893a6b1c123c1c87, type: 2}
+  m_Controller: {fileID: 9100000, guid: a3c7377220e001a488cc4d22ff95d328, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -783,6 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCursor: {fileID: 2800000, guid: bac6a31cbd009514da8304242713b39c, type: 3}
   normalCursor: {fileID: 2800000, guid: 644f20f3aa3580f41836eefed1712af2, type: 3}
+  hotSpot: {x: 25, y: 15}
 --- !u!4 &1402291949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3240205832693586507, guid: 3c614e9cd35bf468b8d2f1689cc4cca8,

@@ -437,6 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675623009}
   - component: {fileID: 675623008}
+  - component: {fileID: 675623010}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -508,6 +509,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &675623010
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675623007}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cdd76ebeafd2da4a930e5927f0f178e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1089604960
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCursor: {fileID: 2800000, guid: bac6a31cbd009514da8304242713b39c, type: 3}
   normalCursor: {fileID: 2800000, guid: 644f20f3aa3580f41836eefed1712af2, type: 3}
+  hotSpot: {x: 25, y: 15}
 --- !u!1001 &1419502915
 PrefabInstance:
   m_ObjectHideFlags: 0
