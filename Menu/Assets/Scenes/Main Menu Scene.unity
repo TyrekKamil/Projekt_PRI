@@ -165,9 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ebb8d097fa2cd4faed136a77b6dd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickCursor: {fileID: 0}
-  normalCursor: {fileID: 0}
-  hotSpot: {x: 25, y: 15}
 --- !u!212 &141515414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -215,7 +212,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &218631628
@@ -965,7 +962,6 @@ GameObject:
   - component: {fileID: 1344412717}
   - component: {fileID: 1344412721}
   - component: {fileID: 1344412722}
-  - component: {fileID: 1344412724}
   - component: {fileID: 1344412723}
   m_Layer: 5
   m_Name: Canvas
@@ -1178,25 +1174,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344412716}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ce3e598e959fd438419be82e0d2568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1344412724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344412716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ebb8d097fa2cd4faed136a77b6dd2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5adaa76c53902df49b94c88718ec1c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickCursor: {fileID: 2800000, guid: bac6a31cbd009514da8304242713b39c, type: 3}
-  normalCursor: {fileID: 2800000, guid: 644f20f3aa3580f41836eefed1712af2, type: 3}
+  clickCursor: {fileID: 2800000, guid: 18d9d434040f65b40ac769673b04686d, type: 3}
+  normalCursor: {fileID: 2800000, guid: add8f977ae6be384eafcfc9cd7c584b9, type: 3}
   hotSpot: {x: 25, y: 15}
 --- !u!4 &1402291949 stripped
 Transform:
