@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu Scene.unity
     guid: 3c256f708cf9fe44f8bda50b703b42db
   - enabled: 1
-    path: Assets/Scenes/Start Game Scene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Options Scene Generals.unity
-    guid: 1c0c7d1fa24a0b348a6c6d864dd42089
-  - enabled: 1
-    path: Assets/Scenes/Options Scene Controls.unity
-    guid: 360eb7dbb615fd04da69296fafe2a03a
-  - enabled: 1
-    path: Assets/Scenes/About Scene.unity
-    guid: c5b304721423296479188647f8976133
+    path: Assets/Scenes/Flat map.unity
+    guid: f2120731c167b44499fb4a0263fa8368
   m_configObjects: {}
