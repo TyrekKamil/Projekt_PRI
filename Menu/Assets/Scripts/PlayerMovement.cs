@@ -12,13 +12,24 @@ public class PlayerMovement : MonoBehaviour
 
     bool jump = false;
 
-
+    private int direction = 0;
+    void Start() {
+         
+    }
 
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        if(Input.GetKey((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton")))) {
+            direction = -1;
+        } 
+        else if(Input.GetKey((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton")))) {
+            direction = 1;
+        }
 
-        if (Input.GetButtonDown("Jump")) {
+        horizontalMove = direction * moveSpeed;
+        direction = 0;
+        
+        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")))) {
             jump = true;
         }
     }

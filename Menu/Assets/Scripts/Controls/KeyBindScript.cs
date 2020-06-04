@@ -6,21 +6,17 @@ using UnityEngine.UI;
 public class KeyBindScript : MonoBehaviour {
 
     private Dictionary<string, KeyCode> keysConfig = new Dictionary<string, KeyCode>();
-    public Text up, down, left, right, jump;
+    public Text left, right, jump;
     private GameObject currentKey;
 
     private Color32 normal = new Color32(0, 0, 0, 128);
 
     private Color32 selected = new Color32(0, 0, 0, 180);
         void Start() {
-        keysConfig.Add("UpButton", KeyCode.W);
-        keysConfig.Add("DownButton", KeyCode.S);
-        keysConfig.Add("LeftButton", KeyCode.A);
-        keysConfig.Add("RightButton", KeyCode.D); 
-        keysConfig.Add("JumpButton", KeyCode.Space);
+        keysConfig.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton")));
+        keysConfig.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton")));
+        keysConfig.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")));
 
-        up.text = keysConfig["UpButton"].ToString();
-        down.text = keysConfig["DownButton"].ToString();
         left.text = keysConfig["LeftButton"].ToString();
         right.text = keysConfig["RightButton"].ToString();
         jump.text = keysConfig["JumpButton"].ToString();
@@ -45,5 +41,13 @@ public class KeyBindScript : MonoBehaviour {
         } 
         currentKey = clicked; 
         currentKey.GetComponent<Image>().color = selected;
+        saveKeys();
+    }
+
+    public void saveKeys() {
+        foreach (var key in keysConfig) {
+            PlayerPrefs.SetString(key.Key, key.Value.ToString());
+        }
+        PlayerPrefs.Save();
     }
 }

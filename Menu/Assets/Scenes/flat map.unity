@@ -1501,6 +1501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 450
+  extraJumpsValue: 1
   extraJumpDifficulty: 0.9
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -1508,8 +1509,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_GroundCheck: {fileID: 1615214141}
-  m_CeilingCheck: {fileID: 1024969078}
-  extraJumpsValue: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1925,6 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1132824321}
 --- !u!114 &1450471200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1938,19 +1938,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 450
-  m_CrouchSpeed: 0.36
+  extraJumpsValue: 1
+  extraJumpDifficulty: 0.9
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 55
   m_GroundCheck: {fileID: 1615214141}
-  m_CeilingCheck: {fileID: 1024969078}
-  m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1579142239
