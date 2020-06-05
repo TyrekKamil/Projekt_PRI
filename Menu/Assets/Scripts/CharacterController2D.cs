@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+	public Animator animator;
+
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[SerializeField] private int extraJumpsValue = 1;							// Amount of extra jumps
 	[Range(0, 1f)] [SerializeField] private float extraJumpDifficulty = 0.9f;   //difficulty of the extra jumps	
@@ -98,7 +100,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-
+	
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
