@@ -6,7 +6,7 @@ public class EnemyAnimationController : MonoBehaviour
     Animator anim;
     float moveSpeed = 2.5f;
 
-    float distance = 1;
+    float distance = 10;
     bool move = false;
     public GameObject player;
     void Start() {
