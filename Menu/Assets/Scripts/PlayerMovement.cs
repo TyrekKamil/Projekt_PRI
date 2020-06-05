@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Animator animator;
 
     float horizontalMove = 0f;
    
@@ -27,16 +28,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         horizontalMove = direction * moveSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
         
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")))) {
             jump = true;
+            animator.SetBool("IsJumping", true);
         }
     }
-
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
     void FixedUpdate()
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+        
     }
 }
