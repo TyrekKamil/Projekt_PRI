@@ -13,9 +13,9 @@ public class KeyBindScript : MonoBehaviour {
 
     private Color32 selected = new Color32(0, 0, 0, 180);
         void Start() {
-        keysConfig.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton")));
-        keysConfig.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton")));
-        keysConfig.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")));
+        keysConfig.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "Left")));
+        keysConfig.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton", "Right")));
+        keysConfig.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
 
         left.text = keysConfig["LeftButton"].ToString();
         right.text = keysConfig["RightButton"].ToString();

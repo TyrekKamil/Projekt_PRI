@@ -28,6 +28,7 @@ public class EnemyAnimationController : MonoBehaviour
         } else if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_death_01") && move == true) {
             Vector3 movement = new Vector3(1f, 0f, 0f);
             transform.position += movement * Time.deltaTime * moveSpeed;
+            anim.Play("Rogue_walk_01");
         }
     }
 }
