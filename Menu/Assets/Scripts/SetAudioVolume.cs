@@ -10,9 +10,14 @@ public class SetAudioVolume : MonoBehaviour {
 
     public string valueName;
 
+    void Start(){
+        if(PlayerPrefs.GetString(valueName).Length > 0) {
+            slider.value = float.Parse(PlayerPrefs.GetString(valueName));
+        }
+    }
     public void SetVolumeLevel() {
-        float musicSliderValue = slider.value;
-        mixer.SetFloat(valueName, Mathf.Log10(musicSliderValue) * 20); // value in dB
+        mixer.SetFloat(valueName, Mathf.Log10(slider.value) * 20); 
+        PlayerPrefs.SetString(valueName, slider.value.ToString()); // value in dB
     }
 
 }
