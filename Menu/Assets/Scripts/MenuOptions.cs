@@ -7,13 +7,22 @@ public class MenuOptions : MonoBehaviour
 {
 
     public Dropdown resolutionDropdown;
+
+    public Toggle fullScreen;
     Resolution[] resolutions;
     void Start()
     {
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
-
         resolutionDropdown.ClearOptions();
-
+        bool fs = true;
+        if(PlayerPrefs.GetString("FullScreen").Length == 1) {
+            fs = PlayerPrefs.GetString("FullScreen") == "1" ? true : false;
+        }
+        if(PlayerPrefs.GetString("Resolution").Contains("x")) {
+            Screen.SetResolution(int.Parse(PlayerPrefs.GetString("Resolution").Split('x')[0]), 
+            int.Parse(PlayerPrefs.GetString("Resolution").Split('x')[1]), 
+            fs);
+        }
         List<string> options = new List<string>();
 
         int currentRes = 0;
@@ -31,16 +40,20 @@ public class MenuOptions : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentRes;
         resolutionDropdown.RefreshShownValue();
+        fullScreen.isOn = fs;
+        Debug.Log(PlayerPrefs.GetString("FullScreen"));
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetString("Resolution", resolution.width.ToString() + "x" + resolution.height.ToString());
     }
     public void SetfullScreen(bool isFS)
     {
         Screen.fullScreen = isFS;
+        PlayerPrefs.SetString("FullScreen", isFS == true ? "1" : "0");
     }
 
     public void SetVSync(bool isVSync) {
