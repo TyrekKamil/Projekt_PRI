@@ -51,7 +51,6 @@ public class MenuOptions : MonoBehaviour
         fullScreen.isOn = fs;
         vSync.isOn = vS;
         QualitySettings.vSyncCount = vS == true ? 1 : 0;
-        Debug.Log(QualitySettings.vSyncCount);
     }
 
     public void SetResolution(int resolutionIndex)
