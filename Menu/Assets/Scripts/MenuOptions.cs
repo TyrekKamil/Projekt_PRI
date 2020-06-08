@@ -42,4 +42,8 @@ public class MenuOptions : MonoBehaviour
     {
         Screen.fullScreen = isFS;
     }
+
+    public void SetVSync(bool isVSync) {
+        QualitySettings.vSyncCount = isVSync == true ? 1 : 0;
+    }
 }
