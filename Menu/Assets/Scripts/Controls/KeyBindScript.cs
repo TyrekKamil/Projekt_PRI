@@ -33,6 +33,7 @@ public class KeyBindScript : MonoBehaviour {
                 currentKey.GetComponent<Image>().color = normal;
                 currentKey = null;
             }
+        saveKeys();
         }
     }
     public void changeKey(GameObject clicked) {
@@ -41,7 +42,6 @@ public class KeyBindScript : MonoBehaviour {
         } 
         currentKey = clicked; 
         currentKey.GetComponent<Image>().color = selected;
-        saveKeys();
     }
 
     public void saveKeys() {
