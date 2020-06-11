@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
         direction = 0;
         
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")))) {
-            jump = true;
             animator.SetBool("IsJumping", true);
+            jump = true;
         }
     }
     public void OnLanding()

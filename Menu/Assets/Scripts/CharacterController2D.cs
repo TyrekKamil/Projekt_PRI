@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+	public Animator animator;
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[SerializeField] private int extraJumpsValue = 1;							// Amount of extra jumps
 	[Range(0, 1f)] [SerializeField] private float extraJumpDifficulty = 0.9f;   //difficulty of the extra jumps	
@@ -49,17 +50,22 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
 			}
+			if (!wasGrounded)
+				animator.SetBool("IsJumping", false);
 		}
 	}
 
 
 	public void Move(float move, bool jump)
 	{
+		if (!m_Grounded) {
+			animator.SetBool("IsJumping", true);
+		}
 		if (m_Grounded) {
 			extraJumps = extraJumpsValue;
+			animator.SetBool("IsJumping", false);
+			animator.SetBool("doubleJump", false);
 		}
 		if (m_Grounded || m_AirControl)
 		{
@@ -88,12 +94,18 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			jump = false;
 		}
+		if (!m_Grounded && !jump)
+		{
+			animator.SetBool("doubleJump", false);
+		}
 		if (!m_Grounded && jump && extraJumps > 0)
 		{
 			//Set vertical velocity to 0 in order to double jump
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 			//Executing double jump
+			animator.SetBool("doubleJump", true);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * extraJumpDifficulty));
+			jump = false;
 			extraJumps--;
 		}
 	}
