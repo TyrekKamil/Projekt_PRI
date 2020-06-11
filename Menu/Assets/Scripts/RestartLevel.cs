@@ -1,27 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Respawn : MonoBehaviour
+public class RespawnChar : MonoBehaviour
 {
-    public GameObject Player;
-
-    void Start()
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform respawnPoint;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Player = (GameObject)Resources.Load(Application.dataPath + "/Resources/Player");
-        Debug.Log(Application.dataPath + "/Resources/Player");
-    }
-
-    IEnumerator OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-
-            Destroy(collision.gameObject);
-
-            yield return new WaitForSeconds(2);
-
-            Instantiate(Resources.Load("Player"));
-        }
+        player.transform.position = respawnPoint.transform.position;
     }
 }
 
