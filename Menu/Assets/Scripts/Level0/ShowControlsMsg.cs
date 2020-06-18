@@ -36,6 +36,13 @@ public class ShowControlsMsg : MonoBehaviour
             text.text = "Double tap \"" + jump + "\" to jump higher!";
         }
 
+        if (uiObject.name == "Totem")
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Focus on surrounding!";
+        }
+
 
 
 

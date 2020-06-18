@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class DoorInteractingPlate : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject door;
+    public GameObject type;
+    DoorTriggerButton triggerScript;
+
     void Start()
     {
-        
+        triggerScript = door.GetComponent<DoorTriggerButton>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        
+        if (type.name == "checkRed")
+        {
+            triggerScript.checkA = true;
+            triggerScript.checkB = true;
+
+        }
+
+        if (type.name == "checkBlue")
+        {
+
+            triggerScript.checkC = true;
+            triggerScript.checkD = true;
+        }
+
     }
+
+
 }
