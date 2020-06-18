@@ -43,6 +43,13 @@ public class ShowControlsMsg : MonoBehaviour
             text.text = "Focus on surrounding!";
         }
 
+        if (uiObject.name == "Step")
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Watch your steps!";
+        }
+
 
 
 
