@@ -50,3 +50,39 @@ TagManager:
   - name: Forground
     uniqueID: 3713868037
     locked: 0
+  - name: BG
+    uniqueID: 2726971537
+    locked: 0
+  - name: Moon
+    uniqueID: 1693397707
+    locked: 0
+  - name: Mountains
+    uniqueID: 3330781267
+    locked: 0
+  - name: Tree
+    uniqueID: 1518774271
+    locked: 0
+  - name: Plant BG
+    uniqueID: 295421789
+    locked: 0
+  - name: Plant FG
+    uniqueID: 1034064039
+    locked: 0
+  - name: Tilemap BG
+    uniqueID: 3289405125
+    locked: 0
+  - name: Tilemap MG
+    uniqueID: 2209993425
+    locked: 0
+  - name: Tilemap FG
+    uniqueID: 2274455275
+    locked: 0
+  - name: Tilemap FFG
+    uniqueID: 4239828925
+    locked: 0
+  - name: Player
+    uniqueID: 2865958495
+    locked: 0
+  - name: Silhoutte
+    uniqueID: 282871125
+    locked: 0
