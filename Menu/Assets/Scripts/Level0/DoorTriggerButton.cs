@@ -6,10 +6,9 @@ public class DoorTriggerButton : MonoBehaviour
 {
 
     [SerializeField] private GameObject door;
-    [SerializeField] private GameObject doorClosed;
+    [SerializeField] private GameObject pass;
 
     private IDoor doorA;
-    private IDoor doorB;
 
     public bool checkA = false;
     public bool checkB = false;
@@ -20,16 +19,14 @@ public class DoorTriggerButton : MonoBehaviour
     private void Awake()
     {
         doorA = door.GetComponent<IDoor>();
-        doorB = doorClosed.GetComponent<IDoor>();
 
     }
     private void Update()
     {
         if (checkA == true && checkB == true && checkC == true && checkD == true)
         {
-            // doorA.openDoor();
-            // doorB.closeDoor();
-            Debug.Log("aaa");
+            doorA.openDoor();
+            pass.SetActive(true);
         }
 
     }

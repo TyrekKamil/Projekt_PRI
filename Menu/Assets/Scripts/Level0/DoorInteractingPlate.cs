@@ -15,18 +15,29 @@ public class DoorInteractingPlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (type.name == "checkRed")
+        if (type.name == "blue")
         {
             triggerScript.checkA = true;
+            Debug.Log("checkA");
+        }
+        if (type.name == "redMid")
+        {
             triggerScript.checkB = true;
+            Debug.Log("checkB");
+
+        }
+        if (type.name == "GreenMid")
+        {
+            triggerScript.checkC = true;
+            Debug.Log("checkC");
 
         }
 
-        if (type.name == "checkBlue")
+        if (type.name == "YellowEnd")
         {
-
-            triggerScript.checkC = true;
             triggerScript.checkD = true;
+            Debug.Log("checkD");
+
         }
 
     }
