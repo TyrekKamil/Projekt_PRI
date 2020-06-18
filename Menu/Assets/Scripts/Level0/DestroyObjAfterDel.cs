@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyObjAfterDel : MonoBehaviour
 {
+    public GameObject light;
     void OnTriggerEnter2D(Collider2D player)
     {
         if (player.gameObject.tag == "Player")
@@ -15,6 +16,14 @@ public class DestroyObjAfterDel : MonoBehaviour
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        if (gameObject.name == "falliingParts9")
+        {
+            Destroy(gameObject);
+            Destroy(light);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

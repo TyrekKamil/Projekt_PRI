@@ -11,6 +11,11 @@ public class DoorTriggerButton : MonoBehaviour
     private IDoor doorA;
     private IDoor doorB;
 
+    public bool checkA = false;
+    public bool checkB = false;
+    public bool checkC = false;
+    public bool checkD = false;
+
 
     private void Awake()
     {
@@ -20,16 +25,12 @@ public class DoorTriggerButton : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (checkA == true && checkB == true && checkC == true && checkD == true)
         {
-            doorA.openDoor();
-            doorB.closeDoor();
+            // doorA.openDoor();
+            // doorB.closeDoor();
+            Debug.Log("aaa");
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            doorA.closeDoor();
-            doorB.openDoor();
-        }
     }
 }
