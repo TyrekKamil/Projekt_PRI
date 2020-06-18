@@ -60,7 +60,7 @@ public class ShowControlsMsg : MonoBehaviour
 
     IEnumerator WaitForSec()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         Destroy(uiObject);
         Destroy(gameObject);
     }
