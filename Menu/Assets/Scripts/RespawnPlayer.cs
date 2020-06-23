@@ -20,6 +20,7 @@ public class RespawnPlayer : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Other Collider:" + other.name);
 
         if (other.CompareTag("Player"))
         {
