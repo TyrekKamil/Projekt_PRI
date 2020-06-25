@@ -50,6 +50,15 @@ public class ShowControlsMsg : MonoBehaviour
             text.text = "Watch your steps!";
         }
 
+        if (uiObject.name == "ColorsRiddle")
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Let's see if you remember the right order of totem's lights";
+        }
+
+
+
 
 
 
