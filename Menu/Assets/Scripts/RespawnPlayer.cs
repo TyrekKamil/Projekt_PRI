@@ -8,14 +8,14 @@ public class RespawnPlayer : MonoBehaviour
 {
     public GameObject uiObject;
     Text text;
-    PlayerHealth triggerScript;
+    PlayerUIUpdates triggerScript;
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
 
     void Start()
     {
-        triggerScript = player.GetComponent<PlayerHealth>();
+        triggerScript = player.GetComponent<PlayerUIUpdates>();
 
     }
     void OnTriggerEnter2D(Collider2D other)
