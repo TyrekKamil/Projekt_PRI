@@ -45,6 +45,12 @@ public class EnemyAnimationController : MonoBehaviour
                 direction *= -1;
                 transform.Rotate(0, 180, 0, 0);
             }
+            StartCoroutine("WaitForSec");
+
+        } if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5) {
+            anim.Play("Rogue_attack_01");
+        }  else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01")) {
+            anim.Play("Rogue_idle_01");
         }
  
 
@@ -55,10 +61,14 @@ public class EnemyAnimationController : MonoBehaviour
     
         if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_death_01") && move == true) {
             Vector3 movement = new Vector3(1f, 0f, 0f);
-            transform.position += movement * Time.deltaTime * moveSpeed * direction;
-            anim.Play("Rogue_walk_01");
+            transform.position += movement * Time.deltaTime * moveSpeed * direction;    
         }
     } 
+
+    IEnumerator WaitForSec()
+    {
+        yield return new WaitForSeconds(2);
+    }
 
    /* private void OnTriggerEnter2D(Collider2D collider) {
         Debug.Log("JEB!");
