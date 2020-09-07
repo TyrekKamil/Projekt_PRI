@@ -7,15 +7,16 @@ using UnityEngine.SceneManagement;
 public class RespawnPlayer : MonoBehaviour
 {
     public GameObject uiObject;
+    public int damageValue;
     Text text;
-    PlayerUIUpdates triggerScript;
+    PlayerUIUpdates playerStatsScript;
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
 
     void Start()
     {
-        triggerScript = player.GetComponent<PlayerUIUpdates>();
+        playerStatsScript = player.GetComponent<PlayerUIUpdates>();
 
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -25,20 +26,11 @@ public class RespawnPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            triggerScript.ChangeHealth(1);
+            playerStatsScript.ChangeHealth(damageValue);
 
-            if (triggerScript.DisplayHealth() == 0)
+            if (playerStatsScript.respawnPlayer())
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-            else
-            {
-                player.transform.position = respawnPoint.transform.position;
-
-                uiObject.SetActive(true);
-                text = uiObject.GetComponent<Text>();
-                text.text = triggerScript.DisplayHealth() + " lives left!";
-                StartCoroutine("WaitForSec");
             }
 
         }

@@ -25,4 +25,13 @@ public class PlayerUIUpdates : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public bool respawnPlayer()
+    {
+        if (currentHealth <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }
