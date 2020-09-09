@@ -13,18 +13,30 @@ public class RespawnPlayer : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
-
+    private Vector3 endPos;
+    private bool ifDamaged = false;
+    private Vector3 movement;
+    private float direction;
     void Start()
     {
         playerStatsScript = player.GetComponent<PlayerUIUpdates>();
+        movement = new Vector3(1f, -0.7f, 0f);
 
+    }
+
+    void Update() { 
+        if(ifDamaged && Mathf.Round(player.position.x) != Mathf.Round(endPos.x)) {
+            player.position += movement * Time.deltaTime * 10f * direction; 
+        } else {
+            ifDamaged = false;
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Other Collider:" + other.name);
-
         if (other.CompareTag("Player"))
-        {
+        {   direction = (transform.position.x - player.transform.position.x) > 0 ? -1 : 1;
+            endPos = player.position + new Vector3(direction * 5f, 0, 2f);
+            ifDamaged = true;
 
             playerStatsScript.ChangeHealth(damageValue);
 
