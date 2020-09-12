@@ -17,6 +17,7 @@ public class RespawnPlayer : MonoBehaviour
     private bool ifDamaged = false;
     private Vector3 movement;
     private float direction;
+    public Animator animator;
     void Start()
     {
         playerStatsScript = player.GetComponent<PlayerUIUpdates>();

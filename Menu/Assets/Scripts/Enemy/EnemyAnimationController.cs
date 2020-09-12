@@ -59,18 +59,13 @@ public class EnemyAnimationController : MonoBehaviour
         reverse();
         isReadyToMove();
     
-        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_death_01") && move == true) {
+        if(move == true) {
             Vector3 movement = new Vector3(1f, 0f, 0f);
             transform.position += movement * Time.deltaTime * moveSpeed * direction;    
         }
-    } 
-
+    }
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(2);
     }
-
-   /* private void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("JEB!");
-    }*/
 }

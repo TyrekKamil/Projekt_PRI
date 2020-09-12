@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
 
     private int direction = 0;
+    public Transform attackPoint;
+    public float attackRange = 2.5f;
+    public LayerMask enemyLayers;
+
+    public int attackDamage = 50;
     void Start() {
          
     }
@@ -26,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         else if(Input.GetKey((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton")))) {
             direction = 1;
         }
-
+        
         horizontalMove = direction * moveSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
@@ -34,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")))) {
             animator.SetBool("IsJumping", true);
             jump = true;
+        }
+        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton")))) {
+            Attack();
         }
     }
     public void OnLanding()
@@ -45,5 +53,21 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
         
+    }
+
+    void Attack() {
+        Debug.Log("Attack");
+        //Animacja ataku TODO
+        Collider2D[] enemies =Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach(Collider2D enemy in enemies) {
+            enemy.GetComponent<EnemyHP>().TakeDamage(attackDamage);
+        }
+    }
+
+    void OnDrawGizmosSelected() {
+        if (attackPoint == null ) {
+            return ;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

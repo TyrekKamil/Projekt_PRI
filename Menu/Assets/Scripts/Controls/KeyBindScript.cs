@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class KeyBindScript : MonoBehaviour {
 
     private Dictionary<string, KeyCode> keysConfig = new Dictionary<string, KeyCode>();
-    public Text left, right, jump;
+    public Text left, right, jump, attack;
     private GameObject currentKey;
 
     private Color32 normal = new Color32(0, 0, 0, 128);
@@ -32,10 +32,16 @@ public class KeyBindScript : MonoBehaviour {
             keysConfig.Add("JumpButton", KeyCode.Space);
             PlayerPrefs.SetString("JumpButton", KeyCode.Space.ToString());
         }
-
+        if(PlayerPrefs.GetString("AttackButton").Length > 0) {
+            keysConfig.Add("AttackButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton", "LeftControl")));
+        } else {
+            keysConfig.Add("AttackButton", KeyCode.LeftControl);
+            PlayerPrefs.SetString("AttackButton", KeyCode.LeftControl.ToString());
+        }
         left.text = keysConfig["LeftButton"].ToString();
         right.text = keysConfig["RightButton"].ToString();
         jump.text = keysConfig["JumpButton"].ToString();
+        attack.text = keysConfig["AttackButton"].ToString();
     }
 
     void OnGUI() {
