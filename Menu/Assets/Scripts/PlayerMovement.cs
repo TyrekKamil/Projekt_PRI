@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     float horizontalMove = 0f;
-   
+
     public float moveSpeed = 20f;
 
     bool jump = false;
@@ -19,28 +19,33 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 50;
-    void Start() {
-         
+    void Start()
+    {
+
     }
 
     void Update()
     {
-        if(Input.GetKey((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton")))) {
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton"))))
+        {
             direction = -1;
-        } 
-        else if(Input.GetKey((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton")))) {
+        }
+        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton"))))
+        {
             direction = 1;
         }
-        
+
         horizontalMove = direction * moveSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
-        
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton")))) {
+
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton"))))
+        {
             animator.SetBool("IsJumping", true);
             jump = true;
         }
-        if (Input.GetKeyDown((KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton")))) {
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton"))))
+        {
             Attack();
         }
     }
@@ -52,21 +57,26 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
-        
+
     }
 
-    void Attack() {
+    void Attack()
+    {
         Debug.Log("Attack");
         //Animacja ataku TODO
-        Collider2D[] enemies =Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        foreach(Collider2D enemy in enemies) {
+        animator.SetTrigger("Attack");
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in enemies)
+        {
             enemy.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }
     }
 
-    void OnDrawGizmosSelected() {
-        if (attackPoint == null ) {
-            return ;
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+        {
+            return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
