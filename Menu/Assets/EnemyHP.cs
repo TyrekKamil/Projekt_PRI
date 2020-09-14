@@ -27,6 +27,12 @@ public class EnemyHP : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponent<RespawnPlayer>().enabled = false;
         GetComponent<EnemyAnimationController>().enabled = false;
+        StartCoroutine(DestroyObject());
     }
+    IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
 
+    }
 }
