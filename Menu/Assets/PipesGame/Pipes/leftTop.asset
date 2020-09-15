@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3453781440b7cbd4dbc99f4d640a4d2c, type: 3}
-  m_Name: botRight 4
+  m_Name: leftTop
   m_EditorClassIdentifier: 
-  pipeName: botRight
+  pipeName: leftTop
   Icon: {fileID: 21300000, guid: 877374e26cfff46428bc7d8b39e1a5df, type: 3}
   right: 1
   left: 0
