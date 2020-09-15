@@ -34,4 +34,10 @@ public class PlayerUIUpdates : MonoBehaviour
         }
         return false;
     }
+
+    public void respawnPlayerAtCheckpoint()
+    {
+        slider.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth;
+    }
 }
