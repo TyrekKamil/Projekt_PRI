@@ -67,21 +67,22 @@ public class UI : MonoBehaviour
     private void Update()
     {
         waitingTime -= Time.deltaTime;
-        recentSlot = pipeSlots[i];
-        recentSlot.canDrag = false;
-        recentPipe = pipeSlots[i].Pipe;
-        animationTimer += Time.deltaTime;
-        AnimateTile(recentSlot, recentPipe);
         if (isDone && waitingTime <= -3.0f)
         {
             if (fail)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
-            else {
+            else
+            {
                 SceneManager.LoadScene("Level_1");
             }
         }
+        recentSlot = pipeSlots[i];
+        recentSlot.canDrag = false;
+        recentPipe = pipeSlots[i].Pipe;
+        animationTimer += Time.deltaTime;
+        AnimateTile(recentSlot, recentPipe);
         targetTime -= Time.deltaTime;
         if (targetTime <= 0.0f && !isDone)
         {

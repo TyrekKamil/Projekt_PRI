@@ -53,9 +53,4 @@ public class GameManager : MonoBehaviour
             pipeSlot.Pipe = draggedPipe;
         }
     }
-
-
-
-
-
 }
