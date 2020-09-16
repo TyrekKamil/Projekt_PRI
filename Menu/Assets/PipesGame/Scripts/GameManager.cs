@@ -47,8 +47,11 @@ public class GameManager : MonoBehaviour
     private void Drop(PipeSlot pipeSlot)
     {
         Pipe draggedPipe = draggedSlot.Pipe;
-        draggedSlot.Pipe = pipeSlot.Pipe;
-        pipeSlot.Pipe = draggedPipe;
+        if (draggedSlot.canDrag && pipeSlot.canDrag)
+        {
+            draggedSlot.Pipe = pipeSlot.Pipe;
+            pipeSlot.Pipe = draggedPipe;
+        }
     }
 
 

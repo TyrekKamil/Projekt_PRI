@@ -62,19 +62,26 @@ public class UI : MonoBehaviour
     bool isDone = false;
     public float animationTimer;
     int currentTile = 0;
+    bool fail = false;
     public float waitingTime = 999.0f;
     private void Update()
     {
         waitingTime -= Time.deltaTime;
-        if (isDone && waitingTime <= -3.0f)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
         recentSlot = pipeSlots[i];
         recentSlot.canDrag = false;
         recentPipe = pipeSlots[i].Pipe;
         animationTimer += Time.deltaTime;
         AnimateTile(recentSlot, recentPipe);
+        if (isDone && waitingTime <= -3.0f)
+        {
+            if (fail)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else {
+                SceneManager.LoadScene("Level_1");
+            }
+        }
         targetTime -= Time.deltaTime;
         if (targetTime <= 0.0f && !isDone)
         {
@@ -123,15 +130,16 @@ public class UI : MonoBehaviour
             {
                 isDone = true;
                 waitingTime = 0.0f;
+                fail = true;
                 tryAgainText.SetActive(true);
                 Debug.Log("Przegrales");
 
             }
             if (i == pipeSlots.Length - 1)
             {
+                waitingTime = 0.0f;
                 Debug.Log("Finally");
                 isDone = true;
-                SceneManager.LoadScene("Level_1");
             }
         }
 
