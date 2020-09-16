@@ -9,4 +9,6 @@ public class Pipe : ScriptableObject
     public bool left;
     public bool top;
     public bool bot;
+    public Sprite[] frameArrayDefault;
+    public Sprite[] frameArrayInverted;
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -56,86 +55,162 @@ public class UI : MonoBehaviour
         GenerateStartingPattern();
     }
     Pipe recentPipe;
+    PipeSlot recentSlot;
     int i = 0;
-    string cameFrom;
+    string cameFrom = "null";
     public float targetTime = 5.0f;
     bool isDone = false;
+    public float animationTimer;
+    int currentTile = 0;
+    public float waitingTime = 999.0f;
     private void Update()
     {
+        waitingTime -= Time.deltaTime;
+        if (isDone && waitingTime <= -3.0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        recentSlot = pipeSlots[i];
+        recentSlot.canDrag = false;
         recentPipe = pipeSlots[i].Pipe;
+        animationTimer += Time.deltaTime;
+        AnimateTile(recentSlot, recentPipe);
         targetTime -= Time.deltaTime;
         if (targetTime <= 0.0f && !isDone)
         {
+            currentTile = 0;
+            animationTimer = 0.0f;
             try
             {
-                if (recentPipe.right && (i + 1) % 8 != 7 && pipeSlots[i + 1].Pipe.left)
+                //Check if there's connection to the right
+                if ((recentPipe.right && (i + 1) % 8 != 7 && pipeSlots[i + 1].Pipe.left && !cameFrom.Equals("right")))
                 {
-                    pipeSlots[i + 1].canDrag = false;
-                    recentPipe = pipeSlots[i + 1].Pipe;
                     i += 1;
                     cameFrom = "left";
-                    targetTime += 3.0f;
                     Debug.Log("ide w prawo");
                 }
-                //implementation of edge case
-                if (recentPipe.right && i == 38 && pipeSlots[i + 1].Pipe.left)
+                //Check if there's connection to the top
+                else if (recentPipe.top && i - 8 > 0 && pipeSlots[i - 8].Pipe.bot && !cameFrom.Equals("top"))
                 {
-                    pipeSlots[i + 1].canDrag = false;
-                    recentPipe = pipeSlots[i + 1].Pipe;
-                    i += 1;
-                    cameFrom = "left";
-                    targetTime += 3.0f;
-                    Debug.Log("ide w prawo");
-                }
-                if (recentPipe.top && i - 8 > 0 && pipeSlots[i - 8].Pipe.bot && !cameFrom.Equals("top"))
-                {
-                    pipeSlots[i - 8].canDrag = false;
-                    recentPipe = pipeSlots[i - 8].Pipe;
                     i -= 8;
                     cameFrom = "bot";
-                    targetTime += 3.0f;
                     Debug.Log("ide do gory");
                 }
-                if (recentPipe.left && (i - 1) % 8 > 0 && pipeSlots[i - 1].Pipe.right && !cameFrom.Equals("left"))
+                //Check if there's connection to the left
+                else if (recentPipe.left && (i - 1) % 8 >= 0 && pipeSlots[i - 1].Pipe.right && !cameFrom.Equals("left"))
                 {
-                    pipeSlots[i - 1].canDrag = false;
-                    recentPipe = pipeSlots[i - 1].Pipe;
                     i -= 1;
                     cameFrom = "right";
-                    targetTime += 3.0f;
                     Debug.Log("ide w lewo");
                 }
-                if (recentPipe.bot && i + 8 < pipeSlots.Length && pipeSlots[i + 8].Pipe.top && !cameFrom.Equals("bot"))
+                //Check if there's connection to the down
+                else if (recentPipe.bot && i + 8 < pipeSlots.Length && pipeSlots[i + 8].Pipe.top && !cameFrom.Equals("bot"))
                 {
-                    pipeSlots[i + 8].canDrag = false;
-                    recentPipe = pipeSlots[i + 8].Pipe;
                     i += 8;
                     cameFrom = "top";
-                    targetTime += 3.0f;
                     Debug.Log("ide w dol.");
                 }
+                //implementation of edge case
+                else if (recentPipe.right && i == 38 && pipeSlots[i + 1].Pipe.left)
+                {
+                    recentPipe = pipeSlots[i + 1].Pipe;
+                    i += 1;
+                    Debug.Log("ide w prawo");
+                }
+                targetTime += 3.0f;
             }
             catch (Exception)
             {
                 isDone = true;
-                int l = 5;
+                waitingTime = 0.0f;
                 tryAgainText.SetActive(true);
-                while (l != 0)
-                {
-                    l -= 1;
-                    Debug.Log(i);
-                }
-                SceneManager.LoadScene(3);
+                Debug.Log("Przegrales");
+
             }
             if (i == pipeSlots.Length - 1)
             {
                 Debug.Log("Finally");
                 isDone = true;
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("Level_1");
             }
         }
 
     }
+
+    private void AnimateTile(PipeSlot pipeSlot, Pipe pipe)
+    {
+        if (animationTimer >= targetTime / pipe.frameArrayDefault.Length && currentTile < pipe.frameArrayDefault.Length)
+        {
+            animationTimer -= targetTime / pipe.frameArrayDefault.Length;
+            //right & bot;
+            if (pipe.bot && pipe.right)
+            {
+                if (cameFrom.Equals("bot"))
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayDefault[currentTile];
+                }
+                else
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayInverted[currentTile];
+                }
+            }
+
+            //right & top
+            if (pipe.right && pipe.top)
+            {
+                if (cameFrom.Equals("top"))
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayDefault[currentTile];
+                }
+                else
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayInverted[currentTile];
+                }
+            }
+
+            //left & bot
+            if (pipe.left && pipe.bot)
+            {
+                if (cameFrom.Equals("left"))
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayDefault[currentTile];
+                }
+                else
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayInverted[currentTile];
+                }
+            }
+
+            //left & top
+            if (pipe.left && pipe.top)
+            {
+                if (cameFrom.Equals("top"))
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayDefault[currentTile];
+                }
+                else
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayInverted[currentTile];
+                }
+            }
+
+            //top & bot, left & right
+            if (((pipe.left && pipe.right) || (pipe.top && pipe.bot)))
+            {
+                if (cameFrom.Equals("left") || cameFrom.Equals("top") || cameFrom.Equals("null"))
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayDefault[currentTile];
+                }
+                else
+                {
+                    pipeSlot.Image.sprite = pipe.frameArrayInverted[currentTile];
+                }
+            }
+
+            currentTile++;
+        }
+    }
+
     private void GenerateStartingPattern()
     {
         pipes.Clear();
@@ -177,5 +252,4 @@ public class UI : MonoBehaviour
             pipes.Add(toAdd);
         }
     }
-
 }

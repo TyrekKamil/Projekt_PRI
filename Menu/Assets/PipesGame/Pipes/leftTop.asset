@@ -18,3 +18,19 @@ MonoBehaviour:
   left: 0
   top: 0
   bot: 1
+  frameArrayDefault:
+  - {fileID: 106927398818158243, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: -7601705378244548281, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: -1934788376891667688, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: -3518715742603398483, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: 4033179161373620096, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: 6208388175945799867, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  - {fileID: -8294296473620949009, guid: 265f2f2f60a042645ac190e46c919a3b, type: 3}
+  frameArrayInverted:
+  - {fileID: 207995955447351447, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: -2183353822023114242, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: -3913651491486886766, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: 6023310779082625853, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: -4116996897376565774, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: 1047747537853544289, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}
+  - {fileID: 2972177969176825285, guid: a7931ee07e7c55e40bb3c75b4c0cfa7c, type: 3}

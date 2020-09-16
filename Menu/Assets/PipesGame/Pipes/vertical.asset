@@ -18,3 +18,19 @@ MonoBehaviour:
   left: 0
   top: 1
   bot: 1
+  frameArrayDefault:
+  - {fileID: 8658703984184413852, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: 3343063377462218125, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: 7886176818737662771, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: 6152656387518407950, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: 435206993411084846, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: -972213193179566902, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  - {fileID: 2427292689590312761, guid: bda79063167fc034eb85b4b951deab4a, type: 3}
+  frameArrayInverted:
+  - {fileID: 7831979107388742541, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: -3098959033521501142, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: -5711286007613846772, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: -5784274574396333840, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: -701003099030727998, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: 2484519481220291413, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}
+  - {fileID: 2884721894257289657, guid: 3c67f5b02b7b02e42ad6c19883d43c1d, type: 3}

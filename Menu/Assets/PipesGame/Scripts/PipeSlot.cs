@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class PipeSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
-    [SerializeField] Image Image;
+    [SerializeField] public Image Image;
     public bool canDrag = true;
     public event Action<PipeSlot> OnDragEvent;
     public event Action<PipeSlot> OnBeginDragEvent;
