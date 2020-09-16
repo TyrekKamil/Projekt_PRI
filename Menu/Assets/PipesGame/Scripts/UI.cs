@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -32,9 +34,12 @@ public class UI : MonoBehaviour
     public event Action<PipeSlot> OnEndDragEvent;
     public event Action<PipeSlot> OnDropEvent;
 
+    public GameObject tryAgainText;
+
     private void Start()
     {
-        for (int i = 0; i < pipeSlots.Length; i++) {
+        for (int i = 0; i < pipeSlots.Length; i++)
+        {
             pipeSlots[i].OnBeginDragEvent += OnBeginDragEvent;
             pipeSlots[i].OnDragEvent += OnDragEvent;
             pipeSlots[i].OnDropEvent += OnDropEvent;
@@ -59,7 +64,8 @@ public class UI : MonoBehaviour
     {
         recentPipe = pipeSlots[i].Pipe;
         targetTime -= Time.deltaTime;
-        if (targetTime <= 0.0f && !isDone) {
+        if (targetTime <= 0.0f && !isDone)
+        {
             try
             {
                 if (recentPipe.right && (i + 1) % 8 != 7 && pipeSlots[i + 1].Pipe.left)
@@ -112,11 +118,20 @@ public class UI : MonoBehaviour
             catch (Exception)
             {
                 isDone = true;
-                Debug.Log("Przegrales");
+                int l = 5;
+                tryAgainText.SetActive(true);
+                while (l != 0)
+                {
+                    l -= 1;
+                    Debug.Log(i);
+                }
+                SceneManager.LoadScene(3);
             }
-            if (i == pipeSlots.Length - 1) {
+            if (i == pipeSlots.Length - 1)
+            {
                 Debug.Log("Finally");
                 isDone = true;
+                SceneManager.LoadScene(2);
             }
         }
 
@@ -149,14 +164,18 @@ public class UI : MonoBehaviour
             {
                 pipeSlots[x].Pipe = pipes[i];
             }
-            else {
+            else
+            {
                 i--;
             }
         }
     }
-    private void AddPipes(Pipe toAdd, int count){
-        for (int i = 0; i < count; i++) {
+    private void AddPipes(Pipe toAdd, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
             pipes.Add(toAdd);
         }
     }
+
 }
