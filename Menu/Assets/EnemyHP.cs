@@ -31,7 +31,7 @@ public class EnemyHP : MonoBehaviour
     }
     IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
 
     }
