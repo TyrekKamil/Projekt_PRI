@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 2.5f;
     public LayerMask enemyLayers;
-    private bool isDamaged = false;
+
     public int attackDamage = 50;
     void Start()
     {
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
 
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton"))) && isDamaged)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton"))))
         {
             animator.SetBool("IsJumping", true);
             jump = true;
@@ -80,16 +80,4 @@ public class PlayerMovement : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
-    public void JumpBlock() {
-        this.isDamaged = true;
-        StartCoroutine(WaitForSec());
-        this.isDamaged = false;
-    }
-
-        IEnumerator WaitForSec()
-    {
-        yield return new WaitForSeconds(2);
-    }
-    
 }
