@@ -31,7 +31,7 @@ public class RespawnPlayer : MonoBehaviour
         {
             player.position += movement * Time.deltaTime * 10f * direction;
         }
-        else
+        else if(ifDamaged)
         {
             ifDamaged = false;
         }
@@ -43,7 +43,7 @@ public class RespawnPlayer : MonoBehaviour
             direction = (transform.position.x - player.transform.position.x) > 0 ? -1 : 1;
             endPos = player.position + new Vector3(direction * 5f, 0, 2f);
             ifDamaged = true;
-
+            player.GetComponent<PlayerMovement>().JumpBlock();
             playerStatsScript.ChangeHealth(damageValue);
 
             if (playerStatsScript.respawnPlayer())
