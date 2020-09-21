@@ -125,6 +125,13 @@ public class UI : MonoBehaviour
                     i += 1;
                     Debug.Log("ide w prawo");
                 }
+                else {
+                    isDone = true;
+                    waitingTime = 0.0f;
+                    fail = true;
+                    tryAgainText.SetActive(true);
+                    Debug.Log("Przegrales");
+                }
                 targetTime += 3.0f;
             }
             catch (Exception)
