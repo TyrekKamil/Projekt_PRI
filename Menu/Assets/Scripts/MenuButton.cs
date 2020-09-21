@@ -8,8 +8,10 @@ public class MenuButton : MonoBehaviour
 	[SerializeField] Animator animator;
 	[SerializeField] AnimatorFunctions animatorFunctions;
 	[SerializeField] int thisIndex;
-
-    // Update is called once per frame
+	//Set only in minigame
+	[SerializeField] UI ui;
+	// Update is called once per frame
+	bool canPress = true;
     public void Select()
     {
 		animator.SetBool ("selected", true);
@@ -18,6 +20,13 @@ public class MenuButton : MonoBehaviour
 	public void Unselect()
 	{
 		animator.SetBool("selected", false);
+	}
+	public void SpeedUp() {
+		if (canPress)
+		{
+			ui.targetTime = -999.0f;
+			canPress = false;
+		}
 	}
 	public void Click(){
 		animator.SetBool ("pressed", true);

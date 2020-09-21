@@ -148,7 +148,10 @@ public class UI : MonoBehaviour
 
     private void AnimateTile(PipeSlot pipeSlot, Pipe pipe)
     {
-        if (animationTimer >= targetTime / pipe.frameArrayDefault.Length && currentTile < pipe.frameArrayDefault.Length)
+        if (targetTime <= -500.0f) {
+            pipeSlot.Image.sprite = pipe.frameArrayDefault[pipe.frameArrayDefault.Length - 1];
+        }
+        else if (animationTimer >= targetTime / pipe.frameArrayDefault.Length && currentTile < pipe.frameArrayDefault.Length)
         {
             animationTimer -= targetTime / pipe.frameArrayDefault.Length;
             //right & bot;
@@ -165,7 +168,7 @@ public class UI : MonoBehaviour
             }
 
             //right & top
-            if (pipe.right && pipe.top)
+            else if (pipe.right && pipe.top)
             {
                 if (cameFrom.Equals("top"))
                 {
@@ -178,7 +181,7 @@ public class UI : MonoBehaviour
             }
 
             //left & bot
-            if (pipe.left && pipe.bot)
+            else if (pipe.left && pipe.bot)
             {
                 if (cameFrom.Equals("left"))
                 {
@@ -191,7 +194,7 @@ public class UI : MonoBehaviour
             }
 
             //left & top
-            if (pipe.left && pipe.top)
+            else if (pipe.left && pipe.top)
             {
                 if (cameFrom.Equals("top"))
                 {
@@ -204,7 +207,7 @@ public class UI : MonoBehaviour
             }
 
             //top & bot, left & right
-            if (((pipe.left && pipe.right) || (pipe.top && pipe.bot)))
+            else if (((pipe.left && pipe.right) || (pipe.top && pipe.bot)))
             {
                 if (cameFrom.Equals("left") || cameFrom.Equals("top") || cameFrom.Equals("null"))
                 {
@@ -219,7 +222,6 @@ public class UI : MonoBehaviour
             currentTile++;
         }
     }
-
     private void GenerateStartingPattern()
     {
         pipes.Clear();
