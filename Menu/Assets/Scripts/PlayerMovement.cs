@@ -30,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton"))))
         {
             direction = -1;
+            MoveObject();
         }
         else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton"))))
         {
             direction = 1;
+            MoveObject();
         }
 
         horizontalMove = direction * moveSpeed;
@@ -49,10 +51,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
-        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0) {
-            MoveObject(Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer));
-        }
-
     }
     public void OnLanding()
     {
@@ -77,9 +75,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void MoveObject(Collider2D[] boxes) {
-        int boxDest = (transform.position.x - boxes[0].transform.position.x) > 0 ? -1 : 1;
-        boxes[0].GetComponent<BoxMoving>().MoveBox(boxDest);
+    void MoveObject() {
+        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0) {
+            Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer)[0]
+                .GetComponent<BoxMoving>().MoveBox(direction);
+            animator.SetTrigger("PushObject");
+        }
     }
 
     void OnDrawGizmosSelected()
