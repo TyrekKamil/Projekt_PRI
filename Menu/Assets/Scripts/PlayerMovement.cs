@@ -14,11 +14,12 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
 
     private int direction = 0;
-    public Transform attackPoint;
+    public Transform actionPoint;
     public float attackRange = 2.5f;
     public LayerMask enemyLayers;
-
     public int attackDamage = 50;
+    public LayerMask boxLayer;
+    public float boxMoveRange = 0.5f;
     void Start()
     {
 
@@ -48,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
+        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0) {
+            MoveObject(Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer));
+        }
+
     }
     public void OnLanding()
     {
@@ -65,19 +70,24 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Attack");
         //Animacja ataku TODO
         animator.SetTrigger("Attack");
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemies)
         {
             enemy.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }
     }
 
+    void MoveObject(Collider2D[] boxes) {
+        int boxDest = (transform.position.x - boxes[0].transform.position.x) > 0 ? -1 : 1;
+        boxes[0].GetComponent<BoxMoving>().MoveBox(boxDest);
+    }
+
     void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
+        if (actionPoint == null)
         {
             return;
         }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(actionPoint.position, attackRange);
     }
 }
