@@ -83,6 +83,33 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jump = false;
+        }
+
+        if (other.gameObject.CompareTag("MGround"))
+        {
+            this.transform.parent = other.transform;
+            jump = false;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            jump = true;
+        }
+        if (other.gameObject.CompareTag("MGround"))
+        {
+            this.transform.parent = null;
+            jump = true;
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (actionPoint == null)
