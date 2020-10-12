@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxMoving : MonoBehaviour
-{
+{   
     private Vector3 movement = new Vector3(1f, 0f, 0f);
-    private float moveSpeed = 2.5f;
-
+    public float moveSpeed = 1.5f;
+    public LayerMask wallLayer;
     public void MoveBox(int boxDirect) { 
-        Debug.Log("Move to " + boxDirect);
-        transform.position += movement * Time.deltaTime * moveSpeed * boxDirect;    
+        Collider2D[] walls = Physics2D.OverlapCircleAll(transform.position, 0.5f, wallLayer);
+        if(walls.Length == 0) {
+            transform.position += movement * Time.deltaTime * moveSpeed * boxDirect;    
+        }
     }
 }
+
+// todo nie przesuwa jak skacze 

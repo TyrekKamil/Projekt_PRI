@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void MoveObject() {
-        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0) {
+        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0 && !animator.GetBool("IsJumping")) {
             Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer)[0]
                 .GetComponent<BoxMoving>().MoveBox(direction);
             animator.SetTrigger("PushObject");
