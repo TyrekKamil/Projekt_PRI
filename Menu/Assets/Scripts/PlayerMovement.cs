@@ -92,7 +92,6 @@ public class PlayerMovement : MonoBehaviour
             this.transform.parent = other.transform;
         }
     }
-    //todo take block physics into account(when moving right jump more to the right)
     void OnCollisionExit2D(Collision2D other)
     {
         
