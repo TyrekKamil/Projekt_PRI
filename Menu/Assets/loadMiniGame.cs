@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class loadMiniGame : MonoBehaviour
 {
     public Animator anim;
-
+    public GameObject wall;
+    private MoveWall moveWall;
     private void Start()
     {
-
+        moveWall = wall.GetComponent<MoveWall>();
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -18,8 +19,10 @@ public class loadMiniGame : MonoBehaviour
         {
             Debug.Log("switched");
             anim.SetBool("switchLever", true);
-            StartCoroutine("LoadMinigameScene");
-            
+            //Add this line:
+            //StartCoroutine("LoadMinigameScene");
+            //Execute at successful minigame completion.
+            moveWall.OnMinigameCompletion();
         }
 
     }
