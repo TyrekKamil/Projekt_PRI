@@ -15,14 +15,14 @@ public class CharacterController2D : MonoBehaviour
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 										//const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-	private Rigidbody2D m_Rigidbody2D;
+	public Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.	
 	private int extraJumps;
+	private bool onMovingPlatform = false;
 	private Vector3 m_Velocity = Vector3.zero;
-
 	[Header("Events")]
 	[Space]
-
+	MovingPlatform currentPlatform;
 	public UnityEvent OnLandEvent;
 
 	//[System.Serializable]
@@ -47,18 +47,26 @@ public class CharacterController2D : MonoBehaviour
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
+			if (colliders[i].gameObject.name.Contains("Moving Platform")) {
+				onMovingPlatform = true;
+				currentPlatform = colliders[i].gameObject.GetComponent<MovingPlatform>();
+			}
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
 			}
 			if (!wasGrounded)
+			{
 				animator.SetBool("IsJumping", false);
+			}
+
 		}
 	}
 
 
 	public void Move(float move, bool jump)
 	{
+
 		if (!m_Grounded) {
 			animator.SetBool("IsJumping", true);
 		}
@@ -69,6 +77,12 @@ public class CharacterController2D : MonoBehaviour
 		}
 		if (m_Grounded || m_AirControl)
 		{
+			//include force of moving objects
+			if (onMovingPlatform && !m_Grounded)
+			{
+				move += currentPlatform.velocityX;
+				onMovingPlatform = false;
+			}
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
@@ -89,10 +103,16 @@ public class CharacterController2D : MonoBehaviour
 		}
 		// If the player should jump(jump button is pressed)
 		if (m_Grounded && jump){
-			// Add a vertical force to the player.
 			m_Grounded = false;
+
+
+			
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			
+			// Add a vertical force to the player.
+
 			jump = false;
+			onMovingPlatform = false;
 		}
 		if (!m_Grounded && !jump)
 		{
@@ -105,6 +125,7 @@ public class CharacterController2D : MonoBehaviour
 			//Executing double jump
 			animator.SetBool("doubleJump", true);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * extraJumpDifficulty));
+			onMovingPlatform = false;
 			jump = false;
 			extraJumps--;
 		}

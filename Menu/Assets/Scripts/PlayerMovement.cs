@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 20f;
 
     bool jump = false;
-
+    public MovingPlatform mp;
     private int direction = 0;
     public Transform actionPoint;
     public float attackRange = 2.5f;
@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         horizontalMove = direction * moveSpeed;
+        
+
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
 
@@ -58,7 +60,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
+
         jump = false;
 
     }
@@ -82,31 +86,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("PushObject");
         }
     }
-
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            jump = false;
-        }
 
         if (other.gameObject.CompareTag("MGround"))
         {
             this.transform.parent = other.transform;
-            jump = false;
         }
     }
-
+    //todo take block physics into account(when moving right jump more to the right)
     void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            jump = true;
-        }
+        
         if (other.gameObject.CompareTag("MGround"))
         {
             this.transform.parent = null;
-            jump = true;
         }
     }
 
