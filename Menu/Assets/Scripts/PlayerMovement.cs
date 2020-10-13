@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 20f;
 
     bool jump = false;
-    public MovingPlatform mp;
     private int direction = 0;
     public Transform actionPoint;
     public float attackRange = 2.5f;
@@ -70,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attack");
-        //Animacja ataku TODO
         animator.SetTrigger("Attack");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemies)
