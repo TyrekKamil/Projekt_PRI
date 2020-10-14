@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Puzzle : MonoBehaviour {
     public int blocksPerLine = 3;
     private PuzzleBlock emptyBlock;
@@ -10,16 +9,16 @@ public class Puzzle : MonoBehaviour {
         CreatePuzzle ();
     }
     private void CreatePuzzle () {
-        Texture2D[,] images = ImageSlicer.GetSlices(image, blocksPerLine); 
+        Texture2D[, ] images = ImageSlicer.GetSlices (image, blocksPerLine);
         for (int x = 0; x < blocksPerLine; x++) {
             for (int y = 0; y < blocksPerLine; y++) {
                 GameObject blockObj = GameObject.CreatePrimitive (PrimitiveType.Quad);
-                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2 (x, y);
+                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2 (x, y) * 1.05f;
                 blockObj.transform.parent = transform;
 
                 PuzzleBlock puzzleBlock = blockObj.AddComponent<PuzzleBlock> ();
                 puzzleBlock.OnBlockPressed += PlayerMoveBlockInput;
-                puzzleBlock.Init(new Vector2Int(x,y), images[x,y]);
+                puzzleBlock.Init (new Vector2Int (x, y), images[x, y]);
 
                 if (y == 0 && x == blocksPerLine - 1) {
                     blockObj.SetActive (false);
@@ -31,7 +30,7 @@ public class Puzzle : MonoBehaviour {
     }
 
     private void PlayerMoveBlockInput (PuzzleBlock puzzleToMove) {
-        if ((puzzleToMove.transform.position - emptyBlock.transform.position).sqrMagnitude == 1) {
+        if (Mathf.Floor((puzzleToMove.transform.position - emptyBlock.transform.position).sqrMagnitude) == 1) {
             Vector2Int targetCoord = emptyBlock.coord;
             emptyBlock.coord = puzzleToMove.coord;
             puzzleToMove.coord = targetCoord;
