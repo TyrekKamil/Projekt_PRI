@@ -5,6 +5,7 @@ public class Puzzle : MonoBehaviour {
     public int blocksPerLine = 3;
     private PuzzleBlock emptyBlock;
     public Texture2D image;
+    public float duration = 0.2f;
     void Start () {
         CreatePuzzle ();
     }
@@ -26,7 +27,7 @@ public class Puzzle : MonoBehaviour {
                 }
             }
         }
-        Camera.main.orthographicSize = blocksPerLine * 0.55f;
+        Camera.main.orthographicSize = blocksPerLine * 0.65f;
     }
 
     private void PlayerMoveBlockInput (PuzzleBlock puzzleToMove) {
@@ -37,7 +38,7 @@ public class Puzzle : MonoBehaviour {
 
             Vector2 targetPosition = emptyBlock.transform.position;
             emptyBlock.transform.position = puzzleToMove.transform.position;
-            puzzleToMove.transform.position = targetPosition;
+            puzzleToMove.MoveToPosition(targetPosition, duration);
         }
     }
 }

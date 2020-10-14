@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 668208736}
   - component: {fileID: 668208735}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: PuzzleContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocksPerLine: 3
   image: {fileID: 2800000, guid: 00de62d9dbb862d4a8293f66b70360a1, type: 3}
+  duration: 1
 --- !u!4 &668208736
 Transform:
   m_ObjectHideFlags: 0
