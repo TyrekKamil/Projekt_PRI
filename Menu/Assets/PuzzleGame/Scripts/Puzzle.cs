@@ -4,19 +4,41 @@ using UnityEngine;
 
 public class Puzzle : MonoBehaviour {
     public int blocksPerLine = 3;
-
-    void Start() {
-        CreatePuzzle();
+    private PuzzleBlock emptyBlock;
+    public Texture2D image;
+    void Start () {
+        CreatePuzzle ();
     }
-    void CreatePuzzle() { 
+    private void CreatePuzzle () {
+        Texture2D[,] images = ImageSlicer.GetSlices(image, blocksPerLine); 
         for (int x = 0; x < blocksPerLine; x++) {
             for (int y = 0; y < blocksPerLine; y++) {
-                GameObject blockObj = GameObject.CreatePrimitive(PrimitiveType.Quad);
-                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2(x,y);
+                GameObject blockObj = GameObject.CreatePrimitive (PrimitiveType.Quad);
+                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2 (x, y);
                 blockObj.transform.parent = transform;
+
+                PuzzleBlock puzzleBlock = blockObj.AddComponent<PuzzleBlock> ();
+                puzzleBlock.OnBlockPressed += PlayerMoveBlockInput;
+                puzzleBlock.Init(new Vector2Int(x,y), images[x,y]);
+
+                if (y == 0 && x == blocksPerLine - 1) {
+                    blockObj.SetActive (false);
+                    emptyBlock = puzzleBlock;
+                }
             }
         }
         Camera.main.orthographicSize = blocksPerLine * 0.55f;
     }
 
+    private void PlayerMoveBlockInput (PuzzleBlock puzzleToMove) {
+        if ((puzzleToMove.transform.position - emptyBlock.transform.position).sqrMagnitude == 1) {
+            Vector2Int targetCoord = emptyBlock.coord;
+            emptyBlock.coord = puzzleToMove.coord;
+            puzzleToMove.coord = targetCoord;
+
+            Vector2 targetPosition = emptyBlock.transform.position;
+            emptyBlock.transform.position = puzzleToMove.transform.position;
+            puzzleToMove.transform.position = targetPosition;
+        }
+    }
 }
