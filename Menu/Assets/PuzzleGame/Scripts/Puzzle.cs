@@ -9,17 +9,18 @@ public class Puzzle : MonoBehaviour {
     public Texture2D image;
     private bool[] isOnBoard;
     public float duration = 0.2f;
+    private PuzzleBlock[] puzzleBlocks;
     void Start () {
         CreatePuzzle ();
     }
     private void CreatePuzzle () {
         generateBoolArray ();
+        puzzleBlocks = new PuzzleBlock[blocksPerLine * blocksPerLine];
         Texture2D[, ] images = ImageSlicer.GetSlices (image, blocksPerLine);
         for (int x = 0; x < blocksPerLine; x++) {
             for (int y = 0; y < blocksPerLine; y++) {
                 GameObject blockObj = GameObject.CreatePrimitive (PrimitiveType.Quad);
                 int pos = randomPosition ();
-                Debug.Log (pos);
                 int blockObj_x = generateX (pos);
                 int blockObj_y = generateY (pos);
 
@@ -30,7 +31,7 @@ public class Puzzle : MonoBehaviour {
                 puzzleBlock.OnBlockPressed += AddMoveBlockToQueue;
                 puzzleBlock.OnFinishedMoving += OnFinishedMoving;
                 puzzleBlock.Init (new Vector2Int (blockObj_x, blockObj_y), images[x, y]);
-
+                puzzleBlocks[blocksPerLine * x + y] = puzzleBlock;
                 if (y == 0 && x == blocksPerLine - 1) {
                     blockObj.SetActive (false);
                     emptyBlock = puzzleBlock;
@@ -66,8 +67,18 @@ public class Puzzle : MonoBehaviour {
     private void OnFinishedMoving () {
         blockIsMoving = false;
         MakeNextPlayerMove ();
+        CheckPuzzles ();
     }
 
+    private void CheckPuzzles () {
+        bool success = true;
+        for (int i = 0; i < blocksPerLine * blocksPerLine; i++) {
+            if (puzzleBlocks[i].coord.x != generateX (i) || puzzleBlocks[i].coord.y != generateY (i)) {
+                success = false;
+            }
+        }
+        Debug.Log(success);
+    }
     private int randomPosition () {
         int pos = 0;
         do {
