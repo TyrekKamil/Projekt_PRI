@@ -7,22 +7,29 @@ public class Puzzle : MonoBehaviour {
     private Queue<PuzzleBlock> blocksQueue;
     private bool blockIsMoving;
     public Texture2D image;
+    private bool[] isOnBoard;
     public float duration = 0.2f;
     void Start () {
         CreatePuzzle ();
     }
     private void CreatePuzzle () {
+        generateBoolArray ();
         Texture2D[, ] images = ImageSlicer.GetSlices (image, blocksPerLine);
         for (int x = 0; x < blocksPerLine; x++) {
             for (int y = 0; y < blocksPerLine; y++) {
                 GameObject blockObj = GameObject.CreatePrimitive (PrimitiveType.Quad);
-                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2 (x, y);
+                int pos = randomPosition ();
+                Debug.Log (pos);
+                int blockObj_x = generateX (pos);
+                int blockObj_y = generateY (pos);
+
+                blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2 (blockObj_x, blockObj_y);
                 blockObj.transform.parent = transform;
 
                 PuzzleBlock puzzleBlock = blockObj.AddComponent<PuzzleBlock> ();
                 puzzleBlock.OnBlockPressed += AddMoveBlockToQueue;
                 puzzleBlock.OnFinishedMoving += OnFinishedMoving;
-                puzzleBlock.Init (new Vector2Int (x, y), images[x, y]);
+                puzzleBlock.Init (new Vector2Int (blockObj_x, blockObj_y), images[x, y]);
 
                 if (y == 0 && x == blocksPerLine - 1) {
                     blockObj.SetActive (false);
@@ -30,13 +37,13 @@ public class Puzzle : MonoBehaviour {
                 }
             }
         }
-        Camera.main.orthographicSize = blocksPerLine * 0.65f;
-        blocksQueue = new Queue<PuzzleBlock>();
+        Camera.main.orthographicSize = blocksPerLine * 0.55f;
+        blocksQueue = new Queue<PuzzleBlock> ();
     }
 
     private void AddMoveBlockToQueue (PuzzleBlock puzzleToMove) {
         blocksQueue.Enqueue (puzzleToMove);
-        MakeNextPlayerMove();
+        MakeNextPlayerMove ();
     }
 
     private void MakeNextPlayerMove () {
@@ -58,7 +65,30 @@ public class Puzzle : MonoBehaviour {
 
     private void OnFinishedMoving () {
         blockIsMoving = false;
-        MakeNextPlayerMove();
+        MakeNextPlayerMove ();
+    }
+
+    private int randomPosition () {
+        int pos = 0;
+        do {
+            pos = new System.Random ().Next (0, (blocksPerLine * blocksPerLine));
+        }
+        while (isOnBoard[pos]);
+        isOnBoard[pos] = true;
+        return pos;
+    }
+    private int generateX (int pos) {
+        return (pos % blocksPerLine) == 0 ? 3 : (pos % blocksPerLine);
+    }
+    private int generateY (int pos) {
+        return (pos / blocksPerLine) + 1;
+    }
+
+    private void generateBoolArray () {
+        isOnBoard = new bool[blocksPerLine * blocksPerLine];
+        for (int x = 0; x < blocksPerLine * blocksPerLine; x++) {
+            isOnBoard[x] = false;
+        }
     }
 
 }
