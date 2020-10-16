@@ -73,11 +73,10 @@ public class Puzzle : MonoBehaviour {
     private void CheckPuzzles () {
         bool success = true;
         for (int i = 0; i < blocksPerLine * blocksPerLine; i++) {
-            if (puzzleBlocks[i].coord.x != generateX (i) || puzzleBlocks[i].coord.y != generateY (i)) {
+            if (i != (puzzleBlocks[i].coord.y + puzzleBlocks[i].coord.x * blocksPerLine)) {
                 success = false;
             }
         }
-        Debug.Log(success);
     }
     private int randomPosition () {
         int pos = 0;
