@@ -30,7 +30,8 @@ public class Puzzle : MonoBehaviour {
                 PuzzleBlock puzzleBlock = blockObj.AddComponent<PuzzleBlock> ();
                 puzzleBlock.OnBlockPressed += AddMoveBlockToQueue;
                 puzzleBlock.OnFinishedMoving += OnFinishedMoving;
-                puzzleBlock.Init (new Vector2Int (blockObj_x, blockObj_y), images[x, y]);
+                int order = (blocksPerLine * blocksPerLine) - (blocksPerLine - (x + 1) + y * blocksPerLine);
+                puzzleBlock.Init (new Vector2Int (blockObj_x, blockObj_y), images[x, y], order);
                 puzzleBlocks[blocksPerLine * x + y] = puzzleBlock;
                 if (y == 0 && x == blocksPerLine - 1) {
                     blockObj.SetActive (false);
@@ -77,6 +78,7 @@ public class Puzzle : MonoBehaviour {
                 success = false;
             }
         }
+        Debug.Log(success);
     }
     private int randomPosition () {
         int pos = 0;
@@ -88,7 +90,7 @@ public class Puzzle : MonoBehaviour {
         return pos;
     }
     private int generateX (int pos) {
-        return (pos % blocksPerLine) == 0 ? 3 : (pos % blocksPerLine);
+        return (pos % blocksPerLine) == 0 ? blocksPerLine : (pos % blocksPerLine);
     }
     private int generateY (int pos) {
         return (pos / blocksPerLine) + 1;

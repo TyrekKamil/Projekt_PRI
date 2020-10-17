@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PuzzleBlock : MonoBehaviour {
@@ -7,9 +8,17 @@ public class PuzzleBlock : MonoBehaviour {
     public event System.Action OnFinishedMoving;
     public Vector2Int coord;
 
-    public void Init (Vector2Int startingCoord, Texture2D image) {
+    public void Init (Vector2Int startingCoord, Texture2D image, int order) {
         coord = startingCoord;
         GetComponent<MeshRenderer> ().material.mainTexture = image;
+        GameObject textObject = new GameObject ("text");
+        textObject.transform.SetParent (transform);
+        textObject.AddComponent<TextMeshPro> ();
+        textObject.GetComponent<TextMeshPro> ().text = order.ToString ();
+        textObject.GetComponent<TextMeshPro> ().fontSize = 4;
+        textObject.GetComponent<TextMeshPro> ().alignment = TextAlignmentOptions.Center;
+        textObject.GetComponent<RectTransform>().localPosition  = Vector3.zero;
+        textObject.GetComponent<TextMeshPro>().color = new Color32(255, 255, 255, 125);
     }
 
     public void MoveToPosition (Vector2 target, float duration) {
