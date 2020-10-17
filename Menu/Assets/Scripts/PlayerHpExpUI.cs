@@ -17,4 +17,14 @@ public class PlayerHpExpUI : MonoBehaviour
     {
         sliderHP.value = hp;
     }
+
+    public void SetMaxExp(int exp)
+    {
+        sliderEXP.maxValue = exp;
+    }
+
+    public void SetExperience(int exp)
+    {
+        sliderEXP.value = exp;
+    }
 }
