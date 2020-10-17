@@ -8,6 +8,7 @@ public class PlayerUIUpdates : MonoBehaviour
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
 
+
     void Start()
     {
         playerLevelingSystem = new PlayerLevelingSystem(1, OnLevelUp);
@@ -25,7 +26,7 @@ public class PlayerUIUpdates : MonoBehaviour
         setExpSliderMaxValue();
     }
 
-    private void Update()
+   /* private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -33,7 +34,7 @@ public class PlayerUIUpdates : MonoBehaviour
             slider.SetExperience(playerLevelingSystem.experience);
         }
     }
-
+   */
     public void ChangeHealth(int hit)
     {
         currentHealth -= hit;
@@ -64,5 +65,11 @@ public class PlayerUIUpdates : MonoBehaviour
     {
         int nextLevelExpRange = playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
         slider.SetMaxExp(nextLevelExpRange);
+    }
+
+    public void updateExperience(int exp)
+    {
+        playerLevelingSystem.AddExp(exp);
+        slider.SetExperience(playerLevelingSystem.experience);
     }
 }
