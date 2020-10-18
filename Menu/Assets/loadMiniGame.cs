@@ -15,7 +15,7 @@ public class loadMiniGame : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))))
         {
             Debug.Log("switched");
             anim.SetBool("switchLever", true);
