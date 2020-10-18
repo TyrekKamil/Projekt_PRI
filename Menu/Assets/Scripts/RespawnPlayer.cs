@@ -48,7 +48,7 @@ public class RespawnPlayer : MonoBehaviour
 
             if (playerStatsScript.respawnPlayer())
             {
-                if (respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2")
+                if (respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2" || respawnPoint.transform.name == "RespawnPointMovingObj")
                 {
                     playerStatsScript.respawnPlayerAtCheckpoint();
                     player.transform.position = respawnPoint.transform.position;
