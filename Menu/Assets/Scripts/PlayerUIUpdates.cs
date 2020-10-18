@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
 
 public class PlayerUIUpdates : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    public TextMeshProUGUI currentLevel, currentLevelPercentage;
 
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
+
 
 
     void Start()
@@ -23,10 +27,11 @@ public class PlayerUIUpdates : MonoBehaviour
         int newexp = playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel);
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
+        currentLevel.text = playerLevelingSystem.currentLevel.ToString();
         setExpSliderMaxValue();
     }
-
-   /* private void Update()
+/*
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -71,5 +76,7 @@ public class PlayerUIUpdates : MonoBehaviour
     {
         playerLevelingSystem.AddExp(exp);
         slider.SetExperience(playerLevelingSystem.experience);
+        float levelPercentage = playerLevelingSystem.experience * 100.0f / playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
+        currentLevelPercentage.text = String.Format("{0:0.00}", levelPercentage) + "%";
     }
 }
