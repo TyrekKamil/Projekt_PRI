@@ -39,7 +39,7 @@ public class Puzzle : MonoBehaviour {
                 }
             }
         }
-        Camera.main.orthographicSize = blocksPerLine * 0.55f;
+        Camera.main.orthographicSize = blocksPerLine * 0.65f;
         blocksQueue = new Queue<PuzzleBlock> ();
     }
 
@@ -90,10 +90,10 @@ public class Puzzle : MonoBehaviour {
         return pos;
     }
     private int generateX (int pos) {
-        return (pos % blocksPerLine) == 0 ? blocksPerLine : (pos % blocksPerLine);
+        return (pos % blocksPerLine);
     }
     private int generateY (int pos) {
-        return (pos / blocksPerLine) + 1;
+        return (pos / blocksPerLine);
     }
 
     private void generateBoolArray () {
