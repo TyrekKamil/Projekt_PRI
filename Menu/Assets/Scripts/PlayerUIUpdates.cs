@@ -7,6 +7,7 @@ public class PlayerUIUpdates : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public TextMeshProUGUI currentLevel, currentLevelPercentage;
+    public ParticleSystem onLevelUpEffect;
 
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
@@ -29,17 +30,9 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.experience = (oldEXP - newexp);
         currentLevel.text = playerLevelingSystem.currentLevel.ToString();
         setExpSliderMaxValue();
+        Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
     }
-/*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            playerLevelingSystem.AddExp(30);
-            slider.SetExperience(playerLevelingSystem.experience);
-        }
-    }
-   */
+   
     public void ChangeHealth(int hit)
     {
         currentHealth -= hit;
