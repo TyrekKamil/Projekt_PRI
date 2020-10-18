@@ -7,27 +7,38 @@ public class loadMiniGame : MonoBehaviour
 {
     public Animator anim;
     public GameObject wall;
+    public Sprite endLever;
     private MoveWall moveWall;
+    
     private void Start()
     {
+        if (!Statics.canSwitchLever)
+        {
+            GetComponent<SpriteRenderer>().sprite = endLever;
+        }
         moveWall = wall.GetComponent<MoveWall>();
     }
     void OnTriggerStay2D(Collider2D col)
     {
 
-        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))))
+        //Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton")))
+        if (Input.GetKeyDown(KeyCode.E) && Statics.canSwitchLever)
         {
             Debug.Log("switched");
             anim.SetBool("switchLever", true);
             //Add this line:
-            //StartCoroutine("LoadMinigameScene");
+            Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
+            Statics.sceneWasLeft = true;
+            Statics.canSwitchLever = false;
+            StartCoroutine("LoadMinigameScene");
             //Execute at successful minigame completion.
-            moveWall.OnMinigameCompletion();
+
         }
+
 
     }
     IEnumerator LoadMinigameScene() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(3);
     }
 }

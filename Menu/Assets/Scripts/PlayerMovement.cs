@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
-
+    public MoveWall moveWall;
     float horizontalMove = 0f;
 
     public float moveSpeed = 20f;
@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public float boxMoveRange = 0.5f;
     void Start()
     {
-
+        if (Statics.sceneWasLeft) {
+            gameObject.transform.position = Statics.recentPlayerPosition;
+            moveWall.OnMinigameCompletion();
+        }
     }
 
     void Update()

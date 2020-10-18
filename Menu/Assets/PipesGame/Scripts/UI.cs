@@ -75,7 +75,7 @@ public class UI : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Level_1");
+                SceneManager.LoadScene("Level_tutorial");
             }
         }
         recentSlot = pipeSlots[i];
