@@ -12,7 +12,7 @@ public class StartPuzzleTrigger : MonoBehaviour {
     void OnTriggerStay2D (Collider2D col) {
 
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton")))) {
-            Debug.Log ("Start Camera zooming");
+            Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             isZoomed = true;
             virtCamera.GetComponent<CinemachineVirtualCamera>().Follow = zoomingObject;
             virtCamera.SetActive(false);

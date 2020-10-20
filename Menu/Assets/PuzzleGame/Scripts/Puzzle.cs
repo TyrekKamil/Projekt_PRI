@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Puzzle : MonoBehaviour
 {
     public int blocksPerLine = 3;
@@ -131,6 +133,10 @@ public class Puzzle : MonoBehaviour
             Destroy(child.gameObject);
         }
         CreatePuzzle();
+    }
+
+    public void exitPuzzle() {
+        SceneManager.LoadScene("Level_tutorial");
     }
 
 }

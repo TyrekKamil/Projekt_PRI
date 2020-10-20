@@ -9,7 +9,7 @@ public class PuzzleActionsButton : MonoBehaviour {
         // counter to zero
     }
        public void exitPuzzleButton() {
-        Debug.Log("Not implemented yet");
+        puzzleGameObject.GetComponent<Puzzle>().exitPuzzle();
     }
 
 }
