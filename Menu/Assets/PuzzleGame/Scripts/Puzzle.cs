@@ -11,6 +11,8 @@ public class Puzzle : MonoBehaviour
     private bool[] isOnBoard;
     public float duration = 0.2f;
     private PuzzleBlock[] puzzleBlocks;
+
+    public GameObject counterPuzzle;
     void Start()
     {
         CreatePuzzle();
@@ -79,6 +81,7 @@ public class Puzzle : MonoBehaviour
     private void OnFinishedMoving()
     {
         blockIsMoving = false;
+        counterPuzzle.GetComponent<PuzzleCounter>().moveCount();
         MakeNextPlayerMove();
         CheckPuzzles();
     }
@@ -122,11 +125,6 @@ public class Puzzle : MonoBehaviour
         {
             isOnBoard[x] = false;
         }
-    }
-    
-    public void exitGame() {
-        Debug.Log("Not implemented yet");
-        CreatePuzzle();
     }
     public void restartPuzzle() {
         foreach (Transform child in transform) {
