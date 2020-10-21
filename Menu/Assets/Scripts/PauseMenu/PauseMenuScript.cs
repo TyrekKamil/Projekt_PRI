@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +5,7 @@ public class PauseMenuScript : MonoBehaviour
 {
 
     public static bool gameIsPaused = false;
+    private PlayerUIUpdates playerData;
 
     public GameObject pauseMenu;
     void Update() {
@@ -33,5 +32,16 @@ public class PauseMenuScript : MonoBehaviour
     public void Exit() {
         Resume();
         SceneManager.LoadScene(0);
+    }
+
+    public void SaveGame()
+    {
+        Debug.Log("Game is saved");
+        Resume();
+    }
+
+    public void LoadGame()
+    {
+        Resume();
     }
 }
