@@ -15,6 +15,7 @@ public class StartPuzzleTrigger : MonoBehaviour {
             Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             isZoomed = true;
             virtCamera.GetComponent<CinemachineVirtualCamera>().Follow = zoomingObject;
+            virtCamera.GetComponent<CinemachineVirtualCamera>().LookAt = zoomingObject;
             virtCamera.SetActive(false);
         }
     }

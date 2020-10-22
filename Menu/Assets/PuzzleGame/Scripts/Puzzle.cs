@@ -13,7 +13,7 @@ public class Puzzle : MonoBehaviour
     private bool[] isOnBoard;
     public float duration = 0.2f;
     private PuzzleBlock[] puzzleBlocks;
-
+    public GameObject backgroundOnStart;
     public GameObject counterPuzzle;
     void Start()
     {
@@ -51,6 +51,7 @@ public class Puzzle : MonoBehaviour
         }
         Camera.main.orthographicSize = blocksPerLine * 0.65f;
         blocksQueue = new Queue<PuzzleBlock>();
+        OnStartBackgroundAction();
     }
 
     private void AddMoveBlockToQueue(PuzzleBlock puzzleToMove)
@@ -137,6 +138,12 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() {
         SceneManager.LoadScene("Level_tutorial");
+    }
+
+    public void OnStartBackgroundAction() {
+        while (backgroundOnStart.transform.position.x < 9) {
+            backgroundOnStart.transform.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
+        }
     }
 
 }
