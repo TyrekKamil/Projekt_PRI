@@ -7,22 +7,29 @@ public class ShowControlsMsg : MonoBehaviour
     public GameObject uiObject;
 
     Text text;
+    private string left;
+    private string right;
+    private string jump;
+    private string action;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        left = PlayerPrefs.GetString("LeftButton").Replace("Arrow", "");
+        right = PlayerPrefs.GetString("RightButton").Replace("Arrow", "");
+        jump = PlayerPrefs.GetString("JumpButton");
+        action = PlayerPrefs.GetString("ActionButton");        
+
         if (uiObject.name == "Ruch")
         {
-            string left = PlayerPrefs.GetString("LeftButton").Replace("Arrow", "");
-            string right = PlayerPrefs.GetString("RightButton").Replace("Arrow", "");
+
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + left + "\" or \"" + right + "\" to move!";
         }
         if (uiObject.name == "Skok")
         {
-            string jump = PlayerPrefs.GetString("JumpButton");
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + jump + "\" to jump!";
@@ -30,7 +37,6 @@ public class ShowControlsMsg : MonoBehaviour
 
         if (uiObject.name == "SkokPodw")
         {
-            string jump = PlayerPrefs.GetString("JumpButton");
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Double tap \"" + jump + "\" to jump higher!";
@@ -56,12 +62,12 @@ public class ShowControlsMsg : MonoBehaviour
             text = uiObject.GetComponent<Text>();
             text.text = "Let's see if you remember the right order of totem's lights";
         }
-
-
-
-
-
-
+        if (uiObject.name == "PuzzleMinigame") 
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Press \"" + action + "\" to start puzzle minigame";
+        }
     }
 
 
