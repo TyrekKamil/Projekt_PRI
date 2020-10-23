@@ -21,6 +21,7 @@ public class PlayerUIUpdates : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+
     public void OnLevelUp()
     {
         print("New level! Now you are level: " + playerLevelingSystem.currentLevel);
@@ -57,6 +58,7 @@ public class PlayerUIUpdates : MonoBehaviour
     {
         slider.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
+  
     }
 
     private void setExpSliderMaxValue()
@@ -65,6 +67,7 @@ public class PlayerUIUpdates : MonoBehaviour
         slider.SetMaxExp(nextLevelExpRange);
     }
 
+    //Updates experience, experience slider and text in %
     public void updateExperience(int exp)
     {
         playerLevelingSystem.AddExp(exp);
@@ -75,22 +78,17 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public void SavePlayer()
     {
-        Statics.SavePlayerData(this);
+        SaveData.current.playerData.experience = playerLevelingSystem.experience;
+        SaveData.current.playerData.level = playerLevelingSystem.currentLevel;
+        SaveData.current.playerData.health = currentHealth;
+        SaveData.current.playerData.positionX = transform.position.x;
+        SaveData.current.playerData.positionY = transform.position.y;
+        SaveData.current.playerData.positionZ = transform.position.z;
+        SerializationManager.Save("Player", SaveData.current);
     }
 
     public void LoadPlayer()
     {
-        PlayerData data = Statics.LoadPlayer();
-
-        currentHealth = data.health;
-        slider.SetHealth(data.health);
-        playerLevelingSystem.experience = data.experience;
-        slider.SetExperience(data.experience);
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-
-        transform.position = position;
+        SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Player.save");
     }
 }
