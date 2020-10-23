@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerUIUpdates : MonoBehaviour
 {
@@ -21,6 +22,18 @@ public class PlayerUIUpdates : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Update()
+    {
+        currentLevel.text = playerLevelingSystem.currentLevel.ToString();
+
+        float levelPercentage = playerLevelingSystem.experience * 100.0f / playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
+        currentLevelPercentage.text = String.Format("{0:0.00}", levelPercentage) + "%";
+
+        slider.SetHealth(currentHealth);
+        slider.SetExperience(playerLevelingSystem.experience);
+    }
+
+
     public void OnLevelUp()
     {
         print("New level! Now you are level: " + playerLevelingSystem.currentLevel);
@@ -28,7 +41,6 @@ public class PlayerUIUpdates : MonoBehaviour
         int newexp = playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel);
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
-        currentLevel.text = playerLevelingSystem.currentLevel.ToString();
         setExpSliderMaxValue();
         Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
     }
@@ -36,7 +48,6 @@ public class PlayerUIUpdates : MonoBehaviour
     public void ChangeHealth(int hit)
     {
         currentHealth -= hit;
-        slider.SetHealth(currentHealth);
     }
 
     public int DisplayHealth()
@@ -55,7 +66,6 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public void respawnPlayerAtCheckpoint()
     {
-        slider.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
     }
 
@@ -65,32 +75,28 @@ public class PlayerUIUpdates : MonoBehaviour
         slider.SetMaxExp(nextLevelExpRange);
     }
 
+    //Updates experience, experience slider and text in %
     public void updateExperience(int exp)
     {
         playerLevelingSystem.AddExp(exp);
-        slider.SetExperience(playerLevelingSystem.experience);
-        float levelPercentage = playerLevelingSystem.experience * 100.0f / playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
-        currentLevelPercentage.text = String.Format("{0:0.00}", levelPercentage) + "%";
+       
     }
 
     public void SavePlayer()
     {
-        Statics.SavePlayerData(this);
+        SaveData.current.playerData.experience = playerLevelingSystem.experience;
+        SaveData.current.playerData.level = playerLevelingSystem.currentLevel;
+        SaveData.current.playerData.health = currentHealth;
+        SaveData.current.playerData.position = transform.position;
+        SerializationManager.Save("Player", SaveData.current);
     }
 
     public void LoadPlayer()
     {
-        PlayerData data = Statics.LoadPlayer();
-
-        currentHealth = data.health;
-        slider.SetHealth(data.health);
-        playerLevelingSystem.experience = data.experience;
-        slider.SetExperience(data.experience);
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-
-        transform.position = position;
+        SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Player.save");
+        currentHealth = SaveData.current.playerData.health;
+        playerLevelingSystem.experience = SaveData.current.playerData.experience;
+        playerLevelingSystem.currentLevel = SaveData.current.playerData.level;
+        transform.position = SaveData.current.playerData.position;
     }
 }
