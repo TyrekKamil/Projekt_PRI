@@ -42,7 +42,7 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
         setExpSliderMaxValue();
-        Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
+        //Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
     }
    
     public void ChangeHealth(int hit)
