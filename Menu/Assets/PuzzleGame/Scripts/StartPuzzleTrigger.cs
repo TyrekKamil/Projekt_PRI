@@ -27,6 +27,5 @@ public class StartPuzzleTrigger : MonoBehaviour {
         if (Camera.main.orthographicSize < 0.5) {
             SceneManager.LoadScene(4);    
         }
-        Debug.Log(isZoomed);
     }
 }
