@@ -12,6 +12,9 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
+    public GameObject onLvlUpPrefabEffect;
+
+    private GameObject onLvlUpEffect;
 
 
 
@@ -31,6 +34,11 @@ public class PlayerUIUpdates : MonoBehaviour
 
         slider.SetHealth(currentHealth);
         slider.SetExperience(playerLevelingSystem.experience);
+
+        if (onLvlUpEffect)
+        {
+            onLevelUpEffect.transform.position = transform.position;
+        }
     }
 
 
@@ -42,7 +50,7 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
         setExpSliderMaxValue();
-        //Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
+        onLvlUpEffect = Instantiate(onLvlUpPrefabEffect);
     }
    
     public void ChangeHealth(int hit)

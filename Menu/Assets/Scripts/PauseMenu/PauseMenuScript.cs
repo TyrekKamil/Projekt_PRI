@@ -36,7 +36,6 @@ public class PauseMenuScript : MonoBehaviour
     public void SaveGame()
     {
         Debug.Log("Game is saved");
-        Debug.Log(SaveData.current.enemyData);
         Resume();
     }
 
