@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerUIUpdates : MonoBehaviour
 {
@@ -21,6 +22,17 @@ public class PlayerUIUpdates : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Update()
+    {
+        currentLevel.text = playerLevelingSystem.currentLevel.ToString();
+
+        float levelPercentage = playerLevelingSystem.experience * 100.0f / playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
+        currentLevelPercentage.text = String.Format("{0:0.00}", levelPercentage) + "%";
+
+        slider.SetHealth(currentHealth);
+        slider.SetExperience(playerLevelingSystem.experience);
+    }
+
 
     public void OnLevelUp()
     {
@@ -29,7 +41,6 @@ public class PlayerUIUpdates : MonoBehaviour
         int newexp = playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel);
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
-        currentLevel.text = playerLevelingSystem.currentLevel.ToString();
         setExpSliderMaxValue();
         Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
     }
@@ -37,7 +48,6 @@ public class PlayerUIUpdates : MonoBehaviour
     public void ChangeHealth(int hit)
     {
         currentHealth -= hit;
-        slider.SetHealth(currentHealth);
     }
 
     public int DisplayHealth()
@@ -56,9 +66,7 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public void respawnPlayerAtCheckpoint()
     {
-        slider.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
-  
     }
 
     private void setExpSliderMaxValue()
@@ -71,9 +79,7 @@ public class PlayerUIUpdates : MonoBehaviour
     public void updateExperience(int exp)
     {
         playerLevelingSystem.AddExp(exp);
-        slider.SetExperience(playerLevelingSystem.experience);
-        float levelPercentage = playerLevelingSystem.experience * 100.0f / playerLevelingSystem.GetXPforLevel(playerLevelingSystem.currentLevel + 1);
-        currentLevelPercentage.text = String.Format("{0:0.00}", levelPercentage) + "%";
+       
     }
 
     public void SavePlayer()
@@ -90,5 +96,14 @@ public class PlayerUIUpdates : MonoBehaviour
     public void LoadPlayer()
     {
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Player.save");
+        currentHealth = SaveData.current.playerData.health;
+        playerLevelingSystem.experience = SaveData.current.playerData.experience;
+
+        Vector3 position;
+        position.x = SaveData.current.playerData.positionX;
+        position.y = SaveData.current.playerData.positionY;
+        position.z = SaveData.current.playerData.positionZ;
+
+        transform.position = position;
     }
 }
