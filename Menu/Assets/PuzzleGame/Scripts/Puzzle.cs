@@ -13,8 +13,10 @@ public class Puzzle : MonoBehaviour
     private bool[] isOnBoard;
     public float duration = 0.2f;
     private PuzzleBlock[] puzzleBlocks;
-    public GameObject backgroundOnStart;
     public GameObject counterPuzzle;
+    public GameObject puzzleMidground;
+    private bool onExit = false;
+    private bool success;
     void Start()
     {
         CreatePuzzle();
@@ -51,7 +53,6 @@ public class Puzzle : MonoBehaviour
         }
         Camera.main.orthographicSize = blocksPerLine * 0.65f;
         blocksQueue = new Queue<PuzzleBlock>();
-        OnStartBackgroundAction();
     }
 
     private void AddMoveBlockToQueue(PuzzleBlock puzzleToMove)
@@ -91,7 +92,7 @@ public class Puzzle : MonoBehaviour
 
     private void CheckPuzzles()
     {
-        bool success = true;
+        success = true;
         for (int i = 0; i < blocksPerLine * blocksPerLine; i++)
         {
             if (i != (puzzleBlocks[i].coord.y + puzzleBlocks[i].coord.x * blocksPerLine))
@@ -99,7 +100,9 @@ public class Puzzle : MonoBehaviour
                 success = false;
             }
         }
-        Debug.Log(success);
+        if (success) {
+            exitPuzzle();
+        }
     }
     private int randomPosition()
     {
@@ -136,15 +139,19 @@ public class Puzzle : MonoBehaviour
         CreatePuzzle();
     }
 
-    public void exitPuzzle() {
-        SceneManager.LoadScene("Level_tutorial");
+    public void exitPuzzle() { 
+        if (success) {
+            Debug.Log("You win!");
+        }
+        puzzleMidground.GetComponent<PuzzleBackgroundOnStart>().buttons.SetActive(false);
+        onExit = true;
     }
 
-    public void OnStartBackgroundAction() {
-        while (backgroundOnStart.transform.position.x < 9) {
-            backgroundOnStart.transform.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
-            Debug.Log(backgroundOnStart.transform.position);
+    void Update() {
+        if(onExit && puzzleMidground.transform.position.x >= 0 ) {
+            puzzleMidground.transform.position += (new Vector3(-2f, 0, 0) * Time.deltaTime);
+        } else if (onExit) {
+            SceneManager.LoadScene("Level_tutorial");        
         }
     }
-
 }

@@ -8,5 +8,6 @@ public class PuzzleCounter : MonoBehaviour
     public void moveCount() {
         count++;
         transform.GetComponent<TextMeshPro>().text = count.ToString();
+        transform.GetComponent<MeshRenderer>().sortingLayerName = "Background";
     }
 }
