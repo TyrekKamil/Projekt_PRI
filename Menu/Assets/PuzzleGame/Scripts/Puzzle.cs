@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Puzzle : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Puzzle : MonoBehaviour
     public GameObject puzzleMidground;
     private bool onExit = false;
     private bool success;
+    public GameObject winText;
     void Start()
     {
         CreatePuzzle();
@@ -34,6 +36,7 @@ public class Puzzle : MonoBehaviour
                 int pos = randomPosition();
                 int blockObj_x = generateX(pos);
                 int blockObj_y = generateY(pos);
+
 
                 blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2(blockObj_x, blockObj_y);
                 blockObj.transform.parent = transform;
@@ -141,7 +144,12 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() { 
         if (success) {
-            Debug.Log("You win!");
+            Statics.puzzleEnd = true;
+            Statics.winPuzzle = true;
+            int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
+            Statics.expAfterPuzzle = exp <= 0 ? 5 : exp;
+            winText.GetComponent<TextMeshPro>().enabled = true;
+            winText.GetComponent<TextMeshPro>().text.Replace("{x}", Statics.expAfterPuzzle.ToString());
         }
         puzzleMidground.GetComponent<PuzzleBackgroundOnStart>().buttons.SetActive(false);
         onExit = true;

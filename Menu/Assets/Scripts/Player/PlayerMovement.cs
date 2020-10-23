@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.position = Statics.recentPlayerPosition;
             moveWall.OnMinigameCompletion();
         }
+        if (Statics.winPuzzle) {
+            Debug.Log(Statics.expAfterPuzzle);
+            Statics.winPuzzle = false;
+            GetComponent<PlayerUIUpdates>().updateExperience(Statics.expAfterPuzzle);
+        }
     }
 
     void Update()
