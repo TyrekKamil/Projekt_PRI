@@ -10,10 +10,12 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsWater;
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
+	private bool m_Swimming;            // Whether or not the player is in water.
 										//const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.	
@@ -61,6 +63,24 @@ public class CharacterController2D : MonoBehaviour
 			}
 
 		}
+
+		bool wasInWater = m_Swimming;
+		wasInWater = false;
+
+		Collider2D[] waterColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsWater);
+		for (int i = 0; i < waterColliders.Length; i++)
+		{
+			if (waterColliders[i].gameObject != gameObject)
+			{
+				animator.SetBool("IsSwimming", true);
+				m_Swimming = true;
+			}
+			else
+			{
+				animator.SetBool("IsSwimming", false);
+			}
+
+		}
 	}
 
 
@@ -68,9 +88,11 @@ public class CharacterController2D : MonoBehaviour
 	{
 
 		if (!m_Grounded) {
+			animator.SetBool("IsSwimming", false);
 			animator.SetBool("IsJumping", true);
 		}
 		if (m_Grounded) {
+			animator.SetBool("IsSwimming", false);
 			extraJumps = extraJumpsValue;
 			animator.SetBool("IsJumping", false);
 			animator.SetBool("doubleJump", false);
