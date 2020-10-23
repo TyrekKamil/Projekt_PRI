@@ -143,6 +143,7 @@ public class Puzzle : MonoBehaviour
     public void OnStartBackgroundAction() {
         while (backgroundOnStart.transform.position.x < 9) {
             backgroundOnStart.transform.position += new Vector3(0.1f, 0, 0) * Time.deltaTime;
+            Debug.Log(backgroundOnStart.transform.position);
         }
     }
 

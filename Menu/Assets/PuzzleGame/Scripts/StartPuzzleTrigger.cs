@@ -14,18 +14,19 @@ public class StartPuzzleTrigger : MonoBehaviour {
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton")))) {
             Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             isZoomed = true;
-            virtCamera.GetComponent<CinemachineVirtualCamera>().Follow = zoomingObject;
-            virtCamera.GetComponent<CinemachineVirtualCamera>().LookAt = zoomingObject;
             virtCamera.SetActive(false);
+            Camera.main.transform.position = new Vector3(zoomingObject.position.x, zoomingObject.position.y, Camera.main.transform.position.z);
         }
     }
 
     void Update () {
         if (isZoomed) {
             Camera.main.orthographicSize = Camera.main.orthographicSize - Time.deltaTime * smooth;
+            Debug.Log(Camera.main.orthographicSize);
         } 
-        if (Camera.main.orthographicSize < 2) {
+        if (Camera.main.orthographicSize < 0.5) {
             SceneManager.LoadScene(4);    
         }
+        Debug.Log(isZoomed);
     }
 }
