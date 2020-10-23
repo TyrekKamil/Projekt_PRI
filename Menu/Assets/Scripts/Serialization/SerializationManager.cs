@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -52,6 +53,16 @@ public class SerializationManager
     public static BinaryFormatter GetBinaryFormatter()
     {
         BinaryFormatter formatter = new BinaryFormatter();
+
+        SurrogateSelector selector = new SurrogateSelector();
+
+        Vector3SerializationSurrogate vector3SerializationSurrogate = new Vector3SerializationSurrogate();
+        QuaternionSerializationSurrogate quaternionSerializationSurrogate = new QuaternionSerializationSurrogate();
+
+        selector.AddSurrogate(typeof(Vector3), new StreamingContext(StreamingContextStates.All), vector3SerializationSurrogate);
+        selector.AddSurrogate(typeof(Quaternion), new StreamingContext(StreamingContextStates.All), quaternionSerializationSurrogate);
+
+        formatter.SurrogateSelector = selector;
 
         return formatter;
     }

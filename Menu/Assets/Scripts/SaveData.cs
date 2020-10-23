@@ -1,4 +1,6 @@
 ﻿
+using Boo.Lang;
+
 [System.Serializable]
 public class SaveData
 {
@@ -26,5 +28,6 @@ public class SaveData
     }
 
     public PlayerData playerData = new PlayerData();
+    public List<EnemyData> enemyData = new List<EnemyData>();
 
 }

@@ -87,9 +87,7 @@ public class PlayerUIUpdates : MonoBehaviour
         SaveData.current.playerData.experience = playerLevelingSystem.experience;
         SaveData.current.playerData.level = playerLevelingSystem.currentLevel;
         SaveData.current.playerData.health = currentHealth;
-        SaveData.current.playerData.positionX = transform.position.x;
-        SaveData.current.playerData.positionY = transform.position.y;
-        SaveData.current.playerData.positionZ = transform.position.z;
+        SaveData.current.playerData.position = transform.position;
         SerializationManager.Save("Player", SaveData.current);
     }
 
@@ -98,12 +96,7 @@ public class PlayerUIUpdates : MonoBehaviour
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Player.save");
         currentHealth = SaveData.current.playerData.health;
         playerLevelingSystem.experience = SaveData.current.playerData.experience;
-
-        Vector3 position;
-        position.x = SaveData.current.playerData.positionX;
-        position.y = SaveData.current.playerData.positionY;
-        position.z = SaveData.current.playerData.positionZ;
-
-        transform.position = position;
+        playerLevelingSystem.currentLevel = SaveData.current.playerData.level;
+        transform.position = SaveData.current.playerData.position;
     }
 }
