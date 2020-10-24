@@ -3,15 +3,40 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
-    public List<GameObject> enemies = new List<GameObject>();
+    public List<SerializableEnemy> killedEnemies { get; set; } = new List<SerializableEnemy>();
+
+    public void AddToList(SerializableEnemy enemy)
+    {
+        killedEnemies.Add(enemy);
+    }
+
+    public void AddEnemies(List<SerializableEnemy> enemies)
+    {
+        foreach(SerializableEnemy enemy in killedEnemies)
+        {
+            AddToList(enemy);
+        }
+    }
+
+    public void RemoveFromList(SerializableEnemy enemy)
+    {
+        killedEnemies.Remove(enemy);
+    }
+
+    public void Showlist()
+    {
+        Debug.Log(killedEnemies.Capacity);
+    }
+
+   /* public List<GameObject> enemies = new List<GameObject>();
     public void OnSave()
     {
-        SerializationManager.Save("enemies", SaveData.current);
+        SerializationManager.Save("enemies", SaveData.current.enemyData);
     }
 
     public void OnLoad()
     {
-        GameEvents.current.LoadEvent();
+        GameEvents.LoadEvent();
 
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/enemies.save");
 
@@ -25,5 +50,7 @@ public class EnemyHandler : MonoBehaviour
             enemy.transform.rotation = currentEnemy.rotation;
         }
     }
-    
+ */ 
+   
+
 }

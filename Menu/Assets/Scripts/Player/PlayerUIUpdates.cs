@@ -20,6 +20,9 @@ public class PlayerUIUpdates : MonoBehaviour
 
     void Start()
     {
+        GameEvents.SaveInitiated += SavePlayerData;
+        GameEvents.LoadInitiated += LoadPlayerData;
+
         playerLevelingSystem = new PlayerLevelingSystem(1, OnLevelUp);
         slider.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
@@ -89,22 +92,51 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.AddExp(exp);
        
     }
-
-    public void SavePlayer()
+    private void SavePlayerData()
     {
-        SaveData.current.playerData.experience = playerLevelingSystem.experience;
-        SaveData.current.playerData.level = playerLevelingSystem.currentLevel;
-        SaveData.current.playerData.health = currentHealth;
-        SaveData.current.playerData.position = transform.position;
-        SerializationManager.Save("Player", SaveData.current);
+        SerializablePlayer serializedPlayer = new SerializablePlayer()
+        {
+            health = this.currentHealth,
+            experience = playerLevelingSystem.experience,
+            level = playerLevelingSystem.currentLevel,
+            positionX = transform.position.x,
+            positionY = transform.position.y,
+            positionZ = transform.position.z,
+
+        };
+
+        SaveLoad.Save<SerializablePlayer>(serializedPlayer, "PlayerStats");
     }
 
-    public void LoadPlayer()
+    private void LoadPlayerData()
     {
-        SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Player.save");
-        currentHealth = SaveData.current.playerData.health;
-        playerLevelingSystem.experience = SaveData.current.playerData.experience;
-        playerLevelingSystem.currentLevel = SaveData.current.playerData.level;
-        transform.position = SaveData.current.playerData.position;
+        if (SaveLoad.SaveExists("PlayerStats"))
+        {
+            SerializablePlayer playerData = SaveLoad.Load<SerializablePlayer>("PlayerStats");
+
+            currentHealth = playerData.health;
+            playerLevelingSystem.experience = playerData.experience;
+            playerLevelingSystem.currentLevel = playerData.level;
+
+            Vector3 position;
+            position.x = playerData.positionX;
+            position.y = playerData.positionY;
+            position.z = playerData.positionZ;
+
+            transform.position = position;
+        }
+
+      
     }
+}
+
+[System.Serializable]
+public class SerializablePlayer
+{
+    public int health { get; set; }
+    public int experience { get; set; }
+    public int level { get; set; }
+    public float positionX { get; set; }
+    public float positionY { get; set; }
+    public float positionZ { get; set; }
 }

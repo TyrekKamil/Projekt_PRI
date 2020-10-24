@@ -5,20 +5,16 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents current;
+    public static Action SaveInitiated;
+    public static Action LoadInitiated;
 
-    private void Awake()
+    public static void OnSaveInitiated()
     {
-        current = this;
+        SaveInitiated?.Invoke(); 
     }
 
-    public event Action onLoadEvent;
-
-    public void LoadEvent()
+    public static void OnLoadInitiated()
     {
-        if(onLoadEvent != null)
-        {
-            onLoadEvent();
-        }
+        LoadInitiated?.Invoke();
     }
 }

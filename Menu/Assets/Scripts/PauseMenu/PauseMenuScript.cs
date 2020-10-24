@@ -35,12 +35,14 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SaveGame()
     {
+        GameEvents.OnSaveInitiated();
         Debug.Log("Game is saved");
         Resume();
     }
 
     public void LoadGame()
     {
+        GameEvents.OnLoadInitiated();
         Resume();
     }
 }

@@ -1,32 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Xml;
+using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
     public int maxHealth = 100;
     int currentHealth;
-    public string id;
-
     public Animator animator;
-    public EnemyData enemyData;
+
+    private EnemyHandler enemyHandler = new EnemyHandler();
+    private CollectibleEnemySet collectibleEnemySet;
+    private EnemyID enemyID;
+
 
     void Start() {
         currentHealth = maxHealth;
+        GameEvents.SaveInitiated += SaveEnemyData;
+        collectibleEnemySet = FindObjectOfType<CollectibleEnemySet>();
+        enemyID = GetComponent<EnemyID>();
 
-        if (string.IsNullOrEmpty(enemyData.id))
+        if (collectibleEnemySet.killedEnemies.Contains(enemyID.ID))
         {
-            enemyData.id = id;
-            SaveData.current.enemyData.Add(enemyData);
+            Debug.Log(enemyID.ID);
         }
-
-        GameEvents.current.onLoadEvent += DestroyEnemy;
     }
-
-    private void Update()
-    {
-        enemyData.position = transform.position;
-        enemyData.rotation = transform.rotation;
-    }
-
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
@@ -37,7 +34,7 @@ public class EnemyHP : MonoBehaviour
     }
 
     void Die() {
-        SaveData.current.enemyData.Remove(enemyData);
+        collectibleEnemySet.killedEnemies.Add(enemyID.ID);
 
         Debug.Log("I'm dead");
         animator.Play("Rogue_death_01");
@@ -46,14 +43,31 @@ public class EnemyHP : MonoBehaviour
         GetComponent<RespawnPlayer>().enabled = false;
         GetComponent<EnemyAnimationController>().enabled = false;
 
-        Destroy(gameObject);
+        Destroy(gameObject,0.5f);
     }
 
-    private void DestroyEnemy()
+    private void SaveEnemyData()
     {
-        GameEvents.current.onLoadEvent -= DestroyEnemy;
-        Destroy(gameObject);
+        SerializableEnemy serializedEnemy = new SerializableEnemy()
+        {
+            enemyName = this.name,
+            health = this.currentHealth,
+            positionX = transform.position.x,
+            positionY = transform.position.y,
+            positionZ = transform.position.z,
+        };
     }
 
+
+}
+
+[System.Serializable]
+public class SerializableEnemy
+{
+    public string enemyName { get; set; }
+    public int health { get; set; }
+    public float positionX { get; set; }
+    public float positionY { get; set; }
+    public float positionZ { get; set; }
 
 }
