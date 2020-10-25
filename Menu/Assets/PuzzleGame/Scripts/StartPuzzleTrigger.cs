@@ -12,7 +12,7 @@ public class StartPuzzleTrigger : MonoBehaviour {
     public GameObject lightPuzzle;
     void OnTriggerStay2D (Collider2D col) {
 
-        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !Statics.puzzleEnd) {
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !Statics.winPuzzle) {
             Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             isZoomed = true;
             virtCamera.SetActive(false);
@@ -21,7 +21,7 @@ public class StartPuzzleTrigger : MonoBehaviour {
     }
 
     void Start() {
-        if (Statics.puzzleEnd) { 
+        if (Statics.winPuzzle) { 
             lightPuzzle.SetActive(false);
         }
     }
