@@ -21,14 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public float boxMoveRange = 0.5f;
     void Start()
     {
+
         if (Statics.sceneWasLeft) {
             gameObject.transform.position = Statics.recentPlayerPosition;
             moveWall.OnMinigameCompletion();
         }
-        if (Statics.winPuzzle) {
-            Debug.Log(Statics.expAfterPuzzle);
-            Statics.winPuzzle = false;
-            GetComponent<PlayerUIUpdates>().updateExperience(Statics.expAfterPuzzle);
+        if (Statics.playPuzzle) {
+            Statics.playPuzzle = false;
+            gameObject.transform.position = Statics.recentPlayerPosition;
         }
     }
 

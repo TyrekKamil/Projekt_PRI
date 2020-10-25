@@ -37,7 +37,6 @@ public class Puzzle : MonoBehaviour
                 int blockObj_x = generateX(pos);
                 int blockObj_y = generateY(pos);
 
-
                 blockObj.transform.position = -Vector2.one * (blocksPerLine - 1) * 0.5f + new Vector2(blockObj_x, blockObj_y);
                 blockObj.transform.parent = transform;
 
@@ -144,12 +143,12 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() { 
         if (success) {
-            Statics.puzzleEnd = true;
+            Statics.playPuzzle = true;
             Statics.winPuzzle = true;
             int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
             Statics.expAfterPuzzle = exp <= 0 ? 5 : exp;
             winText.GetComponent<TextMeshPro>().enabled = true;
-            winText.GetComponent<TextMeshPro>().text.Replace("{x}", Statics.expAfterPuzzle.ToString());
+            winText.GetComponent<TextMeshPro>().text = winText.GetComponent<TextMeshPro>().text.Replace("pointexp", Statics.expAfterPuzzle.ToString() + "%");
         }
         puzzleMidground.GetComponent<PuzzleBackgroundOnStart>().buttons.SetActive(false);
         onExit = true;
