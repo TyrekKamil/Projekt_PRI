@@ -12,10 +12,9 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
-    public GameObject onLvlUpPrefabEffect;
 
-    private GameObject onLvlUpEffect;
-
+    private bool isParticleActivated = false;
+    private ParticleSystem ps;
 
 
     void Start()
@@ -38,10 +37,17 @@ public class PlayerUIUpdates : MonoBehaviour
         slider.SetHealth(currentHealth);
         slider.SetExperience(playerLevelingSystem.experience);
 
-        if (onLvlUpEffect)
+        if (isParticleActivated)
         {
-            onLevelUpEffect.transform.position = transform.position;
+            ps.transform.position = transform.position;
+
+            if (ps.isStopped)
+            {
+                isParticleActivated = false;
+            }
         }
+        
+
     }
 
 
@@ -53,7 +59,9 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.experience = 0;
         playerLevelingSystem.experience = (oldEXP - newexp);
         setExpSliderMaxValue();
-        onLvlUpEffect = Instantiate(onLvlUpPrefabEffect);
+        ps = Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
+        isParticleActivated = true;
+        
     }
    
     public void ChangeHealth(int hit)
