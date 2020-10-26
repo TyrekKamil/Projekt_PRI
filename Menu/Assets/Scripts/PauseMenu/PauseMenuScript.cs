@@ -5,7 +5,12 @@ public class PauseMenuScript : MonoBehaviour
 {
 
     public static bool gameIsPaused = false;
-
+    private GameObject mouse;
+    public bool mouseOnScene = false;
+    void Start() { 
+        mouse = GameObject.Find("normalCursor");
+        mouseOnScene = mouse.GetComponent<MouseCursor>().mouseOnScene; 
+    }
     public GameObject pauseMenu;
     void Update() {
         if (Input.GetKeyDown("escape")) {
@@ -21,12 +26,14 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        mouse.GetComponent<MouseCursor>().SetVisibleCursor(mouseOnScene);
     } 
     
     void Pause() {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        mouse.GetComponent<MouseCursor>().SetVisibleCursor(true);
     } 
     public void Exit() {
         Resume();

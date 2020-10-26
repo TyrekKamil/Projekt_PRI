@@ -7,10 +7,12 @@ public class MouseCursor : MonoBehaviour
   public Texture2D clickCursor;
   public Texture2D normalCursor;
   public Vector2 hotSpot = new Vector2(25, 15);
+  public bool mouseOnScene = false;
 
 
     void Start() {
         Cursor.SetCursor(normalCursor, hotSpot, CursorMode.ForceSoftware);
+        Cursor.visible = mouseOnScene;
     }
 
     void Update() {
@@ -19,5 +21,9 @@ public class MouseCursor : MonoBehaviour
         } else if(Input.GetMouseButtonUp(0)) {
             Cursor.SetCursor(normalCursor, hotSpot, CursorMode.ForceSoftware);
         }
+    }
+
+    public void SetVisibleCursor(bool visible) {
+        Cursor.visible = visible;
     }
 }
