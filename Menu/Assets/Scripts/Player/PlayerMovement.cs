@@ -58,8 +58,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jump = true;
-            if(isOnRope)
+            if (isOnRope)
+            {
                 JumpOutOfRope();
+                isOnRope = false;
+            }
         }
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton"))))
         {
@@ -92,12 +95,14 @@ public class PlayerMovement : MonoBehaviour
             FixedJoint2D joint = colliders[0].gameObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
             isOnRope = true;
+            Statics.isOnRope = true;
+            controller.extraJumps = 2;
             //this.transform.parent = colliders[0].transform;
         }
     }
     void JumpOutOfRope() {
         Destroy(recentCollider.gameObject.GetComponent<FixedJoint2D>());
-
+        Statics.isOnRope = false;
         Physics2D.IgnoreLayerCollision(8, 12);
     }
     void Attack()

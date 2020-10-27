@@ -19,7 +19,7 @@ public class CharacterController2D : MonoBehaviour
 										//const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.	
-	private int extraJumps;
+	public int extraJumps;
 	private bool onMovingPlatform = false;
 	private Vector3 m_Velocity = Vector3.zero;
 	[Header("Events")]
@@ -86,8 +86,13 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool jump)
 	{
-
-		if (!m_Grounded) {
+		if (!m_Grounded && Statics.isOnRope) {
+			animator.SetBool("IsHanging", true);
+		}
+		if (!Statics.isOnRope) {
+			animator.SetBool("IsHanging", false);
+		}
+		if (!m_Grounded && !Statics.isOnRope) {
 			animator.SetBool("IsSwimming", false);
 			animator.SetBool("IsJumping", true);
 		}
@@ -127,8 +132,6 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded && jump){
 			m_Grounded = false;
 
-
-			
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			
 			// Add a vertical force to the player.
@@ -140,7 +143,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			animator.SetBool("doubleJump", false);
 		}
-		if (!m_Grounded && jump && extraJumps > 0)
+		if (!m_Grounded && jump && extraJumps > 0 && !Statics.isOnRope)
 		{
 			//Set vertical velocity to 0 in order to double jump
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);

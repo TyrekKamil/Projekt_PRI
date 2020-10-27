@@ -8,4 +8,5 @@ public class Statics
     public static bool playPuzzle = false;
     public static int expAfterPuzzle = 0;
     public static Vector3 recentPlayerPosition;
+    public static bool isOnRope = false;
 }
