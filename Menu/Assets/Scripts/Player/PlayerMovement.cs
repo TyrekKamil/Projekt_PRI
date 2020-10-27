@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private int direction = 0;
     public Transform actionPoint;
     public float attackRange = 2.5f;
+    public LayerMask playerLayer;
     public LayerMask enemyLayers;
+    public LayerMask ropeLayer;
     public int attackDamage = 50;
     public LayerMask boxLayer;
     public float boxMoveRange = 0.5f;
+    private bool isOnRope = false;
     void Start()
     {
 
@@ -55,10 +58,17 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jump = true;
+            if(isOnRope)
+                JumpOutOfRope();
         }
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton"))))
         {
             Attack();
+        }
+        if (Input.GetKeyDown(KeyCode.E)) {
+            animator.SetBool("IsJumping", false);
+            jump = false;
+            Grab();
         }
     }
     public void OnLanding()
@@ -73,7 +83,23 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
 
     }
+    Collider2D recentCollider;
+    void Grab() {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, ropeLayer);
+        if (colliders.Length > 0)
+        {
+            recentCollider = colliders[0];
+            FixedJoint2D joint = colliders[0].gameObject.AddComponent<FixedJoint2D>();
+            joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
+            isOnRope = true;
+            //this.transform.parent = colliders[0].transform;
+        }
+    }
+    void JumpOutOfRope() {
+        Destroy(recentCollider.gameObject.GetComponent<FixedJoint2D>());
 
+        Physics2D.IgnoreLayerCollision(8, 12);
+    }
     void Attack()
     {
         Debug.Log("Attack");

@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - MGround
   - FxTemporaire
+  - Metaball_liquid
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - StepBoxes
   - TotemsAndLever
-  - 
+  - Ropes
   - 
   - 
   - 
