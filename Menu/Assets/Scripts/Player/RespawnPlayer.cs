@@ -27,9 +27,15 @@ public class RespawnPlayer : MonoBehaviour
 
     void Update()
     {
-        if (ifDamaged && Mathf.Round(player.position.x) != Mathf.Round(endPos.x))
+        if (ifDamaged)
         {
-            player.position += movement * Time.deltaTime * 10f * direction;
+            float timePassed = 0;
+            while (timePassed < 2)
+            {
+                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(10f * direction, 2f), ForceMode2D.Force);
+                timePassed += Time.deltaTime;
+            }
+            ifDamaged = false;
         }
         else
         {
@@ -41,9 +47,8 @@ public class RespawnPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             direction = (transform.position.x - player.transform.position.x) > 0 ? -1 : 1;
-            endPos = player.position + new Vector3(direction * 5f, 0, 2f);
+            endPos = player.position + new Vector3(direction * 5f, 1f, 2f);
             ifDamaged = true;
-
             playerStatsScript.ChangeHealth(damageValue);
 
             if (playerStatsScript.respawnPlayer())
