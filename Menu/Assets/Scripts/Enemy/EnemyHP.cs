@@ -8,21 +8,10 @@ public class EnemyHP : MonoBehaviour
     int currentHealth;
     public Animator animator;
 
-    private EnemyHandler enemyHandler = new EnemyHandler();
-    private CollectibleEnemySet collectibleEnemySet;
-    private EnemyID enemyID;
-
-
     void Start() {
         currentHealth = maxHealth;
         GameEvents.SaveInitiated += SaveEnemyData;
-        collectibleEnemySet = FindObjectOfType<CollectibleEnemySet>();
-        enemyID = GetComponent<EnemyID>();
-
-        if (collectibleEnemySet.killedEnemies.Contains(enemyID.ID))
-        {
-            Debug.Log(enemyID.ID);
-        }
+        GameEvents.LoadInitiated += LoadEnemyData;
     }
 
     public void TakeDamage(int damage) {
@@ -34,8 +23,8 @@ public class EnemyHP : MonoBehaviour
     }
 
     void Die() {
-        collectibleEnemySet.killedEnemies.Add(enemyID.ID);
-
+        GameEvents.SaveInitiated -= SaveEnemyData;
+        GameEvents.LoadInitiated -= LoadEnemyData;
         Debug.Log("I'm dead");
         animator.Play("Rogue_death_01");
         this.enabled = false;
@@ -56,6 +45,26 @@ public class EnemyHP : MonoBehaviour
             positionY = transform.position.y,
             positionZ = transform.position.z,
         };
+
+        SaveLoad.Save<SerializableEnemy>(serializedEnemy, "Enemy" + this.name);
+    }
+
+    private void LoadEnemyData()
+    {
+        if (SaveLoad.SaveExists("Enemy" + this.name))
+        {
+            SerializableEnemy enemyData = SaveLoad.Load<SerializableEnemy>("Enemy" + this.name);
+
+            currentHealth = enemyData.health;
+
+            Vector3 position;
+            position.x = enemyData.positionX;
+            position.y = enemyData.positionY;
+            position.z = enemyData.positionZ;
+
+            transform.position = position;
+        }
+
     }
 
 

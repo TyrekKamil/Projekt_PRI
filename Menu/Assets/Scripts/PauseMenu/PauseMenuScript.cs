@@ -49,6 +49,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void LoadGame()
     {
+        Debug.Log("loaded scene");
         GameEvents.OnLoadInitiated();
         Resume();
     }
