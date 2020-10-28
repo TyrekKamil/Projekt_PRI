@@ -68,6 +68,18 @@ public class ShowControlsMsg : MonoBehaviour
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + action + "\" to start puzzle minigame";
         }
+        if (uiObject.name == "RopesInfo") 
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Press \"" + action + "\" to grab ropes";
+        }
+        if (uiObject.name == "PipesInfo") 
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Press \"" + action + "\" to move lever. Get off the rope by jumping";
+        }
     }
 
 
