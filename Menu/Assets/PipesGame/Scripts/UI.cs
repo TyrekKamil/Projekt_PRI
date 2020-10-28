@@ -67,7 +67,7 @@ public class UI : MonoBehaviour
     private void Update()
     {
         waitingTime -= Time.deltaTime;
-        if (isDone && waitingTime <= -3.0f)
+        if (isDone && waitingTime <= -1.0f)
         {
             if (fail)
             {

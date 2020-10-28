@@ -7,9 +7,10 @@ public class loadMiniGame : MonoBehaviour
 {
     public Animator anim;
     public GameObject wall;
+    public GameObject virtCamera;
     public Sprite endLever;
     private MoveWall moveWall;
-    
+    private bool startCameraMovement = false;
     private void Start()
     {
         if (!Statics.canSwitchLever)
@@ -17,6 +18,17 @@ public class loadMiniGame : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = endLever;
         }
         moveWall = wall.GetComponent<MoveWall>();
+    }
+    private float targetX = 459.69f;
+    private float targetY = 5.73f;
+    private void Update()
+    {
+        if (startCameraMovement) {
+            if(Camera.main.transform.position.x <= targetX)
+                Camera.main.transform.position += new Vector3(0.5f, 0, 0);
+            if(Camera.main.transform.position.y >= targetY)
+                Camera.main.transform.position += new Vector3(0, -0.1f, 0);
+        }
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -30,6 +42,9 @@ public class loadMiniGame : MonoBehaviour
             Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             Statics.sceneWasLeft = true;
             Statics.canSwitchLever = false;
+            startCameraMovement = true;
+            virtCamera.SetActive(false);
+            //Camera.main.transform.position = new Vector3(459.69f, 5.73f, Camera.main.transform.position.z);
             StartCoroutine("LoadMinigameScene");
             //Execute at successful minigame completion.
 
@@ -38,7 +53,7 @@ public class loadMiniGame : MonoBehaviour
 
     }
     IEnumerator LoadMinigameScene() {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
     }
 }
