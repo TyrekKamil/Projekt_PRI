@@ -72,13 +72,13 @@ public class ShowControlsMsg : MonoBehaviour
         {
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
-            text.text = "Press \"" + action + "\" to grab ropes";
+            text.text = "Press \"" + action + "\" to grab ropes. Get off the rope by jumping";
         }
         if (uiObject.name == "PipesInfo") 
         {
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
-            text.text = "Press \"" + action + "\" to move lever. Get off the rope by jumping";
+            text.text = "Press \"" + action + "\" to move lever.";
         }
     }
 
