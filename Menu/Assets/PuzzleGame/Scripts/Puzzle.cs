@@ -143,13 +143,13 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() { 
         if (success) {
-            Statics.playPuzzle = true;
             Statics.winPuzzle = true;
             int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
             Statics.expAfterPuzzle = exp <= 0 ? 5 : exp;
             winText.GetComponent<TextMeshPro>().enabled = true;
             winText.GetComponent<TextMeshPro>().text = winText.GetComponent<TextMeshPro>().text.Replace("pointexp", Statics.expAfterPuzzle.ToString() + "%");
         }
+        Statics.playPuzzle = true;
         puzzleMidground.GetComponent<PuzzleBackgroundOnStart>().buttons.SetActive(false);
         onExit = true;
     }
