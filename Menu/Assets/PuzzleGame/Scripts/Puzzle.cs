@@ -138,6 +138,7 @@ public class Puzzle : MonoBehaviour
         foreach (Transform child in transform) {
             Destroy(child.gameObject);
         }
+        counterPuzzle.GetComponent<PuzzleCounter>().zeroCount();
         CreatePuzzle();
     }
 
