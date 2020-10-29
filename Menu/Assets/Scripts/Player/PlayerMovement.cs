@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Statics.sceneWasLeft) {
             gameObject.transform.position = Statics.recentPlayerPosition;
+            Statics.sceneWasLeft = false;
             moveWall.OnMinigameCompletion();
         }
         if (Statics.playPuzzle) {
