@@ -10,6 +10,7 @@ public class PuzzleBlock : MonoBehaviour {
 
     public void Init (Vector2Int startingCoord, Texture2D image, int order) {
         coord = startingCoord;
+        GetComponent<MeshRenderer>().material = Resources.Load<Material>("Block");
         GetComponent<MeshRenderer> ().material.mainTexture = image;
         GameObject textObject = new GameObject ("text");
         textObject.transform.SetParent (transform);
