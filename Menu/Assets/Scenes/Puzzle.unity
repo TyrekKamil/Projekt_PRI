@@ -1364,6 +1364,7 @@ MonoBehaviour:
   counterPuzzle: {fileID: 1467886854}
   puzzleMidground: {fileID: 480719299}
   winText: {fileID: 1251658026}
+  pab: {fileID: 107398260}
 --- !u!222 &668208737
 CanvasRenderer:
   m_ObjectHideFlags: 2

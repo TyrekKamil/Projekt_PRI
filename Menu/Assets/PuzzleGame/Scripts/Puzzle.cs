@@ -19,6 +19,7 @@ public class Puzzle : MonoBehaviour
     private bool onExit = false;
     private bool success;
     public GameObject winText;
+    public PuzzleActionsButton pab;
     void Start()
     {
         CreatePuzzle();
@@ -28,6 +29,7 @@ public class Puzzle : MonoBehaviour
         generateBoolArray();
         puzzleBlocks = new PuzzleBlock[blocksPerLine * blocksPerLine];
         Texture2D[,] images = ImageSlicer.GetSlices(image, blocksPerLine);
+        int[] numbersInOrder = new int[blocksPerLine * blocksPerLine];
         for (int x = 0; x < blocksPerLine; x++)
         {
             for (int y = 0; y < blocksPerLine; y++)
@@ -44,6 +46,10 @@ public class Puzzle : MonoBehaviour
                 puzzleBlock.OnBlockPressed += AddMoveBlockToQueue;
                 puzzleBlock.OnFinishedMoving += OnFinishedMoving;
                 int order = (blocksPerLine * blocksPerLine) - (blocksPerLine - (x + 1) + y * blocksPerLine);
+                if (order == 9)
+                    numbersInOrder[pos] = -1;
+                else
+                numbersInOrder[pos] = order;
                 puzzleBlock.Init(new Vector2Int(blockObj_x, blockObj_y), images[x, y], order);
                 puzzleBlocks[blocksPerLine * x + y] = puzzleBlock;
                 if (y == 0 && x == blocksPerLine - 1)
@@ -52,6 +58,45 @@ public class Puzzle : MonoBehaviour
                     emptyBlock = puzzleBlock;
                 }
             }
+        }
+        int[] numbersOrdered = new int[blocksPerLine * blocksPerLine];
+        int j = 0;
+        for (int i = 6; i < 9; i++) {
+            if (numbersInOrder[i] != -1)
+            {
+                numbersOrdered[j] = numbersInOrder[i];
+                j++;
+            }
+        }
+        for (int i = 3; i < 6; i++)
+        {
+            if (numbersInOrder[i] != -1)
+            {
+                numbersOrdered[j] = numbersInOrder[i];
+                j++;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (numbersInOrder[i] != -1)
+            {
+                numbersOrdered[j] = numbersInOrder[i];
+                j++;
+            }
+        }
+        int inversions = 0;
+        for (int i = 0; i < numbersOrdered.Length - 1; i++) {
+            for (int j1 = i + 1; j1 < numbersOrdered.Length - 1; j1++) {
+                if (numbersOrdered[j1] > numbersOrdered[i]) {
+                    inversions++;
+                }
+            }
+            
+        }
+        if (inversions % 2 == 1)
+        {
+            pab.restartPuzzleButton();
         }
         Camera.main.orthographicSize = blocksPerLine * 0.65f;
         blocksQueue = new Queue<PuzzleBlock>();
