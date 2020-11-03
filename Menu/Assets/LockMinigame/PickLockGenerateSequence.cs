@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class PickLockGenerateSequence : MonoBehaviour
 {
-    public int numberOfSteps = 5;
-    private int[] steps;
+    public int numberOfMoves = 5;
+    public int[] moves;
+    private bool[] wasRandomed;
     void Start()
     {
-        steps = new int[numberOfSteps];
-        for (int i = 0; i < numberOfSteps; i++)
+        wasRandomed = new bool[100];
+        for (int i = 0; i < 100; i++)
         {
-            steps[i] = new System.Random().Next(1, 1000) % 2;
+            wasRandomed[i] = false;
         }
+        moves = new int[numberOfMoves];
+        for (int i = 0; i < numberOfMoves; i++)
+        {
+            moves[i] = randomSide();
+        }
+        GetComponent<PickLock>().enabled = true;
     }
 
-    void Update()
+    private int randomSide()
     {
-
+        int random = 0;
+        do
+        {
+            random = new System.Random().Next(1, 100);
+        } while (wasRandomed[random - 1]);
+        wasRandomed[random - 1] = true;
+        return random % 2;
     }
 }
