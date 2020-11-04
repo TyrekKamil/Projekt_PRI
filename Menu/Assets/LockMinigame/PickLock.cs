@@ -45,8 +45,8 @@ public class PickLock : MonoBehaviour
 
     void move()
     {
-        picklockTransform.position += new Vector3(100 * direction, 0, 0) * 0.1f;
-        if (Mathf.Abs(picklockTransform.localPosition.x) > 500)
+        picklockTransform.position += new Vector3(10 * direction, 0, 0) * 0.1f;
+        if (Mathf.Abs(picklockTransform.localPosition.x) > 20)
         {
             checkMove(direction);
             direction = direction == 1 ? -2 : 2;
@@ -54,7 +54,7 @@ public class PickLock : MonoBehaviour
     }
     void moveCenter()
     {
-        picklockTransform.position += new Vector3(50 * direction, 0, 0) * 0.1f;
+        picklockTransform.position += new Vector3(5 * direction, 0, 0) * 0.1f;
         if ((direction / 2) * picklockTransform.localPosition.x > 0)
         {
             direction = 0;
