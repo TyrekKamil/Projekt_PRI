@@ -19,7 +19,7 @@ public class ShowControlsMsg : MonoBehaviour
         left = PlayerPrefs.GetString("LeftButton").Replace("Arrow", "");
         right = PlayerPrefs.GetString("RightButton").Replace("Arrow", "");
         jump = PlayerPrefs.GetString("JumpButton");
-        action = PlayerPrefs.GetString("ActionButton");        
+        action = PlayerPrefs.GetString("ActionButton");
 
         if (uiObject.name == "Ruch")
         {
@@ -62,23 +62,29 @@ public class ShowControlsMsg : MonoBehaviour
             text = uiObject.GetComponent<Text>();
             text.text = "Let's see if you remember the right order of totem's lights";
         }
-        if (uiObject.name == "PuzzleMinigame") 
+        if (uiObject.name == "PuzzleMinigame")
         {
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + action + "\" to start puzzle minigame";
         }
-        if (uiObject.name == "RopesInfo") 
+        if (uiObject.name == "RopesInfo")
         {
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + action + "\" to grab ropes. Get off the rope by jumping";
         }
-        if (uiObject.name == "PipesInfo") 
+        if (uiObject.name == "PipesInfo")
         {
             uiObject.SetActive(false);
             text = uiObject.GetComponent<Text>();
             text.text = "Press \"" + action + "\" to move lever.";
+        }
+        if (uiObject.name == "ChestInfo")
+        {
+            uiObject.SetActive(false);
+            text = uiObject.GetComponent<Text>();
+            text.text = "Press \"" + action + "\" to start opening chest.";
         }
     }
 

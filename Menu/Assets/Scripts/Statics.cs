@@ -9,4 +9,6 @@ public class Statics
     public static int expAfterPuzzle = 0;
     public static Vector3 recentPlayerPosition;
     public static bool isOnRope = false;
+    public static string lastSceneId = "";
+    public static bool endChest = false;
 }

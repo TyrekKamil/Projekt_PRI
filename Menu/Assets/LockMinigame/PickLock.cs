@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PickLock : MonoBehaviour
 {
@@ -40,6 +41,12 @@ public class PickLock : MonoBehaviour
         if (direction == 2 || direction == -2)
         {
             moveCenter();
+        }
+        if (step == GetComponent<PickLockGenerateSequence>().numberOfMoves)
+        {
+            StartCoroutine("WaitForSec");
+            Statics.endChest = true;
+            exit();
         }
     }
 
@@ -81,4 +88,13 @@ public class PickLock : MonoBehaviour
         lastText.SetActive(true);
     }
 
+    public void exit()
+    {
+        SceneManager.LoadScene(Statics.lastSceneId);
+    }
+
+    IEnumerator WaitForSec()
+    {
+        yield return new WaitForSeconds(2);
+    }
 }
