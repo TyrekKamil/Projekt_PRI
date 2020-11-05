@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PickLock : MonoBehaviour
 {
@@ -14,11 +15,16 @@ public class PickLock : MonoBehaviour
     public GameObject correctText;
     public GameObject badText;
     public GameObject succcesText;
+    public GameObject helpText;
     private GameObject lastText;
 
     void Start()
     {
-        lastText = succcesText;
+        lastText = helpText;
+        string text = helpText.GetComponent<Text>().text;
+        text = text.Replace("LeftButton", PlayerPrefs.GetString("LeftButton").Replace("Arrow", ""));
+        text = text.Replace("RightButton", PlayerPrefs.GetString("RightButton").Replace("Arrow", ""));
+        helpText.GetComponent<Text>().text = text;
         moves = GetComponent<PickLockGenerateSequence>().moves;
         Debug.Log(moves[0] + ", " + moves[1] + ", " + moves[2] + ", " + moves[3] + ", " + moves[4]);
     }
