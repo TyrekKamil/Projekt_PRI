@@ -23,8 +23,11 @@ public class PlayerUIUpdates : MonoBehaviour
         GameEvents.LoadInitiated += LoadPlayerData;
 
         playerLevelingSystem = new PlayerLevelingSystem(1, OnLevelUp);
-        slider.SetMaxHealth(maxHealth);
-        currentHealth = maxHealth;
+
+        playerLevelingSystem.experience = GLOBAL_DATA.Instance.XP;
+        playerLevelingSystem.currentLevel = GLOBAL_DATA.Instance.Level;
+        slider.SetHealth(GLOBAL_DATA.Instance.HP);
+        currentHealth = GLOBAL_DATA.Instance.HP;
     }
 
     private void Update()
@@ -135,6 +138,13 @@ public class PlayerUIUpdates : MonoBehaviour
         }
 
       
+    }
+
+    public void SavePlayerDataToGlobal()
+    {
+        GLOBAL_DATA.Instance.HP = currentHealth;
+        GLOBAL_DATA.Instance.Level = playerLevelingSystem.currentLevel;
+        GLOBAL_DATA.Instance.XP = playerLevelingSystem.experience;
     }
 }
 

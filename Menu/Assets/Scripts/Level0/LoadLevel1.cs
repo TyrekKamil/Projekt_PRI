@@ -6,26 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LoadLevel1 : MonoBehaviour
 {
-    // LevelLoader loader;
-
-    // [SerializeField] private Transform levelLoader;
-
-    // void Start()
-    // {
-    //     loader = levelLoader.GetComponent<LevelLoader>();
-    // }
-    // void OnTriggerEnter2D(Collider2D col)
-    // {
-    //     if (col.gameObject.tag == "Player")
-    //     {
-    //         loader.LoadLevel(2);
-    //     }
-    // }
-
+    public PlayerUIUpdates playerUI;
+   
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
+            playerUI.SavePlayerDataToGlobal();
             SceneManager.LoadScene(2);
 
         }
