@@ -30,8 +30,9 @@ public class StartPuzzleTrigger : MonoBehaviour {
         if (isZoomed) {
             Camera.main.orthographicSize = Camera.main.orthographicSize - Time.deltaTime * smooth;
         } 
-        if (Camera.main.orthographicSize < 0.5) {
-            SceneManager.LoadScene(4);    
+        if (isZoomed && Camera.main.orthographicSize < 0.5) {
+            isZoomed = false;
+            SceneManager.LoadScene("Puzzle");    
         }
     }
 }

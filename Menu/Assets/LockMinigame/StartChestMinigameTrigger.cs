@@ -24,8 +24,9 @@ public class StartChestMinigameTrigger : MonoBehaviour
         {
             Camera.main.orthographicSize = Camera.main.orthographicSize - Time.deltaTime * 2;
         }
-        if (Camera.main.orthographicSize < 1.5)
+        if (isZoomed && Camera.main.orthographicSize < 1.5)
         {
+            isZoomed = false;
             SceneManager.LoadScene("Lock");
         }
     }
