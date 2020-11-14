@@ -32,7 +32,7 @@ public class InventoryObject : ScriptableObject, ISerializationCallbackReceiver
                 return;
             }
         }
-        Container.Add(new InventorySlot(database.GetId[_item], _item, _amount));
+        Container.Add(new InventorySlot(database.GetId[_item], _item, _amount, false));
     }
 
     public void Save()
@@ -74,11 +74,13 @@ public class InventorySlot
     public int ID;
     public ItemObject item;
     public int amount;
-    public InventorySlot(int _id,ItemObject _item, int _amount)
+    public bool isVisible;
+    public InventorySlot(int _id,ItemObject _item, int _amount, bool _isVisible)
     {
         ID = _id;
         item = _item;
         amount = _amount;
+        isVisible = _isVisible;
     }
 
     public void AddAmount(int value)

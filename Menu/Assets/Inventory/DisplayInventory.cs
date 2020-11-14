@@ -21,20 +21,29 @@ public class DisplayInventory : MonoBehaviour
     {
         CreateDisplay();
         image = gameObject.GetComponent<Image>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-       UpdateDisplay();
-
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (image)
             {
                 image.enabled = !image.enabled;
             }
+
+            foreach (Transform g in this.transform.GetComponentsInChildren<Transform>(true))
+            {
+                if (g.name != "InventoryScreen")
+                {
+                    g.gameObject.SetActive(image.enabled);
+                }
+            }
+
         }
+
     }
 
     void CreateDisplay()
@@ -44,6 +53,7 @@ public class DisplayInventory : MonoBehaviour
             var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+          
         }
     }
 
@@ -58,13 +68,15 @@ public class DisplayInventory : MonoBehaviour
         {
             if (itemsDisplayed.ContainsKey(inventory.Container[i]))
             {
-                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>(true).text = inventory.Container[i].amount.ToString("n0");
             }
             else
             {
                 var obj = Instantiate(inventory.Container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
+                obj.SetActive(false);
+
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
         }

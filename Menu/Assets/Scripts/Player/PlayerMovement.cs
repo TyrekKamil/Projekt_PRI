@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public MoveWall moveWall;
     public InventoryObject inventory;
+    public DisplayInventory displayInventory;
     float horizontalMove = 0f;
 
     public float moveSpeed = 20f;
@@ -136,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         if (item)
         {
             inventory.AddItem(item.item, 1);
+            displayInventory.UpdateDisplay();
             Destroy(collision.gameObject);
         }
     }
