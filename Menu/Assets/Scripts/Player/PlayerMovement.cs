@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
             Statics.playPuzzle = false;
             gameObject.transform.position = Statics.recentPlayerPosition;
         }
+
+        GameEvents.SaveInitiated += inventory.Save;
+        GameEvents.LoadInitiated += inventory.Load;
     }
 
     void Update()
@@ -161,5 +164,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(actionPoint.position, attackRange);
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
     }
 }

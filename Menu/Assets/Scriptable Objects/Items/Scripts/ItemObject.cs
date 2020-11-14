@@ -6,7 +6,8 @@ public enum ItemType
 {
     Potion,
     Equipment,
-    Default
+    Default,
+    Weapon
 }
 public abstract class ItemObject : ScriptableObject
 {
