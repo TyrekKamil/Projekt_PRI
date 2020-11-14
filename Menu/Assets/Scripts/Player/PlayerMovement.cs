@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
     public MoveWall moveWall;
+    public InventoryObject inventory;
     float horizontalMove = 0f;
 
     public float moveSpeed = 20f;
@@ -124,6 +125,18 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("PushObject");
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var item = collision.GetComponent<Item>();
+
+        if (item)
+        {
+            inventory.AddItem(item.item, 1);
+            Destroy(collision.gameObject);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
 
