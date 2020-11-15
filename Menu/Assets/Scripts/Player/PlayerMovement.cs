@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
     public MoveWall moveWall;
+    public InventoryObject inventory;
+    public DisplayInventory displayInventory;
     float horizontalMove = 0f;
 
     public float moveSpeed = 20f;
@@ -34,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
             Statics.playPuzzle = false;
             gameObject.transform.position = Statics.recentPlayerPosition;
         }
+
+        GameEvents.SaveInitiated += inventory.Save;
+        GameEvents.LoadInitiated += inventory.Load;
     }
 
     void Update()
@@ -124,6 +129,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("PushObject");
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var item = collision.GetComponent<GroundItem>();
+
+        if (item)
+        {
+            inventory.AddItem(new Item(item.item), 1);
+            displayInventory.UpdateDisplay();
+            Destroy(collision.gameObject);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
 
@@ -148,5 +166,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(actionPoint.position, attackRange);
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Items.Clear();
     }
 }

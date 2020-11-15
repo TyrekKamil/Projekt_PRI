@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerUIUpdates : MonoBehaviour
 {
+
     public int maxHealth = 100;
     public int currentHealth;
     public TextMeshProUGUI currentLevel, currentLevelPercentage;
@@ -15,7 +16,6 @@ public class PlayerUIUpdates : MonoBehaviour
 
     private bool isParticleActivated = false;
     private ParticleSystem ps;
-
 
     void Start()
     {
@@ -29,6 +29,7 @@ public class PlayerUIUpdates : MonoBehaviour
         slider.SetHealth(GLOBAL_DATA.Instance.HP);
         currentHealth = GLOBAL_DATA.Instance.HP;
     }
+
 
     private void Update()
     {
