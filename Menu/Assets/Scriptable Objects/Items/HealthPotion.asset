@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201d5937c514f13428c9ffbbfa99b6ab, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  prefab: {fileID: 9083026951190502622, guid: 27ba7017973d19048ab9444295d9e9c6, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
   type: 0
   description: Health Potion that restores 25 health points
   restoreHealthValue: 25

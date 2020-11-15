@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c525e8412ec62564580638debda2c608, type: 3}
   m_Name: Lockpick
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4522947452993022558, guid: e4759e35fc88ad9459087b48701fd2e0, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300000, guid: a331203a84e614b4f882101fe14830fd, type: 3}
   type: 2
   description: Lockpick

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c054115aedac11d4ca7af3f57c4ca9b7, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4522947452993022558, guid: e4759e35fc88ad9459087b48701fd2e0, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
   type: 3
   description: Sword does swish swish
   attackDamage: 15

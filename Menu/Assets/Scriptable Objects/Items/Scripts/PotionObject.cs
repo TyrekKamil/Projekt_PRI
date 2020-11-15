@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Potion Object", menuName = "Inventory System/Items/Potion")]
 public class PotionObject : ItemObject
 {
-    public int restoreHealthValue;
     private void Awake()
     {
         type = ItemType.Potion;
