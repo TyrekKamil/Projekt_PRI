@@ -46,8 +46,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background 2
+    uniqueID: 199282351
+    locked: 0
+  - name: Fog_Back_2
+    uniqueID: 1118182623
+    locked: 0
+  - name: Background 1
+    uniqueID: 481112173
+    locked: 0
+  - name: Fog_Back_1
+    uniqueID: 469597827
+    locked: 0
   - name: Background
     uniqueID: 3675624117
+    locked: 0
+  - name: Fog_Back
+    uniqueID: 1383321385
     locked: 0
   - name: Midground
     uniqueID: 397446787
