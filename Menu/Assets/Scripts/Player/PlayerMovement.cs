@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         if (item)
         {
             inventory.AddItem(new Item(item.item), 1);
-            displayInventory.UpdateDisplay();
+            displayInventory.UpdateSlots();
             Destroy(collision.gameObject);
         }
     }
@@ -170,6 +170,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        inventory.Container.Items.Clear();
+        inventory.Container.Items = new InventorySlot[32];
     }
 }

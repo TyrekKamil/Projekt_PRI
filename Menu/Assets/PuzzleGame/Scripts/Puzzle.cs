@@ -204,7 +204,7 @@ public class Puzzle : MonoBehaviour
         if(onExit && puzzleMidground.transform.position.x >= 0 ) {
             puzzleMidground.transform.position += (new Vector3(-2f, 0, 0) * Time.deltaTime);
         } else if (onExit) {
-            SceneManager.LoadScene("Level_tutorial");        
+            SceneManager.LoadScene(Statics.lastSceneId);        
         }
     }
 }
