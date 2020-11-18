@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lock.unity
     guid: 3c06f2c8ba421d84cbd3491b070a86b1
+  - enabled: 1
+    path: Assets/Scenes/Level-1-puzzle/Puzzle-1-1.unity
+    guid: b77a2875e44afd34eab5cd0bc6976e92
+  - enabled: 1
+    path: Assets/Scenes/Level-1-puzzle/Puzzle-1-2.unity
+    guid: bab9c00cb8ee342479e24aca722a8684
   m_configObjects: {}

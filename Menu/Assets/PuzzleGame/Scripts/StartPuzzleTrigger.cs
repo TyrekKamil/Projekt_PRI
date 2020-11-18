@@ -11,6 +11,8 @@ public class StartPuzzleTrigger : MonoBehaviour
     public GameObject virtCamera;
     public Transform zoomingObject;
     public GameObject lightPuzzle;
+
+    public string puzzleSceneName;
     void OnTriggerStay2D(Collider2D col)
     {
 
@@ -41,7 +43,7 @@ public class StartPuzzleTrigger : MonoBehaviour
         if (isZoomed && Camera.main.orthographicSize < 0.5)
         {
             isZoomed = false;
-            SceneManager.LoadScene("Puzzle");
+            SceneManager.LoadScene(puzzleSceneName);
         }
     }
 }
