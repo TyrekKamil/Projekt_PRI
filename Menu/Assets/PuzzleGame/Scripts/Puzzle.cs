@@ -190,6 +190,7 @@ public class Puzzle : MonoBehaviour
     public void exitPuzzle() { 
         if (success) {
             Statics.winPuzzle = true;
+            Statics.puzzle[SceneManager.GetActiveScene().name] = true;
             int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
             Statics.expAfterPuzzle = exp <= 0 ? 5 : exp;
             winText.GetComponent<TextMeshPro>().enabled = true;

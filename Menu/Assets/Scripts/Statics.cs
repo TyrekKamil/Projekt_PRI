@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 public class Statics 
 {
     public static bool canSwitchLever = true;
@@ -11,4 +11,10 @@ public class Statics
     public static bool isOnRope = false;
     public static string lastSceneId = "";
     public static bool endChest = false;
+    public static Dictionary<string, bool> puzzle = new Dictionary<string, bool>()
+    {
+        { "Puzzle", false },
+        { "Puzzle-1-1", false },
+        { "Puzzle-1-2", false }
+    };
 }
