@@ -8,21 +8,31 @@ public class EnemyHP : MonoBehaviour
     int currentHealth;
     public Animator animator;
 
-    void Start() {
+    public bool isBoss;
+
+    void Start()
+    {
         currentHealth = maxHealth;
         GameEvents.SaveInitiated += SaveEnemyData;
         GameEvents.LoadInitiated += LoadEnemyData;
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage)
+    {
         currentHealth -= damage;
+        if (isBoss)
+        {
+            GetComponent<BossUITakeDamageService>().TakeDamageUI(damage / (maxHealth / 100));
+        }
         Debug.Log("Enemy was hit: " + currentHealth + " HP");
-        if(currentHealth <= 0) {
+        if (currentHealth <= 0)
+        {
             Die();
         }
     }
 
-    void Die() {
+    void Die()
+    {
         GameEvents.SaveInitiated -= SaveEnemyData;
         GameEvents.LoadInitiated -= LoadEnemyData;
         Debug.Log("I'm dead");
@@ -32,7 +42,7 @@ public class EnemyHP : MonoBehaviour
         GetComponent<RespawnPlayer>().enabled = false;
         GetComponent<EnemyAnimationController>().enabled = false;
 
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject, 0.5f);
     }
 
     private void SaveEnemyData()
