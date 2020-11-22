@@ -64,6 +64,12 @@ TagManager:
   - name: Fog_Back
     uniqueID: 1383321385
     locked: 0
+  - name: Houses
+    uniqueID: 1182600519
+    locked: 0
+  - name: Lamps
+    uniqueID: 1453533065
+    locked: 0
   - name: Midground
     uniqueID: 397446787
     locked: 0
