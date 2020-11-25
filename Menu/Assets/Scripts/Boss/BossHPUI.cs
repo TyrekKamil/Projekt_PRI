@@ -18,9 +18,4 @@ public class BossHPUI : MonoBehaviour
         sliderHP.value = sliderHP.value - hp;
     }
 
-    void Update() {
-        Debug.Log(sliderHP.value);
-    }
-
-
 }
