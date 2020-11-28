@@ -13,6 +13,7 @@ public class InventoryObject : ScriptableObject
     public string savePath;
     public ItemDatabaseObject database;
     public Inventory Container;
+    public GameObject hpItemPrefab;
    
 
     public void AddItem(Item _item, int _amount)
@@ -61,7 +62,13 @@ public class InventoryObject : ScriptableObject
         {
             if (Container.Items[i].item == _item)
             {
+                Vector3 playerPosition = GameObject.Find("Player").transform.position + Vector3.right;
+                for (int j = 0; j < Container.Items[i].amount; j++)
+                {
+                    Instantiate(hpItemPrefab, playerPosition, GameObject.Find("Player").transform.rotation);
+                }
                 Container.Items[i].UpdateSlot(-1, null, 0, false);
+
             }
         }
     }

@@ -16,21 +16,229 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: 75d3497b3461ef149aabd0676c29eed3, type: 2}
   Container:
     Items:
-    - ID: 0
+    - ID: -1
       item:
         Name: 
         Id: 0
+        buffs: []
       amount: 0
       isVisible: 0
-    - ID: 0
+    - ID: -1
       item:
         Name: 
         Id: 0
+        buffs: []
       amount: 0
       isVisible: 0
-    - ID: 0
+    - ID: -1
       item:
         Name: 
         Id: 0
+        buffs: []
       amount: 0
       isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+    - ID: -1
+      item:
+        Name: 
+        Id: 0
+        buffs: []
+      amount: 0
+      isVisible: 0
+  hpItemPrefab: {fileID: 1679503302767546388, guid: 5001a2c8e621fb647a9bf51827386c86,
+    type: 3}

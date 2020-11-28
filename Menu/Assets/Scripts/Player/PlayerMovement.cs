@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(transform.position);
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton"))))
         {
             direction = -1;
@@ -141,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
     void OnCollisionEnter2D(Collision2D other)
     {
 
