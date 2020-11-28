@@ -10,6 +10,7 @@ public class PlayerUIUpdates : MonoBehaviour
     public int currentHealth;
     public TextMeshProUGUI currentLevel, currentLevelPercentage;
     public ParticleSystem onLevelUpEffect;
+    public ParticleSystem onHpRestoreEffect;
 
     public PlayerHpExpUI slider;
     public PlayerLevelingSystem playerLevelingSystem;
@@ -66,6 +67,12 @@ public class PlayerUIUpdates : MonoBehaviour
         ps = Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
         isParticleActivated = true;
         
+    }
+
+    public void OnRestoreHpFromPotion()
+    {
+        ps = Instantiate(onHpRestoreEffect, transform.position, Quaternion.identity);
+        isParticleActivated = true;
     }
    
     public void ChangeHealth(int hit)

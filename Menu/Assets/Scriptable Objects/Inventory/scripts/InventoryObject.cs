@@ -73,6 +73,43 @@ public class InventoryObject : ScriptableObject
         }
     }
 
+    public void UseItem(Item item)
+    {
+        GameObject player = GameObject.Find("Player");
+
+        if (item.Name == "HealthPotion")
+        {
+            PlayerUIUpdates playerUI = player.GetComponent<PlayerUIUpdates>();
+            if(playerUI.currentHealth >= 81)
+            {
+                playerUI.currentHealth = 100;
+            }
+            else
+            {
+                playerUI.currentHealth += 20;
+            }
+            playerUI.OnRestoreHpFromPotion();
+        }
+
+        for (int i = 0; i < Container.Items.Length; i++)
+        {
+            if (Container.Items[i].ID == item.Id)
+            {
+                if (Container.Items[i].amount > 1)
+                {
+                    Container.Items[i].ReduceAmountByOne();
+                }
+                else
+                {
+                    Container.Items[i].UpdateSlot(-1, null, 0, false);
+                }
+                
+                return;
+            }
+            
+        }
+    }
+
     public void Save()
     {
         IFormatter formatter = new BinaryFormatter();
@@ -142,5 +179,10 @@ public class InventorySlot
     public void AddAmount(int value)
     {
         amount += value;
+    }
+
+    public void ReduceAmountByOne()
+    {
+        amount -= 1;
     }
 }

@@ -95,6 +95,7 @@ public class DisplayInventory : MonoBehaviour
             AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
             AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
             AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
+            AddEvent(obj, EventTriggerType.PointerClick, delegate { OnClick(obj); });
 
 
             itemsDisplayed.Add(obj, inventory.Container.Items[i]);
@@ -154,6 +155,11 @@ public class DisplayInventory : MonoBehaviour
     {
         if (mouseItem.obj != null)
             mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+    }
+
+    public void OnClick(GameObject obj)
+    {
+        inventory.UseItem(itemsDisplayed[obj].item);
     }
     public Vector3 GetPosition(int i)
     {
