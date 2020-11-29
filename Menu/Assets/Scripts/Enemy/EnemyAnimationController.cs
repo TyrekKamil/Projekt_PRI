@@ -11,7 +11,7 @@ public class EnemyAnimationController : MonoBehaviour
     bool move = false;
     public GameObject player;
 
-    float direction = 1;
+    public float direction = 1;
     float prevDirection = 1;
     float enemyPlayerDistance;
 

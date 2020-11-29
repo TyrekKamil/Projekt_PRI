@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
     public Animator animator;
 
     public bool isBoss;
@@ -23,6 +23,13 @@ public class EnemyHP : MonoBehaviour
         if (isBoss)
         {
             GetComponent<BossUITakeDamageService>().TakeDamageUI(damage / (maxHealth / 100));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(40f * GetComponent<BossController>().direction, 2f), ForceMode2D.Force);
+            Debug.Log(10f * GetComponent<BossController>().direction);
+
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(10f * GetComponent<EnemyAnimationController>().direction, 2f), ForceMode2D.Force);
         }
         Debug.Log("Enemy was hit: " + currentHealth + " HP");
         if (currentHealth <= 0)
@@ -40,7 +47,15 @@ public class EnemyHP : MonoBehaviour
         this.enabled = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<RespawnPlayer>().enabled = false;
-        GetComponent<EnemyAnimationController>().enabled = false;
+        if (isBoss)
+        {
+            GetComponent<BossController>().enabled = false;
+        }
+        else
+        {
+            GetComponent<EnemyAnimationController>().enabled = false;
+
+        }
 
         Destroy(gameObject, 0.5f);
     }
