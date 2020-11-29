@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -29,6 +28,8 @@ public class BossController : MonoBehaviour
     private bool secondPhase = false;
     public Animator transition;
     public GameObject UI;
+
+    public bool areaLevel = false;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -98,7 +99,7 @@ public class BossController : MonoBehaviour
             Vector3 movement = new Vector3(1f, 0f, 0f);
             transform.position += movement * Time.deltaTime * moveSpeed * direction;
         }
-        if (GetComponent<EnemyHP>().currentHealth <= 500 && !secondPhase)
+        if (GetComponent<EnemyHP>().currentHealth <= 500 && !secondPhase && !areaLevel)
         {
             StartSecondPhase();
             secondPhase = true;
@@ -120,6 +121,11 @@ public class BossController : MonoBehaviour
 
     void BigShoot()
     {
+        float timePassed = 0;
+        while (timePassed < 2)
+        {
+            timePassed += Time.deltaTime;
+        }
         anim.Play("Rogue_attack_01");
         StartCoroutine(WaitForSec());
         Instantiate(bigBullet, firePoint.position, firePoint.rotation);
@@ -132,15 +138,9 @@ public class BossController : MonoBehaviour
         virtCamera.SetActive(false);
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
         BigShoot();
-        StartCoroutine(LoadLevel());
     }
 
-    IEnumerator LoadLevel()
-    {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Level1-Area");
-    }
+
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(2);

@@ -9,7 +9,8 @@ public class EnemyHP : MonoBehaviour
     public Animator animator;
 
     public bool isBoss;
-
+    public bool endAction = false;
+    public float powerAttack = -5f;
     void Start()
     {
         currentHealth = maxHealth;
@@ -18,18 +19,30 @@ public class EnemyHP : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
+    {   
+        endAction = false;
         currentHealth -= damage;
         if (isBoss)
         {
             GetComponent<BossUITakeDamageService>().TakeDamageUI(damage / (maxHealth / 100));
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(40f * GetComponent<BossController>().direction, 2f), ForceMode2D.Force);
+            float timePassed = 0;
+            while (timePassed < 1)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(powerAttack * GetComponent<BossController>().direction, 2f), ForceMode2D.Force);
+                timePassed += Time.deltaTime;
+            }
             Debug.Log(10f * GetComponent<BossController>().direction);
 
         }
         else
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(10f * GetComponent<EnemyAnimationController>().direction, 2f), ForceMode2D.Force);
+            float timePassed = 0;
+            while (timePassed < 1)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(5f * GetComponent<EnemyAnimationController>().direction, 2f), ForceMode2D.Force);
+                timePassed += Time.deltaTime;
+            }
+            endAction = true;
         }
         Debug.Log("Enemy was hit: " + currentHealth + " HP");
         if (currentHealth <= 0)
