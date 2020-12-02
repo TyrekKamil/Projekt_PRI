@@ -24,7 +24,7 @@ TagManager:
   - TotemsAndLever
   - Ropes
   - Transition
-  - 
+  - Crypt
   - 
   - 
   - 
@@ -91,11 +91,20 @@ TagManager:
   - name: Plant BG
     uniqueID: 295421789
     locked: 0
+  - name: Crypt BG
+    uniqueID: 2388179449
+    locked: 0
   - name: Plant FG
     uniqueID: 1034064039
     locked: 0
+  - name: Objects Crypt
+    uniqueID: 3900079263
+    locked: 0
   - name: Tilemap BG
     uniqueID: 3289405125
+    locked: 0
+  - name: Crypt Tilemap
+    uniqueID: 3179851609
     locked: 0
   - name: Tilemap MG
     uniqueID: 2209993425
