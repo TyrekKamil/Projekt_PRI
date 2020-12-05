@@ -12,8 +12,17 @@ public class EnemyGenerator : MonoBehaviour
         InvokeRepeating("GenerateEnemy", 2.0f, 15f);
     }
 
-    void GenerateEnemy() {
+    void GenerateEnemy()
+    {
         int random = new System.Random().Next(1, 3);
-        Instantiate(enemies[random], enemies[random].transform.position, enemies[random].transform.rotation);
+        if (!GameObject.Find("Enemy" + random))
+        {
+            GameObject enemy = Instantiate(enemies[random], enemies[random].transform.position, enemies[random].transform.rotation);
+            enemy.SetActive(true);
+            enemy.name = "Enemy" + random;
+        } else {
+            GenerateEnemy();
+        }
+
     }
 }
