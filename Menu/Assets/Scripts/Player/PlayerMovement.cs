@@ -79,6 +79,15 @@ public class PlayerMovement : MonoBehaviour
             jump = false;
             Grab();
         }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            jump = false;
+            if (isOnRope)
+            {
+                JumpOutOfRope();
+                isOnRope = false;
+            }
+        }
     }
     public void OnLanding()
     {
@@ -95,14 +104,14 @@ public class PlayerMovement : MonoBehaviour
     Collider2D recentCollider;
     void Grab() {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, ropeLayer);
-        if (colliders.Length > 0)
+        if (colliders.Length > 0 && !Statics.isOnRope)
         {
             recentCollider = colliders[0];
             FixedJoint2D joint = colliders[0].gameObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = gameObject.GetComponent<Rigidbody2D>();
             isOnRope = true;
             Statics.isOnRope = true;
-            controller.extraJumps = 2;
+            controller.extraJumps = 1;
             //this.transform.parent = colliders[0].transform;
         }
     }

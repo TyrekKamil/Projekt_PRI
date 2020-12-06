@@ -29,10 +29,11 @@ public class RopeSwing : MonoBehaviour
         {
             Debug.Log("I'm getting parent");
             col.transform.parent = this.transform;
+            isTouching = false;
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
-            this.transform.parent = null;
+            col.transform.parent = null;
         }
     }
 }
