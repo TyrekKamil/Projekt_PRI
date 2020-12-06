@@ -4,18 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class BigBulletController : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 1f;
     public Rigidbody2D rigidbody;
-
     public Animator transition;
-    void Start()
+    private float scaleSpeed = 1.5f;
+    void Update()
     {
-        rigidbody.velocity = transform.right * speed;
-    }
-
-    void OnTriggerEnter2D(Collider2D player)
-    {
-        if (player.gameObject.tag == "Player")
+        if (gameObject.active)
+        {
+            transform.localScale = transform.localScale + new Vector3(scaleSpeed, scaleSpeed, scaleSpeed);
+        }
+        if (transform.localScale.x > 14)
         {
             StartCoroutine(LoadLevel());
         }

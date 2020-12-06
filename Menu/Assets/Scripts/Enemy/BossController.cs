@@ -112,7 +112,7 @@ public class BossController : MonoBehaviour
         if (!isShooting && !anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
         {
             isShooting = true;
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Instantiate(bullet, firePoint.position, firePoint.rotation).SetActive(true);
         }
         StartCoroutine("WaitForSec");
         isShooting = false;
@@ -121,14 +121,9 @@ public class BossController : MonoBehaviour
 
     void BigShoot()
     {
-        float timePassed = 0;
-        while (timePassed < 2)
-        {
-            timePassed += Time.deltaTime;
-        }
         anim.Play("Rogue_attack_01");
         StartCoroutine(WaitForSec());
-        Instantiate(bigBullet, firePoint.position, firePoint.rotation);
+        Instantiate(bigBullet, firePoint.position, firePoint.rotation).SetActive(true);
         isShooting = false;
     }
 

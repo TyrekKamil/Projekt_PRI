@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public int maxHealth = 100;
@@ -11,6 +8,7 @@ public class EnemyHP : MonoBehaviour
     public bool isBoss;
     public bool endAction = false;
     public float powerAttack = -5f;
+    public float powerAttackY = 2f;
     void Start()
     {
         currentHealth = maxHealth;
@@ -28,7 +26,7 @@ public class EnemyHP : MonoBehaviour
             float timePassed = 0;
             while (timePassed < 1)
             {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(powerAttack * GetComponent<BossController>().direction, 2f), ForceMode2D.Force);
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(powerAttack * GetComponent<BossController>().direction, powerAttackY), ForceMode2D.Force);
                 timePassed += Time.deltaTime;
             }
             Debug.Log(10f * GetComponent<BossController>().direction);
@@ -68,6 +66,10 @@ public class EnemyHP : MonoBehaviour
         {
             GetComponent<EnemyAnimationController>().enabled = false;
 
+        }
+        
+        if(GetComponent<BossController>().areaLevel) {
+            GameObject.Find("EndLvl1Trigger").GetComponent<EndLevel1Trigger>().isBossAlive = false;
         }
 
         Destroy(gameObject, 0.5f);
