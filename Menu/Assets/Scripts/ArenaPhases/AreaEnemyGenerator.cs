@@ -35,10 +35,11 @@ public class AreaEnemyGenerator : MonoBehaviour
     private void startNextPhase()
     {
         this.remainingEnemies = this.phases[this.actualPhase].numberOfEnemies;
-        this.actualPhase += 1;
 
-        int leftSide = this.phases[this.actualPhase].maxEnemiesOnArea / 2;
-        int rightSide = this.phases[this.actualPhase].maxEnemiesOnArea - leftSide;
+        int rightSide = this.phases[this.actualPhase].maxEnemiesOnArea / 2;
+        int leftSide = this.phases[this.actualPhase].maxEnemiesOnArea - rightSide;
+
+        Debug.Log(leftSide + " " + rightSide);
 
         for (int i = 0; i < leftSide; i++)
         {
@@ -48,6 +49,8 @@ public class AreaEnemyGenerator : MonoBehaviour
         {
             Instantiate(enemies[1], enemies[1].transform.position - new Vector3(4 * i, 0, 0), enemies[1].transform.rotation).SetActive(true);
         }
+        this.actualPhase += 1;
+
     }
     public int getActualPhase()
     {
