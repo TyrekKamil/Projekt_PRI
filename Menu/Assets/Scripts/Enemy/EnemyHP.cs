@@ -9,6 +9,7 @@ public class EnemyHP : MonoBehaviour
     public bool endAction = false;
     public float powerAttack = -5f;
     public float powerAttackY = 2f;
+    public bool isAreaLevel = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -17,7 +18,7 @@ public class EnemyHP : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {   
+    {
         endAction = false;
         currentHealth -= damage;
         if (isBoss)
@@ -37,7 +38,14 @@ public class EnemyHP : MonoBehaviour
             float timePassed = 0;
             while (timePassed < 1)
             {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(5f * GetComponent<EnemyAnimationController>().direction, 2f), ForceMode2D.Force);
+                if (!isAreaLevel)
+                {
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(5f * GetComponent<EnemyAnimationController>().direction, 2f), ForceMode2D.Force);
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(5f * GetComponent<AreaEnemyAnimationController>().direction, 2f), ForceMode2D.Force);
+                }
                 timePassed += Time.deltaTime;
             }
             endAction = true;
@@ -55,23 +63,32 @@ public class EnemyHP : MonoBehaviour
         GameEvents.LoadInitiated -= LoadEnemyData;
         Debug.Log("I'm dead");
         animator.Play("Rogue_death_01");
-        this.enabled = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<RespawnPlayer>().enabled = false;
         if (isBoss)
         {
             GetComponent<BossController>().enabled = false;
         }
-        else
+        else if (!isAreaLevel)
         {
             GetComponent<EnemyAnimationController>().enabled = false;
 
         }
-        
-        if(GetComponent<BossController>().areaLevel) {
-            GameObject.Find("EndLvl1Trigger").GetComponent<EndLevel1Trigger>().isBossAlive = false;
+        else
+        {
+            GetComponent<AreaEnemyAnimationController>().enabled = false;
         }
 
+        if (isBoss &&   GetComponent<BossController>().areaLevel)
+        {
+            GameObject.Find("EndLvl1Trigger").GetComponent<EndLevel1Trigger>().isBossAlive = false;
+        }
+        if (isAreaLevel)
+        {
+            GameObject enemyGenerator = GameObject.Find("EnemyGenerator");
+            enemyGenerator.GetComponent<AreaEnemyGenerator>().decrementRemainingEnemies();
+        }
+        this.enabled = false;
         Destroy(gameObject, 0.5f);
     }
 

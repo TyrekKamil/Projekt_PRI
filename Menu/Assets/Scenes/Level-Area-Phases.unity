@@ -570,9 +570,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 127836055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56634e215befa0e4694ff52e17680a4e, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1f63d9afbae554c91471f27d682fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 833019736}
+  direction: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  side: -1
 --- !u!114 &127836058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,12 +605,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   animator: {fileID: 127836065}
   isBoss: 0
   endAction: 0
   powerAttack: -5
   powerAttackY: 2
+  isAreaLevel: 1
 --- !u!114 &127836060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,22 +629,6 @@ MonoBehaviour:
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 127836065}
---- !u!114 &127836061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127836055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 833019736}
-  direction: 1
-  leftEdge: 1850
-  rightEdge: 1870
 --- !u!61 &127836062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43924,25 +43915,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2012919975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56634e215befa0e4694ff52e17680a4e, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1f63d9afbae554c91471f27d682fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2012919978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012919975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 833019736}
   direction: 1
-  leftEdge: 1816
-  rightEdge: 1829
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  side: 1
 --- !u!114 &2012919979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43956,7 +43937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 2098743811}
-  damageValue: 15
+  damageValue: 0
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 2012919985}
@@ -43973,12 +43954,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   animator: {fileID: 2012919985}
   isBoss: 0
   endAction: 0
   powerAttack: -5
   powerAttackY: 2
+  isAreaLevel: 1
 --- !u!114 &2012919981
 MonoBehaviour:
   m_ObjectHideFlags: 0
