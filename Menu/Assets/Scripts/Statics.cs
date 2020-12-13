@@ -11,6 +11,8 @@ public class Statics
     public static bool isOnRope = false;
     public static string lastSceneId = "";
     public static bool endChest = false;
+    public static bool chestOpened = false;
+    public static bool itemDropped = false;
     public static Dictionary<string, bool> puzzle = new Dictionary<string, bool>()
     {
         { "Puzzle", false },

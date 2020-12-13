@@ -58,6 +58,13 @@ public class DisplayInventory : MonoBehaviour
 
         }
 
+        //TODO: METHOD RESPONSIBLE FOR REWARDS FROM CHEST, FIND A BETTER PLACE FOR IT DURING REFACTOR
+        if (Statics.chestOpened && !Statics.itemDropped)
+        {
+            inventory.GenerateNumberOfItemsFromChest(3);
+            Statics.itemDropped = true;
+        }
+
     }
 
     public void UpdateSlots()

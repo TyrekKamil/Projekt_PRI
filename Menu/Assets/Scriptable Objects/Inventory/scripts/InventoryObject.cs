@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEditor;
 using System.Runtime.Serialization;
+using Random = System.Random;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName ="Inventory System/Inventory")]
 public class InventoryObject : ScriptableObject
@@ -138,6 +139,32 @@ public class InventoryObject : ScriptableObject
                 }
                 return;
             }
+        }
+    }
+
+    //TODO: function created for getting hp pots from chest, in the future change 'hpitemprefab' gameobject to name of the prefab typed as argument
+    public void GenerateNumberOfItemsFromChest(int NumberOfItems)
+    {
+        Random r = new Random();
+        for (int i = 0; i < NumberOfItems; i++)
+        {
+            Vector3 chestPosition = GameObject.Find("Chest").transform.position + randomSite(r.Next(0,2));
+            Debug.Log(chestPosition);
+            Instantiate(hpItemPrefab, chestPosition, GameObject.Find("Chest").transform.rotation);
+        }
+    }
+
+    public Vector3 randomSite(int number)
+    {
+        Random r = new Random();
+        Vector3 vect = new Vector3(r.Next(0,3),0,0);
+        if (number == 0)
+        {
+            return Vector3.right + vect;
+        }
+        else
+        {
+            return Vector3.left + vect;
         }
     }
 

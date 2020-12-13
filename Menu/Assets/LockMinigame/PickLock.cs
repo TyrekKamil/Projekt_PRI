@@ -20,6 +20,10 @@ public class PickLock : MonoBehaviour
 
     void Start()
     {
+        if (Statics.itemDropped)
+        {
+            Statics.itemDropped = false;
+        }
         lastText = helpText;
         string text = helpText.GetComponent<Text>().text;
         text = text.Replace("LeftButton", PlayerPrefs.GetString("LeftButton").Replace("Arrow", ""));
@@ -51,7 +55,6 @@ public class PickLock : MonoBehaviour
         if (step == GetComponent<PickLockGenerateSequence>().numberOfMoves)
         {
             StartCoroutine("WaitForSec");
-            Statics.endChest = true;
             exit();
         }
     }
@@ -90,12 +93,14 @@ public class PickLock : MonoBehaviour
         if (step == GetComponent<PickLockGenerateSequence>().numberOfMoves)
         {
             lastText = succcesText;
+            Statics.chestOpened = true;
         }
         lastText.SetActive(true);
     }
 
     public void exit()
     {
+        Statics.endChest = true;
         SceneManager.LoadScene(Statics.lastSceneId);
     }
 

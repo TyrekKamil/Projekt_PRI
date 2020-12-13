@@ -16,7 +16,7 @@ public class StartChestMinigameTrigger : MonoBehaviour
 
     void Start()
     {
-        if (Statics.endChest)
+        if (Statics.chestOpened)
         {
             lightBox.SetActive(false);
         }
@@ -37,8 +37,13 @@ public class StartChestMinigameTrigger : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
 
-        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !Statics.endChest)
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !Statics.chestOpened)
         {
+            if (Statics.itemDropped)
+            {
+                return;
+            }
+            
             if (inventory.FindItem("Lockpick"))
             {
                 if (!removedItem)

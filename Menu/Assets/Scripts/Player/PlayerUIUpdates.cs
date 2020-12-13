@@ -51,7 +51,6 @@ public class PlayerUIUpdates : MonoBehaviour
                 isParticleActivated = false;
             }
         }
-        
 
     }
 
