@@ -73,6 +73,19 @@ public class InventoryObject : ScriptableObject
         }
     }
 
+    public bool FindItem(string ItemName)
+    {
+        for (int i = 0; i < Container.Items.Length; i++)
+        {
+            if (Container.Items[i].item.Name == ItemName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void UseItem(Item item)
     {
         GameObject player = GameObject.Find("Player");
@@ -89,24 +102,42 @@ public class InventoryObject : ScriptableObject
                 playerUI.currentHealth += 20;
             }
             playerUI.OnRestoreHpFromPotion();
+            ReduceNumberOfItems(item.Name);
         }
 
+        
+    }
+
+    public int NumberOfItems(string ItemName)
+    {
         for (int i = 0; i < Container.Items.Length; i++)
         {
-            if (Container.Items[i].ID == item.Id)
+            if (Container.Items[i].item.Name == ItemName)
+            {
+                return Container.Items[i].amount;
+            }
+        }
+
+        return 0;
+    }
+
+    public void ReduceNumberOfItems(string ItemName)
+    {
+        for (int i = 0; i < Container.Items.Length; i++)
+        {
+            if (Container.Items[i].item.Name == ItemName)
             {
                 if (Container.Items[i].amount > 1)
                 {
                     Container.Items[i].ReduceAmountByOne();
+                    return;
                 }
                 else
                 {
                     Container.Items[i].UpdateSlot(-1, null, 0, false);
                 }
-                
                 return;
             }
-            
         }
     }
 
