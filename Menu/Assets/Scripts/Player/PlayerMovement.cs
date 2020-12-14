@@ -72,9 +72,11 @@ public class PlayerMovement : MonoBehaviour
         {
             dashValue = 0f;
             dash = false;
+            animator.SetBool("Dash", false);
         }
         if (CanUseDash() && Input.GetKeyDown(KeyCode.R) && !dash)
         {
+            animator.SetBool("Dash", true);
             dash = true;
         }
 
