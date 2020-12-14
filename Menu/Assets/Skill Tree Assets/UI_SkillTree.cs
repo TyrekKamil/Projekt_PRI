@@ -9,7 +9,18 @@ public class UI_SkillTree : MonoBehaviour
     {
         transform.Find("BlueSkills").Find("dashButton").GetComponent<Button_UI>().ClickFunc = () =>
         {
-            playerSkills.TryUnlockingSkill(PlayerSkills.SkillType.Dash);
+            if (!playerSkills.TryUnlockingSkill(PlayerSkills.SkillType.Dash))
+            {
+                //place for the warning box initiation
+            }
+
+        };
+        transform.Find("BlueSkills").Find("blankButton").GetComponent<Button_UI>().ClickFunc = () =>
+        {
+            if (!playerSkills.TryUnlockingSkill(PlayerSkills.SkillType.Blank)) {
+                //place for the warning box initiation
+            }
+
         };
     }
 

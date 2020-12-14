@@ -35,12 +35,18 @@ public class PlayerSkills
             if (IsSkillTypeUnlocked(skillRequirement))
             {
                 UnlockSkill(skillType);
+                Debug.Log(skillType.ToString() + " successfully unlocked.");
                 return true;
             }
-            return false;
+            else
+            {
+                Debug.Log("Cannot unlock skill. " + skillRequirement.ToString() + " isn't unlocked yet.");
+                return false;
+            }
         }
         else {
             UnlockSkill(skillType);
+            Debug.Log(skillType.ToString() + " successfully unlocked.");
             return true;
         }
     }
