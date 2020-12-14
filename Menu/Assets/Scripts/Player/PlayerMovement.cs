@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public InventoryObject inventory;
     public DisplayInventory displayInventory;
     float horizontalMove = 0f;
-
+    private PlayerSkills playerSkills;
     public float moveSpeed = 20f;
 
     bool jump = false;
@@ -23,7 +23,13 @@ public class PlayerMovement : MonoBehaviour
     public int attackDamage = 50;
     public LayerMask boxLayer;
     public float boxMoveRange = 0.5f;
+    public float dashForce = 4f;
     private bool isOnRope = false;
+    private bool dash = false;
+    private void Awake()
+    {
+        playerSkills = new PlayerSkills();
+    }
     void Start()
     {
 
@@ -40,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
         GameEvents.SaveInitiated += inventory.Save;
         GameEvents.LoadInitiated += inventory.Load;
     }
+    float dashValue = 0f;
+    void Dash() {
+        dashValue += 0.2f;
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x + (direction * 0.2f), gameObject.transform.position.y, gameObject.transform.position.z);
+    }
 
     void Update()
     {
@@ -53,13 +64,26 @@ public class PlayerMovement : MonoBehaviour
             direction = 1;
             MoveObject();
         }
+        //TODO: Cooldown for skills
+        if (dashValue < dashForce && dash) {
+            Dash();
+        }
+        else
+        {
+            dashValue = 0f;
+            dash = false;
+        }
+        if (CanUseDash() && Input.GetKeyDown(KeyCode.R) && !dash)
+        {
+            dash = true;
+        }
 
         horizontalMove = direction * moveSpeed;
-        
+
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
-
+        
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton"))))
         {
             animator.SetBool("IsJumping", true);
@@ -89,15 +113,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public PlayerSkills GetPlayerSkills()
+    {
+        return playerSkills;
+    }
+    public bool CanUseDash()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Dash);
+    }
     public void OnLanding()
     {
         animator.SetBool("IsJumping", false);
     }
     void FixedUpdate()
     {
-
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
-
         jump = false;
 
     }
@@ -122,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log("Attack");
         animator.SetTrigger("Attack");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemies)

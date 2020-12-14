@@ -22,6 +22,7 @@ public class CharacterController2D : MonoBehaviour
 	public int extraJumps;
 	private bool onMovingPlatform = false;
 	private Vector3 m_Velocity = Vector3.zero;
+
 	[Header("Events")]
 	[Space]
 	MovingPlatform currentPlatform;
@@ -82,7 +83,6 @@ public class CharacterController2D : MonoBehaviour
 
 		}
 	}
-
 
 	public void Move(float move, bool jump)
 	{
@@ -155,7 +155,6 @@ public class CharacterController2D : MonoBehaviour
 			extraJumps--;
 		}
 	}
-
 
 	private void Flip()
 	{
