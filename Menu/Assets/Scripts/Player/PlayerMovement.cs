@@ -15,17 +15,20 @@ public class PlayerMovement : MonoBehaviour
 
     bool jump = false;
     private int direction = 0;
-    public Transform actionPoint;
+    [SerializeField] private Transform actionPoint;
+    [SerializeField] private LayerMask Walls;
     public float attackRange = 2.5f;
     public LayerMask playerLayer;
     public LayerMask enemyLayers;
     public LayerMask ropeLayer;
     public int attackDamage = 50;
     public LayerMask boxLayer;
+    
     public float boxMoveRange = 0.5f;
     public float dashForce = 4f;
     private bool isOnRope = false;
     private bool dash = false;
+    private bool touchingWall = false;
     private void Awake()
     {
         playerSkills = new PlayerSkills();
@@ -65,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             MoveObject();
         }
         //TODO: Cooldown for skills
-        if (dashValue < dashForce && dash) {
+        if (dashValue < dashForce && dash && !touchingWall) {
             Dash();
         }
         else
@@ -129,8 +132,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        touchingWall = false;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(actionPoint.position, .2f, Walls);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                touchingWall = true;
+            }
+
+        }
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+
 
     }
     Collider2D recentCollider;
