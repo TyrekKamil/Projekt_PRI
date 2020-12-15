@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnRope = false;
     private bool dash = false;
     private bool touchingWall = false;
+
+    public float forcePushX = 10f;
+    public float forcePushY = 2f;
+
     private void Awake()
     {
         playerSkills = new PlayerSkills();
@@ -225,5 +229,9 @@ public class PlayerMovement : MonoBehaviour
     private void OnApplicationQuit()
     {
         inventory.Container.Items = new InventorySlot[32];
+    }
+
+    public void forcePushPlayer() {
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(forcePushX * direction, forcePushY), ForceMode2D.Force);
     }
 }

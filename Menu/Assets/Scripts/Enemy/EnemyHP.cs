@@ -10,6 +10,7 @@ public class EnemyHP : MonoBehaviour
     public float powerAttack = -5f;
     public float powerAttackY = 2f;
     public bool isAreaLevel = false;
+    private bool isAlive = true;
     void Start()
     {
         currentHealth = maxHealth;
@@ -51,8 +52,9 @@ public class EnemyHP : MonoBehaviour
             endAction = true;
         }
         Debug.Log("Enemy was hit: " + currentHealth + " HP");
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isAlive)
         {
+            isAlive = false;
             Die();
         }
     }

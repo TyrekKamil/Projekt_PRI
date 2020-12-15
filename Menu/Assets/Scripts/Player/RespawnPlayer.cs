@@ -32,7 +32,7 @@ public class RespawnPlayer : MonoBehaviour
             float timePassed = 0;
             while (timePassed < 2)
             {
-                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(10f * direction, 2f), ForceMode2D.Force);
+                player.GetComponent<PlayerMovement>().forcePushPlayer();
                 timePassed += Time.deltaTime;
             }
             ifDamaged = false;
