@@ -18,6 +18,10 @@ public class RespawnPlayer : MonoBehaviour
     private Vector3 movement;
     private float direction;
     public Animator animator;
+    public bool isAreaLevel = false;
+    public GameObject loseObj = null;
+    public GameObject enemiesCountObj = null;
+    public GameObject endMenuObj = null;
     void Start()
     {
         playerStatsScript = player.GetComponent<PlayerUIUpdates>();
@@ -53,16 +57,24 @@ public class RespawnPlayer : MonoBehaviour
 
             if (playerStatsScript.respawnPlayer())
             {
-                if (respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2" || respawnPoint.transform.name == "RespawnPointMovingObj")
+                if (!isAreaLevel)
                 {
-                    playerStatsScript.respawnPlayerAtCheckpoint();
-                    player.transform.position = respawnPoint.transform.position;
-                    ifDamaged = false;
+                    if (respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2" || respawnPoint.transform.name == "RespawnPointMovingObj")
+                    {
+                        playerStatsScript.respawnPlayerAtCheckpoint();
+                        player.transform.position = respawnPoint.transform.position;
+                        ifDamaged = false;
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    }
+                } else {
+                    loseObj.SetActive(true);
+                    enemiesCountObj.SetActive(false);
+                    endMenuObj.GetComponent<PauseMenuScript>().Pause();
                 }
-                else
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                }
+
             }
 
         }

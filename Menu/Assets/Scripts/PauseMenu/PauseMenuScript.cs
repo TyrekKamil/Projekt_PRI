@@ -29,7 +29,7 @@ public class PauseMenuScript : MonoBehaviour
         mouse.GetComponent<MouseCursor>().SetVisibleCursor(mouseOnScene);
     } 
     
-    void Pause() {
+    public void Pause() {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;

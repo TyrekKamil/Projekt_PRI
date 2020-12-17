@@ -21,6 +21,11 @@ public class AreaEnemyGenerator : MonoBehaviour
     private int remainingEnemies = 1;
     private int enemiesInQueue = 0;
     public GameObject[] enemies;
+    public GameObject endMenu;
+    public GameObject winText;
+    public GameObject phaseText;
+    public GameObject enemiesCount;
+    public GameObject playerUIUpdates;
 
     void Start()
     {
@@ -28,18 +33,30 @@ public class AreaEnemyGenerator : MonoBehaviour
     }
 
     void Update()
-    {  
+    {
         if (this.remainingEnemies == 0)
         {
-            startNextPhase();
-        } 
+            if (actualPhase == phases.Length)
+            {
+                winText.SetActive(true);
+                phaseText.SetActive(false);
+                enemiesCount.SetActive(false);
+                endMenu.GetComponent<PauseMenuScript>().Pause();
+            }
+            else
+            {
+                GameObject.Find("Player").GetComponent<PlayerUIUpdates>().updateExperience(35 * actualPhase);
+                startNextPhase();
+            }
+        }
+
     }
 
     private void startNextPhase()
     {
         this.remainingEnemies = this.phases[this.actualPhase].numberOfEnemies;
         this.enemiesInQueue = this.remainingEnemies - this.phases[this.actualPhase].maxEnemiesOnArea;
-        
+
         GameObject player = GameObject.Find("Player");
         player.GetComponent<PlayerUIUpdates>().currentHealth = 100;
 
@@ -69,10 +86,11 @@ public class AreaEnemyGenerator : MonoBehaviour
         return this.remainingEnemies;
     }
 
-    public void decrementRemainingEnemies() 
+    public void decrementRemainingEnemies()
     {
         this.remainingEnemies = this.remainingEnemies - 1;
-        if (this.enemiesInQueue > 0) {
+        if (this.enemiesInQueue > 0)
+        {
             this.enemiesInQueue = this.enemiesInQueue - 1;
             int index = this.remainingEnemies % 2;
             Instantiate(enemies[index], enemies[index].transform.position, enemies[index].transform.rotation).SetActive(true);
