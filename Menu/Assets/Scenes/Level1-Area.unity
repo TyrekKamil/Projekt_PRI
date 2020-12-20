@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -605,6 +605,7 @@ MonoBehaviour:
   endAction: 0
   powerAttack: -5
   powerAttackY: 2
+  isAreaLevel: 0
 --- !u!114 &127836060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,6 +623,10 @@ MonoBehaviour:
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 127836065}
+  isAreaLevel: 0
+  loseObj: {fileID: 0}
+  enemiesCountObj: {fileID: 0}
+  endMenuObj: {fileID: 0}
 --- !u!114 &127836061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +722,52 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 250479226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &192142683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192142685}
+  - component: {fileID: 192142684}
+  m_Layer: 0
+  m_Name: DATA_SAVER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &192142684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192142683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4d9c77535ea0441937350bab4cd9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  Level: 1
+  XP: 0
+--- !u!4 &192142685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192142683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 320, y: 240, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &205152031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2283,6 +2334,7 @@ MonoBehaviour:
   endAction: 0
   powerAttack: -0.5
   powerAttackY: 1.2
+  isAreaLevel: 0
 --- !u!114 &413251064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2300,6 +2352,10 @@ MonoBehaviour:
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 413251059}
+  isAreaLevel: 0
+  loseObj: {fileID: 0}
+  enemiesCountObj: {fileID: 0}
+  endMenuObj: {fileID: 0}
 --- !u!114 &413251065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40796,6 +40852,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &538228983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538228984}
+  - component: {fileID: 538228987}
+  - component: {fileID: 538228986}
+  - component: {fileID: 538228985}
+  m_Layer: 5
+  m_Name: InventoryScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &538228984
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538228983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.50207996, y: 0.50207996, z: 0.50207996}
+  m_Children: []
+  m_Father: {fileID: 1812807694}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.1714478, y: -7.9830933}
+  m_SizeDelta: {x: 1208.1835, y: 675.8867}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &538228985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538228983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5272e703ebf62544a527b394d22c52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPrefab: {fileID: 635506975881835912, guid: 10115049ac0cb3c49bfb32e2ddb2750b,
+    type: 3}
+  inventory: {fileID: 11400000, guid: f23982618d3bb114cb865502e8cfb7d6, type: 2}
+  X_START: -348
+  Y_START: 165
+  X_SPACE_BETWEEN_ITEM: 100
+  Y_SPACE_BETWEEN_ITEM: 105
+  NUMBER_OF_COLUMNS: 8
+  mouseOnScene: 0
+--- !u!114 &538228986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538228983}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1a5d8785d80a4ee42a2a4c8632436dc0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &538228987
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538228983}
+  m_CullTransparentMesh: 0
 --- !u!1 &571343453
 GameObject:
   m_ObjectHideFlags: 0
@@ -41959,7 +42111,8 @@ MonoBehaviour:
   currentLevelPercentage: {fileID: 942728345}
   onLevelUpEffect: {fileID: 5765387391254327588, guid: 1c930d4361a9c98498ddfaa5582ecbfd,
     type: 3}
-  onHpRestoreEffect: {fileID: 0}
+  onHpRestoreEffect: {fileID: 2843628622706811375, guid: c3e6cca6d06034045a49ba06eb14f14c,
+    type: 3}
   slider: {fileID: 2098743813}
   playerLevelingSystem:
     experience: 0
@@ -41982,9 +42135,12 @@ MonoBehaviour:
   animator: {fileID: 833019735}
   moveWall: {fileID: 0}
   inventory: {fileID: 11400000, guid: f23982618d3bb114cb865502e8cfb7d6, type: 2}
-  displayInventory: {fileID: 0}
+  displayInventory: {fileID: 538228985}
   moveSpeed: 30
   actionPoint: {fileID: 1008018327}
+  Walls:
+    serializedVersion: 2
+    m_Bits: 0
   attackRange: 0.5
   playerLayer:
     serializedVersion: 2
@@ -42000,6 +42156,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   boxMoveRange: 0.5
+  dashForce: 4
+  forcePushX: 10
+  forcePushY: 2
 --- !u!95 &833019742
 Animator:
   serializedVersion: 3
@@ -42767,7 +42926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006508795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3533, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.0247, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42942,6 +43101,10 @@ MonoBehaviour:
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 1043782161}
+  isAreaLevel: 0
+  loseObj: {fileID: 0}
+  enemiesCountObj: {fileID: 0}
+  endMenuObj: {fileID: 0}
 --- !u!114 &1043782156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42961,6 +43124,7 @@ MonoBehaviour:
   endAction: 0
   powerAttack: -5
   powerAttackY: 2
+  isAreaLevel: 0
 --- !u!114 &1043782157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44128,7 +44292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688809489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3533, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.0247, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1512020543}
@@ -44557,6 +44721,7 @@ RectTransform:
   m_Children:
   - {fileID: 1949818630}
   - {fileID: 1254037350}
+  - {fileID: 538228984}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44939,6 +45104,10 @@ MonoBehaviour:
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 2012919985}
+  isAreaLevel: 0
+  loseObj: {fileID: 0}
+  enemiesCountObj: {fileID: 0}
+  endMenuObj: {fileID: 0}
 --- !u!114 &2012919980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44958,6 +45127,7 @@ MonoBehaviour:
   endAction: 0
   powerAttack: -5
   powerAttackY: 2
+  isAreaLevel: 0
 --- !u!114 &2012919981
 MonoBehaviour:
   m_ObjectHideFlags: 0
