@@ -45,7 +45,11 @@ public class AreaEnemyGenerator : MonoBehaviour
             }
             else
             {
-                GameObject.Find("Player").GetComponent<PlayerUIUpdates>().updateExperience(35 * actualPhase);
+                if (actualPhase > GLOBAL_DATA.Instance.areaBestScore)
+                {
+                    GLOBAL_DATA.Instance.areaBestScore = GLOBAL_DATA.Instance.areaBestScore + 1;
+                    GameObject.Find("Player").GetComponent<PlayerUIUpdates>().updateExperience(35 * actualPhase);
+                }
                 startNextPhase();
             }
         }
