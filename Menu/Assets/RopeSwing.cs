@@ -31,7 +31,7 @@ public class RopeSwing : MonoBehaviour
             col.transform.parent = this.transform;
             isTouching = false;
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && col != null)
         {
             col.transform.parent = null;
         }
