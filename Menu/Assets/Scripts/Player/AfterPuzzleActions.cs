@@ -9,6 +9,7 @@ public class AfterPuzzleActions : MonoBehaviour
         if (Statics.winPuzzle)
         {
             GetComponent<PlayerUIUpdates>().updateExperience(Statics.expAfterPuzzle);
+            GetComponent<PlayerUIUpdates>().SavePlayerDataToGlobal();
         }
     }
 }

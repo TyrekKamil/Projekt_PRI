@@ -153,6 +153,12 @@ public class PlayerUIUpdates : MonoBehaviour
         GLOBAL_DATA.Instance.Level = playerLevelingSystem.currentLevel;
         GLOBAL_DATA.Instance.XP = playerLevelingSystem.experience;
     }
+
+    private void OnDestroy()
+    {
+        SavePlayerDataToGlobal();
+    }
+
 }
 
 [System.Serializable]

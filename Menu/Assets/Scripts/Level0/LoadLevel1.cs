@@ -12,7 +12,6 @@ public class LoadLevel1 : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            playerUI.SavePlayerDataToGlobal();
             SceneManager.LoadScene(2);
 
         }
