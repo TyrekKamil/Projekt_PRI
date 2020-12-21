@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public float forcePushY = 2f;
 
     public GameObject bullet;
+    public GameObject explodeBullet;
     private bool increaseDMGSkillActivated = false;
+    private float scaleSpeed = 1.5f;
     private void Awake()
     {
         playerSkills = new PlayerSkills();
@@ -68,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
     {
         // TODO cooldown
         Instantiate(bullet, actionPoint.position, actionPoint.rotation).SetActive(true);
+    }
+
+    void Explode()
+    {
+        GameObject explode = Instantiate(explodeBullet, transform.position, transform.rotation);
+        explode.SetActive(true);
     }
 
     void IncreaseDMG()
@@ -122,9 +130,13 @@ public class PlayerMovement : MonoBehaviour
             increaseDMGSkillActivated = true;
             IncreaseDMG();
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Explode();
+        }
+
         horizontalMove = direction * moveSpeed;
-
-
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
 
