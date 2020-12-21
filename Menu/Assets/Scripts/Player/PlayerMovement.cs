@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 20f;
 
     bool jump = false;
-    private int direction = 0;
+    public int direction = 0;
     [SerializeField] private Transform actionPoint;
     [SerializeField] private LayerMask Walls;
     public float attackRange = 2.5f;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ropeLayer;
     public int attackDamage = 50;
     public LayerMask boxLayer;
-    
+
     public float boxMoveRange = 0.5f;
     public float dashForce = 4f;
     private bool isOnRope = false;
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public float forcePushX = 10f;
     public float forcePushY = 2f;
 
+    public GameObject bullet;
+    private bool increaseDMGSkillActivated = false;
     private void Awake()
     {
         playerSkills = new PlayerSkills();
@@ -40,12 +42,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
-        if (Statics.sceneWasLeft) {
+        if (Statics.sceneWasLeft)
+        {
             gameObject.transform.position = Statics.recentPlayerPosition;
             Statics.sceneWasLeft = false;
             moveWall.OnMinigameCompletion();
         }
-        if (Statics.playPuzzle) {
+        if (Statics.playPuzzle)
+        {
             Statics.playPuzzle = false;
             gameObject.transform.position = Statics.recentPlayerPosition;
         }
@@ -54,11 +58,31 @@ public class PlayerMovement : MonoBehaviour
         GameEvents.LoadInitiated += inventory.Load;
     }
     float dashValue = 0f;
-    void Dash() {
+    void Dash()
+    {
         dashValue += 0.2f;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x + (direction * 0.2f), gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
+    void ShootBullet()
+    {
+        // TODO cooldown
+        Instantiate(bullet, actionPoint.position, actionPoint.rotation).SetActive(true);
+    }
+
+    void IncreaseDMG()
+    {
+        randomDMG();
+        WaitForSeconds(5);
+        attackDamage = 50;
+        increaseDMGSkillActivated = false;
+    }
+
+    void randomDMG()
+    {
+        int random = new System.Random().Next(65, 125);
+        attackDamage = random;
+    }
     void Update()
     {
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton"))))
@@ -72,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
             MoveObject();
         }
         //TODO: Cooldown for skills
-        if (dashValue < dashForce && dash && !touchingWall) {
+        if (dashValue < dashForce && dash && !touchingWall)
+        {
             Dash();
         }
         else
@@ -87,12 +112,22 @@ public class PlayerMovement : MonoBehaviour
             dash = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ShootBullet();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            increaseDMGSkillActivated = true;
+            IncreaseDMG();
+        }
         horizontalMove = direction * moveSpeed;
 
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         direction = 0;
-        
+
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton"))))
         {
             animator.SetBool("IsJumping", true);
@@ -107,7 +142,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
             animator.SetBool("IsJumping", false);
             jump = false;
             Grab();
@@ -153,7 +189,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
     Collider2D recentCollider;
-    void Grab() {
+    void Grab()
+    {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, ropeLayer);
         if (colliders.Length > 0 && !Statics.isOnRope)
         {
@@ -166,14 +203,20 @@ public class PlayerMovement : MonoBehaviour
             //this.transform.parent = colliders[0].transform;
         }
     }
-    void JumpOutOfRope() {
+    void JumpOutOfRope()
+    {
         Destroy(recentCollider.gameObject.GetComponent<FixedJoint2D>());
         Statics.isOnRope = false;
         Physics2D.IgnoreLayerCollision(8, 12);
     }
     void Attack()
     {
+        Debug.Log(attackDamage);
         animator.SetTrigger("Attack");
+        if (increaseDMGSkillActivated)
+        {
+            randomDMG();
+        }
         Collider2D[] enemies = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemies)
         {
@@ -181,8 +224,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void MoveObject() {
-        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0 && !animator.GetBool("IsJumping")) {
+    void MoveObject()
+    {
+        if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0 && !animator.GetBool("IsJumping"))
+        {
             Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer)[0]
                 .GetComponent<BoxMoving>().MoveBox(direction);
             animator.SetTrigger("PushObject");
@@ -210,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionExit2D(Collision2D other)
     {
-        
+
         if (other.gameObject.CompareTag("MGround"))
         {
             this.transform.parent = null;
@@ -231,7 +276,13 @@ public class PlayerMovement : MonoBehaviour
         inventory.Container.Items = new InventorySlot[32];
     }
 
-    public void forcePushPlayer() {
+    public void forcePushPlayer()
+    {
         GetComponent<Rigidbody2D>().AddForce(new Vector2(forcePushX * direction, forcePushY), ForceMode2D.Force);
+    }
+
+    IEnumerator WaitForSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }
