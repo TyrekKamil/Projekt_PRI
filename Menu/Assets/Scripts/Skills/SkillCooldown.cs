@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillCooldown : MonoBehaviour
 {
@@ -15,11 +16,17 @@ public class SkillCooldown : MonoBehaviour
     public float strBulletCooldownTime = 15f;
     public float strExplodeCooldown = 0f;
     public float strExplodeCooldownTime = 5f;
+    public GameObject strBulletLoadingBar;
+    public GameObject strIncreaseLoadingBar;
+    public GameObject strExplodeLoadingBar;
 
     void Update()
     {
-        // Str skills
-        // Increase str - action time
+        strSkills();
+    }
+
+    private void increaseStrActivatedCooldown()
+    {
         if (strCooldown > 0)
         {
             strCooldown -= Time.deltaTime;
@@ -34,7 +41,9 @@ public class SkillCooldown : MonoBehaviour
             GetComponent<PlayerMovement>().attackDamage = 50;
             Debug.Log("Deactivated");
         }
-        // Increase str - cooldown
+    }
+    private void increaseStrCooldown()
+    {
         if (strCooldownWait > 0)
         {
             strCooldownWait -= Time.deltaTime;
@@ -47,7 +56,10 @@ public class SkillCooldown : MonoBehaviour
         {
             GetComponent<PlayerMovement>().canUseIncreaseStr = true;
         }
-        // Bullet - cooldown
+        strIncreaseLoadingBar.GetComponent<Image>().fillAmount = (strCooldownTimeWait - strCooldownWait) / strCooldownTimeWait;
+    }
+    private void bulletCooldown()
+    {
         if (strBulletCooldown > 0)
         {
             strBulletCooldown -= Time.deltaTime;
@@ -60,7 +72,10 @@ public class SkillCooldown : MonoBehaviour
         {
             GetComponent<PlayerMovement>().canUseBulletSkill = true;
         }
-        // Explode - cooldown
+        strBulletLoadingBar.GetComponent<Image>().fillAmount = (strBulletCooldownTime - strBulletCooldown) / strBulletCooldownTime;
+    }
+    private void explodeCooldown()
+    {
         if (strExplodeCooldown > 0)
         {
             strExplodeCooldown -= Time.deltaTime;
@@ -73,8 +88,14 @@ public class SkillCooldown : MonoBehaviour
         {
             GetComponent<PlayerMovement>().canUseExplodeSkill = true;
         }
+        strExplodeLoadingBar.GetComponent<Image>().fillAmount = (strExplodeCooldownTime - strExplodeCooldown) / strExplodeCooldownTime;
     }
 
-
-
+    private void strSkills()
+    {
+        increaseStrActivatedCooldown();
+        increaseStrCooldown();
+        bulletCooldown();
+        explodeCooldown();
+    }
 }
