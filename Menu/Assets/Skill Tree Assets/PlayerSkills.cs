@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSkills
 {
+    public event EventHandler<OnSkillUnlockedEventArgs> OnSkillUnlocked;
+    public class OnSkillUnlockedEventArgs : EventArgs {
+        public SkillType skillType;
+    }
     public enum SkillType { 
         None,
         Dash,
@@ -15,13 +20,34 @@ public class PlayerSkills
         unlockedSkillTypeList = new List<SkillType>();
     }
     private void UnlockSkill(SkillType skillType) {
-        if(!IsSkillTypeUnlocked(skillType))
+        if (!IsSkillTypeUnlocked(skillType))
+        {
             unlockedSkillTypeList.Add(skillType);
+            OnSkillUnlocked?.Invoke(this, new OnSkillUnlockedEventArgs {skillType = skillType});
+        }
     }
     public bool IsSkillTypeUnlocked(SkillType skillType) {
         return unlockedSkillTypeList.Contains(skillType);
     }
+    public bool CanUnlock(SkillType skillType) {
+        SkillType skillRequirement = GetSkillRequirement(skillType);
 
+        if (skillRequirement != SkillType.None)
+        {
+            if (IsSkillTypeUnlocked(skillRequirement))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
     public SkillType GetSkillRequirement(SkillType skillType) {
         switch (skillType) {
             case SkillType.Blank: return SkillType.Dash;
@@ -29,25 +55,10 @@ public class PlayerSkills
         return SkillType.None;
     }
     public bool TryUnlockingSkill(SkillType skillType) {
-        SkillType skillRequirement = GetSkillRequirement(skillType);
-        if (skillRequirement != SkillType.None)
-        {
-            if (IsSkillTypeUnlocked(skillRequirement))
-            {
-                UnlockSkill(skillType);
-                Debug.Log(skillType.ToString() + " successfully unlocked.");
-                return true;
-            }
-            else
-            {
-                Debug.Log("Cannot unlock skill. " + skillRequirement.ToString() + " isn't unlocked yet.");
-                return false;
-            }
-        }
-        else {
+        if (CanUnlock(skillType)) {
             UnlockSkill(skillType);
-            Debug.Log(skillType.ToString() + " successfully unlocked.");
             return true;
         }
+        return false;
     }
 }
