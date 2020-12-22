@@ -33,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
     public float forcePushX = 10f;
     public float forcePushY = 2f;
 
-    public GameObject bullet;
-    public GameObject explodeBullet;
-    private bool increaseDMGSkillActivated = false;
     private float scaleSpeed = 1.5f;
+    public bool increaseDMGSkillActivated = false;
+    public bool canUseIncreaseStr = true;
+    public bool canUseBulletSkill = true;
+    public bool canUseExplodeSkill = true;
+
     private void Awake()
     {
         playerSkills = new PlayerSkills();
@@ -66,31 +68,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.position = new Vector3(gameObject.transform.position.x + (direction * 0.2f), gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
-    void ShootBullet()
-    {
-        // TODO cooldown
-        Instantiate(bullet, actionPoint.position, actionPoint.rotation).SetActive(true);
-    }
 
-    void Explode()
-    {
-        GameObject explode = Instantiate(explodeBullet, transform.position, transform.rotation);
-        explode.SetActive(true);
-    }
-
-    void IncreaseDMG()
-    {
-        randomDMG();
-        WaitForSeconds(5);
-        attackDamage = 50;
-        increaseDMGSkillActivated = false;
-    }
-
-    void randomDMG()
-    {
-        int random = new System.Random().Next(65, 125);
-        attackDamage = random;
-    }
     void Update()
     {
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton"))))
@@ -120,20 +98,23 @@ public class PlayerMovement : MonoBehaviour
             dash = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && canUseBulletSkill)
         {
-            ShootBullet();
+            canUseBulletSkill = false;
+            GetComponent<SkillsStr>().ShootBullet();
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && canUseIncreaseStr)
         {
             increaseDMGSkillActivated = true;
-            IncreaseDMG();
+            canUseIncreaseStr = false;
+            GetComponent<SkillsStr>().IncreaseDMG();
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U) && canUseExplodeSkill)
         {
-            Explode();
+            canUseExplodeSkill = false;
+            GetComponent<SkillsStr>().Explode();
         }
 
         horizontalMove = direction * moveSpeed;
@@ -227,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Attack");
         if (increaseDMGSkillActivated)
         {
-            randomDMG();
+            GetComponent<SkillsStr>().randomDMG();
         }
         Collider2D[] enemies = Physics2D.OverlapCircleAll(actionPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemies)
