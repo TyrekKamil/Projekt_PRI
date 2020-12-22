@@ -29,6 +29,7 @@ public class PlayerUIUpdates : MonoBehaviour
         playerLevelingSystem.currentLevel = GLOBAL_DATA.Instance.Level;
         slider.SetHealth(GLOBAL_DATA.Instance.HP);
         currentHealth = GLOBAL_DATA.Instance.HP;
+
     }
 
 

@@ -67,6 +67,13 @@ public class EnemyHP : MonoBehaviour
         animator.Play("Rogue_death_01");
         GetComponent<Collider2D>().enabled = false;
         GetComponent<RespawnPlayer>().enabled = false;
+        
+        //TODO: sprawdzic ifologie
+        if (!isBoss)
+        {
+            GameObject.Find("Player").GetComponent<PlayerUIUpdates>().updateExperience(30);
+        }
+
         if (isBoss)
         {
             GetComponent<BossController>().enabled = false;
