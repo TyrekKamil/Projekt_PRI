@@ -13,15 +13,19 @@ public class ExplodeBulletController : MonoBehaviour
         if (gameObject.active)
         {
             transform.localScale = transform.localScale + new Vector3(scaleSpeed, scaleSpeed, scaleSpeed);
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 0.2f, enemyLayers);
-            foreach (Collider2D enemy in enemies)
-            {
-                enemy.GetComponent<EnemyHP>().TakeDamage(50);
-            }
         }
         if (transform.localScale.x > 45)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            transform.localScale = new Vector3(4, 4, 4);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyHP>().TakeDamage(100);
         }
     }
 
