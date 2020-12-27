@@ -11,6 +11,9 @@ public class GLOBAL_DATA : MonoBehaviour
     public int XP;
     public int areaBestScore = 0;
 
+    public bool[] chestOpened = new bool[3];  
+    public int actualChestIndex;
+
     void Awake()
     {
         if (Instance == null)

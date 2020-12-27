@@ -17,6 +17,7 @@ public class PickLock : MonoBehaviour
     public GameObject succcesText;
     public GameObject helpText;
     private GameObject lastText;
+    private bool win = false;
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class PickLock : MonoBehaviour
         if (step == GetComponent<PickLockGenerateSequence>().numberOfMoves)
         {
             StartCoroutine("WaitForSec");
+            win = true;
             exit();
         }
     }
@@ -100,7 +102,11 @@ public class PickLock : MonoBehaviour
 
     public void exit()
     {
-        Statics.endChest = true;
+        if (win)
+        {
+            GLOBAL_DATA.Instance.chestOpened[GLOBAL_DATA.Instance.actualChestIndex] = true;
+            GLOBAL_DATA.Instance.actualChestIndex = 0;
+        }
         SceneManager.LoadScene(Statics.lastSceneId);
     }
 

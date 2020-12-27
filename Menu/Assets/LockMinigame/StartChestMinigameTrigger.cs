@@ -13,6 +13,7 @@ public class StartChestMinigameTrigger : MonoBehaviour
     public InventoryObject inventory;
     private GameObject message;
     private bool removedItem = false;
+    public int index = 0;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class StartChestMinigameTrigger : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
 
-        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !Statics.chestOpened)
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !GLOBAL_DATA.Instance.chestOpened[index])
         {
             if (Statics.itemDropped)
             {
@@ -51,7 +52,7 @@ public class StartChestMinigameTrigger : MonoBehaviour
                     inventory.ReduceNumberOfItems("Lockpick");
                     removedItem = true;
                 }
-                
+                GLOBAL_DATA.Instance.actualChestIndex = index;
                 Statics.recentPlayerPosition = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
                 Statics.lastSceneId = SceneManager.GetActiveScene().name;
                 Statics.sceneWasLeft = true;
