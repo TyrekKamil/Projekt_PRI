@@ -34,10 +34,15 @@ public class PlayerMovement : MonoBehaviour
     public float forcePushY = 2f;
 
     private float scaleSpeed = 1.5f;
+    //Strength skills
     public bool increaseDMGSkillActivated = false;
     public bool canUseIncreaseStr = true;
     public bool canUseBulletSkill = true;
     public bool canUseExplodeSkill = true;
+    //Patience skills
+    public bool isPermHpIncreasedActivated = true;
+    public bool canUseRegenHP = true;
+    public bool canUseImmortality = true;
 
     private void Awake()
     {
@@ -115,6 +120,24 @@ public class PlayerMovement : MonoBehaviour
         {
             canUseExplodeSkill = false;
             GetComponent<SkillsStr>().Explode();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && isPermHpIncreasedActivated)
+        {
+            GetComponent<SkillsPat>().IncreasedHpPermamentlySkill();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N) && canUseRegenHP)
+        {
+            canUseRegenHP = false;
+            GetComponent<SkillsPat>().RegenHP(25);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B) && canUseImmortality)
+        {
+            canUseImmortality = false;
+            GetComponent<SkillsPat>().Immortality(true);
+
         }
 
         horizontalMove = direction * moveSpeed;

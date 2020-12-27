@@ -77,6 +77,11 @@ public class PlayerUIUpdates : MonoBehaviour
    
     public void ChangeHealth(int hit)
     {
+        if (Statics.isImmortal)
+        {
+            return;
+        }
+
         currentHealth -= hit;
     }
 

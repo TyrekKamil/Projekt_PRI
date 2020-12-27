@@ -20,9 +20,15 @@ public class SkillCooldown : MonoBehaviour
     public GameObject strIncreaseLoadingBar;
     public GameObject strExplodeLoadingBar;
 
+    // PAT skills
+    public float patImmortalityCooldown = 0f;
+    public float patImmortalityCooldownTime = 5f;
+
+
     void Update()
     {
         strSkills();
+        patSkills();
     }
 
     private void increaseStrActivatedCooldown()
@@ -91,11 +97,33 @@ public class SkillCooldown : MonoBehaviour
         strExplodeLoadingBar.GetComponent<Image>().fillAmount = (strExplodeCooldownTime - strExplodeCooldown) / strExplodeCooldownTime;
     }
 
+    private void immortalityCooldown()
+    {
+        if (patImmortalityCooldown > 0)
+        {
+            patImmortalityCooldown -= Time.deltaTime;
+        }
+        if (patImmortalityCooldown < 0)
+        {
+            patImmortalityCooldown = 0;
+        }
+        if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().canUseImmortality == false)
+        {
+            Statics.isImmortal = false;
+            GetComponent<PlayerMovement>().canUseImmortality = true;
+        }
+    }
+
     private void strSkills()
     {
         increaseStrActivatedCooldown();
         increaseStrCooldown();
         bulletCooldown();
         explodeCooldown();
+    }
+
+    private void patSkills()
+    {
+        immortalityCooldown();
     }
 }
