@@ -8,6 +8,7 @@ public class UI_SkillTree : MonoBehaviour
     
     [SerializeField] private Material skillLockedMaterial;
     [SerializeField] private Material skillUnlockableMaterial;
+    [SerializeField] private SkillUnlockPath[] skillUnlkockPathArray;
 
     private PlayerSkills playerSkills;
     private List<SkillButton> skillButtonList;
@@ -31,6 +32,23 @@ public class UI_SkillTree : MonoBehaviour
     private void UpdateVisuals() {
         foreach (SkillButton skillButton in skillButtonList) {
             skillButton.UpdateVisual();
+        }
+
+        foreach (SkillUnlockPath skillUnlockPath in skillUnlkockPathArray) {
+            foreach (Image linkImage in skillUnlockPath.linkImageArray) {
+                linkImage.color = new Color(.5f, .5f, .5f);
+            }
+        }
+
+        foreach (SkillUnlockPath skillUnlockPath in skillUnlkockPathArray)
+        {
+            if (playerSkills.IsSkillTypeUnlocked(skillUnlockPath.skillType) || playerSkills.CanUnlock(skillUnlockPath.skillType)) {
+                foreach (Image linkImage in skillUnlockPath.linkImageArray)
+                {
+                    linkImage.color = Color.white;
+                }
+            }
+
         }
     }
     
@@ -84,5 +102,12 @@ public class UI_SkillTree : MonoBehaviour
                 }
             }
         }
+    }
+
+    [System.Serializable]
+    public class SkillUnlockPath
+    {
+        public PlayerSkills.SkillType skillType;
+        public Image[] linkImageArray;
     }
 }
