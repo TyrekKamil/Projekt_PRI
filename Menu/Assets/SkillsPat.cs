@@ -12,12 +12,6 @@ public class SkillsPat : MonoBehaviour
         playerData = GetComponent<PlayerUIUpdates>();
         skillCooldown = GetComponent<SkillCooldown>();
     }
-
-    private void Update()
-    {
-        //Debug.Log(skillCooldown.patImmortalityCooldown + "cooldown to immortlaity");
-        //Debug.Log(Statics.isImmortal);
-    }
     public void IncreasedHpPermamentlySkill()
     {
         playerData.maxHealth = 150;
@@ -40,6 +34,16 @@ public class SkillsPat : MonoBehaviour
     {
         skillCooldown.patImmortalityCooldown = skillCooldown.patImmortalityCooldownTime;
         Statics.isImmortal = option;
+        StartCoroutine("WaitForSec");
     }
 
+    IEnumerator WaitForSec()
+    {
+        yield return new WaitForSeconds(2);
+        if (Statics.isImmortal)
+        {
+            Statics.isImmortal = false;
+        }
+
+    }
 }

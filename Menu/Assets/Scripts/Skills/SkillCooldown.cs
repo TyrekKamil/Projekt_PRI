@@ -22,8 +22,7 @@ public class SkillCooldown : MonoBehaviour
 
     // PAT skills
     public float patImmortalityCooldown = 0f;
-    public float patImmortalityCooldownTime = 5f;
-
+    public float patImmortalityCooldownTime = 30f;
 
     void Update()
     {
@@ -109,7 +108,6 @@ public class SkillCooldown : MonoBehaviour
         }
         if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().canUseImmortality == false)
         {
-            Statics.isImmortal = false;
             GetComponent<PlayerMovement>().canUseImmortality = true;
         }
     }
