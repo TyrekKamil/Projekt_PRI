@@ -11,8 +11,11 @@ public class PlayerSkills
     }
     public enum SkillType { 
         None,
+        //Blue Skills
         Dash,
         Blank
+        //Red Skills
+        //Green Skills
     }
     private List<SkillType> unlockedSkillTypeList;
 
