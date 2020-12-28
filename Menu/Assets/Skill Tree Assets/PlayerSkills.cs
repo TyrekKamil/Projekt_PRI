@@ -14,9 +14,21 @@ public class PlayerSkills
         //Blue Skills
         Dash,
         Blank,
+        BlueSkill3,
+        BlueSkill4,
+        BlueSkill5,
         //Red Skills
-        Red1
+        RedSkill1,
+        RedSkill2,
+        RedSkill3,
+        RedSkill4,
+        RedSkill5,
         //Green Skills
+        GreenSkill1,
+        GreenSkill2,
+        GreenSkill3,
+        GreenSkill4,
+        GreenSkill5,
     }
     private List<SkillType> unlockedSkillTypeList;
 
@@ -24,7 +36,8 @@ public class PlayerSkills
         unlockedSkillTypeList = new List<SkillType>();
     }
     private void UnlockSkill(SkillType skillType) {
-        if (!IsSkillTypeUnlocked(skillType) && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count)
+        // later add  && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count
+        if (!IsSkillTypeUnlocked(skillType))
         {
             unlockedSkillTypeList.Add(skillType);
             OnSkillUnlocked?.Invoke(this, new OnSkillUnlockedEventArgs {skillType = skillType});
@@ -54,7 +67,21 @@ public class PlayerSkills
     }
     public SkillType GetSkillRequirement(SkillType skillType) {
         switch (skillType) {
-            case SkillType.Blank: return SkillType.Dash;
+            //Blue Skills Requirements
+            case SkillType.Dash: return SkillType.Blank;
+            case SkillType.BlueSkill3: return SkillType.Dash;
+            case SkillType.BlueSkill4: return SkillType.BlueSkill3;
+            case SkillType.BlueSkill5: return SkillType.BlueSkill4;
+            //Red Skills Requirements
+            case SkillType.RedSkill2: return SkillType.RedSkill1;
+            case SkillType.RedSkill3: return SkillType.RedSkill2;
+            case SkillType.RedSkill4: return SkillType.RedSkill3;
+            case SkillType.RedSkill5: return SkillType.RedSkill4;
+            //Green Skills Requirements
+            case SkillType.GreenSkill2: return SkillType.GreenSkill1;
+            case SkillType.GreenSkill3: return SkillType.GreenSkill2;
+            case SkillType.GreenSkill4: return SkillType.GreenSkill3;
+            case SkillType.GreenSkill5: return SkillType.GreenSkill4;
         }
         return SkillType.None;
     }
