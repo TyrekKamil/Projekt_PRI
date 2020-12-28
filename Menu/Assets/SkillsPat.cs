@@ -15,8 +15,8 @@ public class SkillsPat : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(skillCooldown.patImmortalityCooldown + "cooldown to immortlaity");
-        Debug.Log(Statics.isImmortal);
+        //Debug.Log(skillCooldown.patImmortalityCooldown + "cooldown to immortlaity");
+        //Debug.Log(Statics.isImmortal);
     }
     public void IncreasedHpPermamentlySkill()
     {

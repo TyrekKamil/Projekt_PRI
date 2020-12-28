@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public MoveWall moveWall;
     public InventoryObject inventory;
     public DisplayInventory displayInventory;
+    public GameObject dashEffect;
+
     float horizontalMove = 0f;
     private PlayerSkills playerSkills;
     public float moveSpeed = 20f;
@@ -99,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (CanUseDash() && Input.GetKeyDown(KeyCode.R) && !dash)
         {
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
             animator.SetBool("Dash", true);
             dash = true;
         }
