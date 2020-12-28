@@ -66,7 +66,7 @@ public class PlayerUIUpdates : MonoBehaviour
         setExpSliderMaxValue();
         ps = Instantiate(onLevelUpEffect, transform.position, Quaternion.identity);
         isParticleActivated = true;
-        
+        GLOBAL_DATA.Instance.Level = playerLevelingSystem.currentLevel;
     }
 
     public void OnRestoreHpFromPotion()

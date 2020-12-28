@@ -13,8 +13,9 @@ public class PlayerSkills
         None,
         //Blue Skills
         Dash,
-        Blank
+        Blank,
         //Red Skills
+        Red1
         //Green Skills
     }
     private List<SkillType> unlockedSkillTypeList;
@@ -23,7 +24,7 @@ public class PlayerSkills
         unlockedSkillTypeList = new List<SkillType>();
     }
     private void UnlockSkill(SkillType skillType) {
-        if (!IsSkillTypeUnlocked(skillType))
+        if (!IsSkillTypeUnlocked(skillType) && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count)
         {
             unlockedSkillTypeList.Add(skillType);
             OnSkillUnlocked?.Invoke(this, new OnSkillUnlockedEventArgs {skillType = skillType});

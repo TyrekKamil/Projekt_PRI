@@ -8,6 +8,7 @@ public class GLOBAL_DATA : MonoBehaviour
 
     public int HP;
     public int Level;
+    public int SkillPoints;
     public int XP;
     public int areaBestScore = 0;
 
