@@ -42,9 +42,9 @@ public class PlayerMovement : MonoBehaviour
     public bool canUseBulletSkill = true;
     public bool canUseExplodeSkill = true;
     //Patience skills
-    public bool isPermHpIncreasedActivated = true;
-    public bool canUseRegenHP = true;
-    public bool canUseImmortality = true;
+    public bool isRegenerationHpActivated = false;
+    public bool isImmortalityActivated = false;
+
 
     private void Awake()
     {
@@ -125,20 +125,20 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SkillsStr>().Explode();
         }
 
-        if (Input.GetKeyDown(KeyCode.M) && isPermHpIncreasedActivated)
+        if (Input.GetKeyDown(KeyCode.M) && CanUsePermHpBonus())
         {
             GetComponent<SkillsPat>().IncreasedHpPermamentlySkill();
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && canUseRegenHP)
+        if (Input.GetKeyDown(KeyCode.N) && CanUseRegenHP())
         {
-            canUseRegenHP = false;
+            isRegenerationHpActivated = true;
             GetComponent<SkillsPat>().RegenHP(25);
         }
 
-        if (Input.GetKeyDown(KeyCode.B) && canUseImmortality)
+        if (Input.GetKeyDown(KeyCode.B) && CanUseImmortality())
         {
-            canUseImmortality = false;
+            isImmortalityActivated = true;
             GetComponent<SkillsPat>().Immortality(true);
 
         }
@@ -185,6 +185,22 @@ public class PlayerMovement : MonoBehaviour
     {
         return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Dash);
     }
+
+    public bool CanUsePermHpBonus()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.ExtraHP);
+    }
+
+    public bool CanUseRegenHP()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.RegenerationHP);
+    }
+
+    public bool CanUseImmortality()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Immortality);
+    }
+
     public void OnLanding()
     {
         animator.SetBool("IsJumping", false);

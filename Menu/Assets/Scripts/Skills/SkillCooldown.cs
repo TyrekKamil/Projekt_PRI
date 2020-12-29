@@ -22,7 +22,9 @@ public class SkillCooldown : MonoBehaviour
 
     // PAT skills
     public float patImmortalityCooldown = 0f;
-    public float patImmortalityCooldownTime = 30f;
+    public float patImmortalityCooldownTime = 50f;
+    public float patRegenerationCooldown = 0f;
+    public float patRegenerationCooldownTime = 30f;
 
     void Update()
     {
@@ -106,9 +108,25 @@ public class SkillCooldown : MonoBehaviour
         {
             patImmortalityCooldown = 0;
         }
-        if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().canUseImmortality == false)
+        if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().isImmortalityActivated == true)
         {
-            GetComponent<PlayerMovement>().canUseImmortality = true;
+            GetComponent<PlayerMovement>().isImmortalityActivated = false;
+        }
+    }
+
+    private void regenerationCooldown()
+    {
+        if (patRegenerationCooldown > 0)
+        {
+            patRegenerationCooldown -= Time.deltaTime;
+        }
+        if (patRegenerationCooldown < 0)
+        {
+            patRegenerationCooldown = 0;
+        }
+        if (patRegenerationCooldown == 0 && GetComponent<PlayerMovement>().isRegenerationHpActivated == true)
+        {
+            GetComponent<PlayerMovement>().isRegenerationHpActivated = false;
         }
     }
 
@@ -123,5 +141,6 @@ public class SkillCooldown : MonoBehaviour
     private void patSkills()
     {
         immortalityCooldown();
+        regenerationCooldown();
     }
 }
