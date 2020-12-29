@@ -28,9 +28,9 @@ public class StartPuzzleTrigger : MonoBehaviour
 
     void Start()
     {
-        if (Statics.winPuzzle || Statics.puzzle[puzzleSceneName])
+        if (GLOBAL_DATA.Instance.winPuzzle || Statics.puzzle[puzzleSceneName])
         {
-            Statics.winPuzzle = false;
+            GLOBAL_DATA.Instance.winPuzzle = false;
             lightPuzzle.SetActive(false);
         }
     }

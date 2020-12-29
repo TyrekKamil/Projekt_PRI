@@ -189,12 +189,12 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() { 
         if (success) {
-            Statics.winPuzzle = true;
+            GLOBAL_DATA.Instance.winPuzzle = true;
             Statics.puzzle[SceneManager.GetActiveScene().name] = true;
             int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
-            Statics.expAfterPuzzle = exp <= 0 ? 5 : exp;
+            GLOBAL_DATA.Instance.expAfterPuzzle = exp <= 0 ? 5 : exp;
             winText.GetComponent<TextMeshPro>().enabled = true;
-            winText.GetComponent<TextMeshPro>().text = winText.GetComponent<TextMeshPro>().text.Replace("pointexp", Statics.expAfterPuzzle.ToString() + "%");
+            winText.GetComponent<TextMeshPro>().text = winText.GetComponent<TextMeshPro>().text.Replace("pointexp", GLOBAL_DATA.Instance.expAfterPuzzle.ToString() + "%");
         }
         Statics.playPuzzle = true;
         puzzleMidground.GetComponent<PuzzleBackgroundOnStart>().buttons.SetActive(false);

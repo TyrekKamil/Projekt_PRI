@@ -148,9 +148,8 @@ public class InventoryObject : ScriptableObject
         Random r = new Random();
         for (int i = 0; i < NumberOfItems; i++)
         {
-            Vector3 chestPosition = GameObject.Find("Chest").transform.position + randomSite(r.Next(0,2));
-            Debug.Log(chestPosition);
-            Instantiate(hpItemPrefab, chestPosition, GameObject.Find("Chest").transform.rotation);
+            Vector3 chestPosition = GameObject.Find("Player").transform.position + randomSite(r.Next(0,2));
+            Instantiate(hpItemPrefab, chestPosition, GameObject.Find("Player").transform.rotation);
         }
     }
 

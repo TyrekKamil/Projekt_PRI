@@ -17,7 +17,7 @@ public class StartChestMinigameTrigger : MonoBehaviour
 
     void Start()
     {
-        if (Statics.chestOpened)
+        if (GLOBAL_DATA.Instance.chestOpened[index])
         {
             lightBox.SetActive(false);
         }
@@ -40,11 +40,6 @@ public class StartChestMinigameTrigger : MonoBehaviour
 
         if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && !GLOBAL_DATA.Instance.chestOpened[index])
         {
-            if (Statics.itemDropped)
-            {
-                return;
-            }
-            
             if (inventory.FindItem("Lockpick"))
             {
                 if (!removedItem)
