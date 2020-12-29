@@ -24,9 +24,9 @@ public class PlayerSkills
         RedSkill4,
         RedSkill5,
         //Green Skills
-        GreenSkill1,
-        GreenSkill2,
-        GreenSkill3,
+        ExtraHP,
+        RegenerationHP,
+        Immortality,
         GreenSkill4,
         GreenSkill5,
     }
@@ -78,9 +78,9 @@ public class PlayerSkills
             case SkillType.RedSkill4: return SkillType.RedSkill3;
             case SkillType.RedSkill5: return SkillType.RedSkill4;
             //Green Skills Requirements
-            case SkillType.GreenSkill2: return SkillType.GreenSkill1;
-            case SkillType.GreenSkill3: return SkillType.GreenSkill2;
-            case SkillType.GreenSkill4: return SkillType.GreenSkill3;
+            case SkillType.RegenerationHP: return SkillType.ExtraHP;
+            case SkillType.Immortality: return SkillType.RegenerationHP;
+            case SkillType.GreenSkill4: return SkillType.Immortality;
             case SkillType.GreenSkill5: return SkillType.GreenSkill4;
         }
         return SkillType.None;

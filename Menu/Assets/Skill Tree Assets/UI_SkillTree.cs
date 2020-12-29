@@ -33,9 +33,9 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton4"), playerSkills, PlayerSkills.SkillType.RedSkill4, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton5"), playerSkills, PlayerSkills.SkillType.RedSkill5, skillLockedMaterial, skillUnlockableMaterial));
         //Add Green Skills
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton1"), playerSkills, PlayerSkills.SkillType.GreenSkill1, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton2"), playerSkills, PlayerSkills.SkillType.GreenSkill2, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton3"), playerSkills, PlayerSkills.SkillType.GreenSkill3, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton4"), playerSkills, PlayerSkills.SkillType.GreenSkill4, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton5"), playerSkills, PlayerSkills.SkillType.GreenSkill5, skillLockedMaterial, skillUnlockableMaterial));
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
