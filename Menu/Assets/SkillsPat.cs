@@ -14,13 +14,15 @@ public class SkillsPat : MonoBehaviour
     }
     public void IncreasedHpPermamentlySkill()
     {
-        playerData.maxHealth = 150;
-        playerData.slider.SetMaxHealth(150);
-        Debug.Log("HP increased from 100 to 150!");
+        playerData.maxHealth = 125;
+        playerData.slider.SetMaxHealth(125);
+        Statics.isHpBoostedFromSkill = true;
+        Debug.Log("HP increased from 100 to 125!");
     }
 
     public void RegenHP(int hpRegenerated)
     {
+        skillCooldown.patRegenerationCooldown = skillCooldown.patRegenerationCooldownTime;
         for (int i = 0; i < hpRegenerated; i++)
         {
             if (playerData.currentHealth == playerData.maxHealth)

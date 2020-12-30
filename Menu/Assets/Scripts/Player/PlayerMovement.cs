@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SkillsStr>().Explode();
         }
 
-        if (Input.GetKeyDown(KeyCode.M) && CanUsePermHpBonus())
+        if (CanUsePermHpBonus())
         {
             GetComponent<SkillsPat>().IncreasedHpPermamentlySkill();
         }

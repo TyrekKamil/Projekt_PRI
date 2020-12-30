@@ -30,6 +30,11 @@ public class PlayerUIUpdates : MonoBehaviour
         slider.SetHealth(GLOBAL_DATA.Instance.HP);
         currentHealth = GLOBAL_DATA.Instance.HP;
 
+        if (Statics.isHpBoostedFromSkill)
+        {
+            maxHealth = 125;
+        }
+
     }
 
 

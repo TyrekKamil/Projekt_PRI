@@ -20,6 +20,10 @@ public class SkillCooldown : MonoBehaviour
     public GameObject strIncreaseLoadingBar;
     public GameObject strExplodeLoadingBar;
 
+    public GameObject patRegenLoadingBar;
+    public GameObject patImmortalityLoadingBar;
+
+
     // PAT skills
     public float patImmortalityCooldown = 0f;
     public float patImmortalityCooldownTime = 50f;
@@ -112,6 +116,7 @@ public class SkillCooldown : MonoBehaviour
         {
             GetComponent<PlayerMovement>().isImmortalityActivated = false;
         }
+        patImmortalityLoadingBar.GetComponent<Image>().fillAmount = (patImmortalityCooldownTime - patImmortalityCooldown) / patImmortalityCooldownTime;
     }
 
     private void regenerationCooldown()
@@ -128,6 +133,8 @@ public class SkillCooldown : MonoBehaviour
         {
             GetComponent<PlayerMovement>().isRegenerationHpActivated = false;
         }
+        patRegenLoadingBar.GetComponent<Image>().fillAmount = (patRegenerationCooldownTime - patRegenerationCooldown) / patRegenerationCooldownTime;
+
     }
 
     private void strSkills()
