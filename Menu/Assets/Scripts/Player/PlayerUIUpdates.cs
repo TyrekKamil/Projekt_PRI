@@ -25,10 +25,18 @@ public class PlayerUIUpdates : MonoBehaviour
 
         playerLevelingSystem = new PlayerLevelingSystem(1, OnLevelUp);
 
-        playerLevelingSystem.experience = GLOBAL_DATA.Instance.XP;
-        playerLevelingSystem.currentLevel = GLOBAL_DATA.Instance.Level;
-        slider.SetHealth(GLOBAL_DATA.Instance.HP);
-        currentHealth = GLOBAL_DATA.Instance.HP;
+        if (Statics.isLoadedGame)
+        {
+            LoadPlayerData();
+            Statics.isLoadedGame = false;
+        }
+        else
+        {
+            playerLevelingSystem.experience = GLOBAL_DATA.Instance.XP;
+            playerLevelingSystem.currentLevel = GLOBAL_DATA.Instance.Level;
+            slider.SetHealth(GLOBAL_DATA.Instance.HP);
+            currentHealth = GLOBAL_DATA.Instance.HP;
+        }
 
         if (Statics.isHpBoostedFromSkill)
         {

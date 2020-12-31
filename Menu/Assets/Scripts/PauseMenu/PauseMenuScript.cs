@@ -42,6 +42,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SaveGame()
     {
+        GameEvents.OnSaveSceneInitiated();
         GameEvents.OnSaveInitiated();
         Debug.Log("Game is saved");
         Resume();
@@ -49,8 +50,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void LoadGame()
     {
-        Debug.Log("loaded scene");
-        GameEvents.OnLoadInitiated();
+        GameEvents.OnLoadSceneInitiated();
         Resume();
     }
 }

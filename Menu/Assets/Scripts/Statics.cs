@@ -13,6 +13,7 @@ public class Statics
     public static bool itemDropped = false;
     public static bool isHpBoostedFromSkill = false;
     public static bool isImmortal = false;
+    public static bool isLoadedGame = false;
     public static Dictionary<string, bool> puzzle = new Dictionary<string, bool>()
     {
         { "Puzzle", false },
