@@ -18,9 +18,9 @@ public class PlayerSkills
         BlueSkill4,
         BlueSkill5,
         //Red Skills
-        RedSkill1,
-        RedSkill2,
-        RedSkill3,
+        IncreaseDMG,
+        Bullet,
+        Explode,
         RedSkill4,
         RedSkill5,
         //Green Skills
@@ -73,9 +73,9 @@ public class PlayerSkills
             case SkillType.BlueSkill4: return SkillType.BlueSkill3;
             case SkillType.BlueSkill5: return SkillType.BlueSkill4;
             //Red Skills Requirements
-            case SkillType.RedSkill2: return SkillType.RedSkill1;
-            case SkillType.RedSkill3: return SkillType.RedSkill2;
-            case SkillType.RedSkill4: return SkillType.RedSkill3;
+            case SkillType.Bullet: return SkillType.IncreaseDMG;
+            case SkillType.Explode: return SkillType.Bullet;
+            case SkillType.RedSkill4: return SkillType.Explode;
             case SkillType.RedSkill5: return SkillType.RedSkill4;
             //Green Skills Requirements
             case SkillType.RegenerationHP: return SkillType.ExtraHP;

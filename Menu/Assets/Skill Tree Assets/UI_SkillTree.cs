@@ -27,9 +27,9 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton2"), playerSkills, PlayerSkills.SkillType.BlueSkill4, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton3"), playerSkills, PlayerSkills.SkillType.BlueSkill5, skillLockedMaterial, skillUnlockableMaterial));
         //Add Red Skills
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton1"), playerSkills, PlayerSkills.SkillType.RedSkill1, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton2"), playerSkills, PlayerSkills.SkillType.RedSkill2, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton3"), playerSkills, PlayerSkills.SkillType.RedSkill3, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("increaseDMGButton"), playerSkills, PlayerSkills.SkillType.IncreaseDMG, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("bulletButton"), playerSkills, PlayerSkills.SkillType.Bullet, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("explodeButton"), playerSkills, PlayerSkills.SkillType.Explode, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton4"), playerSkills, PlayerSkills.SkillType.RedSkill4, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton5"), playerSkills, PlayerSkills.SkillType.RedSkill5, skillLockedMaterial, skillUnlockableMaterial));
         //Add Green Skills
