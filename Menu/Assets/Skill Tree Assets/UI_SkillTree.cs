@@ -21,23 +21,23 @@ public class UI_SkillTree : MonoBehaviour
 
         skillButtonList = new List<SkillButton>();
         //Add Blue Skills
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("dashButton"), playerSkills, PlayerSkills.SkillType.Dash, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blankButton"), playerSkills, PlayerSkills.SkillType.Blank, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton"), playerSkills, PlayerSkills.SkillType.BlueSkill3, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton2"), playerSkills, PlayerSkills.SkillType.BlueSkill4, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton3"), playerSkills, PlayerSkills.SkillType.BlueSkill5, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("dashButton"), playerSkills, PlayerSkills.SkillType.Dash, skillLockedMaterial, skillUnlockableMaterial , "Player dashes horizontally in the current direction."));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blankButton"), playerSkills, PlayerSkills.SkillType.Blank, skillLockedMaterial, skillUnlockableMaterial, "Allows you to use jump once more in the air"));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton"), playerSkills, PlayerSkills.SkillType.BlueSkill3, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton2"), playerSkills, PlayerSkills.SkillType.BlueSkill4, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton3"), playerSkills, PlayerSkills.SkillType.BlueSkill5, skillLockedMaterial, skillUnlockableMaterial, ""));
         //Add Red Skills
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("increaseDMGButton"), playerSkills, PlayerSkills.SkillType.IncreaseDMG, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("bulletButton"), playerSkills, PlayerSkills.SkillType.Bullet, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("explodeButton"), playerSkills, PlayerSkills.SkillType.Explode, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton4"), playerSkills, PlayerSkills.SkillType.RedSkill4, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton5"), playerSkills, PlayerSkills.SkillType.RedSkill5, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("increaseDMGButton"), playerSkills, PlayerSkills.SkillType.IncreaseDMG, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("bulletButton"), playerSkills, PlayerSkills.SkillType.Bullet, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("explodeButton"), playerSkills, PlayerSkills.SkillType.Explode, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton4"), playerSkills, PlayerSkills.SkillType.RedSkill4, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("redButton5"), playerSkills, PlayerSkills.SkillType.RedSkill5, skillLockedMaterial, skillUnlockableMaterial, ""));
         //Add Green Skills
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton4"), playerSkills, PlayerSkills.SkillType.GreenSkill4, skillLockedMaterial, skillUnlockableMaterial));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton5"), playerSkills, PlayerSkills.SkillType.GreenSkill5, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton4"), playerSkills, PlayerSkills.SkillType.GreenSkill4, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("greenButton5"), playerSkills, PlayerSkills.SkillType.GreenSkill5, skillLockedMaterial, skillUnlockableMaterial, ""));
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
@@ -75,16 +75,20 @@ public class UI_SkillTree : MonoBehaviour
         private PlayerSkills.SkillType skillType;
         private Material skillLockedMaterial;
         private Material skillUnlockableMaterial;
+        private string description;
 
-        public SkillButton(Transform transform, PlayerSkills playerSkills, PlayerSkills.SkillType skillType, Material skillLockedMaterial, Material skillUnlockableMaterial) {
+        public SkillButton(Transform transform, PlayerSkills playerSkills, PlayerSkills.SkillType skillType, Material skillLockedMaterial, Material skillUnlockableMaterial, string description) {
             this.transform = transform;
             this.playerSkills = playerSkills;
             this.skillType = skillType;
+            this.description = description;
             this.skillLockedMaterial = skillLockedMaterial;
             this.skillUnlockableMaterial = skillUnlockableMaterial;
 
             image = transform.Find("Image").GetComponent<Image>();
             backgroundImage = transform.Find("background").GetComponent<Image>();
+            transform.GetComponent<Button_UI>().MouseOverOnceFunc = () => Tooltip.ShowTooltip_Static(description);
+            transform.GetComponent<Button_UI>().MouseOutOnceFunc = () => Tooltip.HideTooltip_Static();
 
             transform.GetComponent<Button_UI>().ClickFunc = () =>
             {
