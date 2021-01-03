@@ -10,7 +10,8 @@ public class AutoSave : MonoBehaviour
     private void Start()
     {
         saverInput = GameObject.Find("Game Saved info");
-        saverInput.SetActive(false);
+        if(saverInput)
+            saverInput.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
