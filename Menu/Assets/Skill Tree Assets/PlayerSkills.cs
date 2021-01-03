@@ -15,20 +15,14 @@ public class PlayerSkills
         Sprint,
         TripleJump,
         Dash,
-        BlueSkill4,
-        BlueSkill5,
         //Red Skills
         IncreaseDMG,
         Bullet,
         Explode,
-        RedSkill4,
-        RedSkill5,
         //Green Skills
         ExtraHP,
         RegenerationHP,
         Immortality,
-        GreenSkill4,
-        GreenSkill5,
     }
     private List<SkillType> unlockedSkillTypeList;
 
@@ -70,18 +64,12 @@ public class PlayerSkills
             //Blue Skills Requirements
             case SkillType.TripleJump: return SkillType.Sprint;
             case SkillType.Dash: return SkillType.TripleJump;
-            case SkillType.BlueSkill4: return SkillType.Dash;
-            case SkillType.BlueSkill5: return SkillType.BlueSkill4;
             //Red Skills Requirements
             case SkillType.Bullet: return SkillType.IncreaseDMG;
             case SkillType.Explode: return SkillType.Bullet;
-            case SkillType.RedSkill4: return SkillType.Explode;
-            case SkillType.RedSkill5: return SkillType.RedSkill4;
             //Green Skills Requirements
             case SkillType.RegenerationHP: return SkillType.ExtraHP;
             case SkillType.Immortality: return SkillType.RegenerationHP;
-            case SkillType.GreenSkill4: return SkillType.Immortality;
-            case SkillType.GreenSkill5: return SkillType.GreenSkill4;
         }
         return SkillType.None;
     }
