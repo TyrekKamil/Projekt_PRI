@@ -44,10 +44,11 @@ public class PlayerMovement : MonoBehaviour
     //Patience skills
     public bool isRegenerationHpActivated = false;
     public bool isImmortalityActivated = false;
-
+    private static PlayerMovement instance;
 
     private void Awake()
     {
+        instance = this;
         playerSkills = new PlayerSkills();
     }
     void Start()
@@ -180,6 +181,9 @@ public class PlayerMovement : MonoBehaviour
     public PlayerSkills GetPlayerSkills()
     {
         return playerSkills;
+    }
+    public static PlayerSkills GetPlayerSkillsStatic() {
+        return instance.playerSkills;
     }
     public bool CanUseDash()
     {

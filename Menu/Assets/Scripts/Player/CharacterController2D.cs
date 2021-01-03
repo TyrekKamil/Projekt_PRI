@@ -41,9 +41,12 @@ public class CharacterController2D : MonoBehaviour
 
 		//TODO: OnWallEvent = new BoolEvent();
 	}
-
+	int i = 0;
 	private void FixedUpdate()
 	{
+		if (CanUseTripleJump()) {
+			extraJumpsValue = 2;
+		}
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -155,7 +158,10 @@ public class CharacterController2D : MonoBehaviour
 			extraJumps--;
 		}
 	}
-
+	public bool CanUseTripleJump()
+	{
+		return PlayerMovement.GetPlayerSkillsStatic().IsSkillTypeUnlocked(PlayerSkills.SkillType.TripleJump);
+	}
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
