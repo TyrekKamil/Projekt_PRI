@@ -113,10 +113,7 @@ public class CharacterController2D : MonoBehaviour
 				move += currentPlatform.velocityX;
 				onMovingPlatform = false;
 			}
-			//include sprint ability
-			if (CanUseSprint() && Input.GetKeyDown(KeyCode.B)) {
-				move *= 5f;
-			}
+
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
@@ -166,10 +163,7 @@ public class CharacterController2D : MonoBehaviour
 	{
 		return PlayerMovement.GetPlayerSkillsStatic().IsSkillTypeUnlocked(PlayerSkills.SkillType.TripleJump);
 	}
-	public bool CanUseSprint()
-	{
-		return PlayerMovement.GetPlayerSkillsStatic().IsSkillTypeUnlocked(PlayerSkills.SkillType.Sprint);
-	}
+
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
