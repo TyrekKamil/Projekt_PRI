@@ -12,9 +12,9 @@ public class PlayerSkills
     public enum SkillType { 
         None,
         //Blue Skills
+        Sprint,
         TripleJump,
         Dash,
-        BlueSkill3,
         BlueSkill4,
         BlueSkill5,
         //Red Skills
@@ -68,9 +68,9 @@ public class PlayerSkills
     public SkillType GetSkillRequirement(SkillType skillType) {
         switch (skillType) {
             //Blue Skills Requirements
+            case SkillType.TripleJump: return SkillType.Sprint;
             case SkillType.Dash: return SkillType.TripleJump;
-            case SkillType.BlueSkill3: return SkillType.Dash;
-            case SkillType.BlueSkill4: return SkillType.BlueSkill3;
+            case SkillType.BlueSkill4: return SkillType.Dash;
             case SkillType.BlueSkill5: return SkillType.BlueSkill4;
             //Red Skills Requirements
             case SkillType.Bullet: return SkillType.IncreaseDMG;

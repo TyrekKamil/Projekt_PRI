@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnRope = false;
     private bool dash = false;
     private bool touchingWall = false;
-
+    private float previousMoveSpeed;
     public float forcePushX = 10f;
     public float forcePushY = 2f;
 
@@ -94,11 +94,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Dash();
         }
+
         else
         {
             dashValue = 0f;
             dash = false;
             animator.SetBool("Dash", false);
+        }
+
+        if (CanUseSprint() && Input.GetKeyDown(KeyCode.B))
+        {
+            previousMoveSpeed = moveSpeed;
+            moveSpeed *= 1.5f;
+        }
+        else if(CanUseSprint() && Input.GetKeyUp(KeyCode.B) && moveSpeed != previousMoveSpeed){
+            moveSpeed = previousMoveSpeed;
         }
         if (CanUseDash() && Input.GetKeyDown(KeyCode.R) && !dash)
         {
@@ -188,6 +198,10 @@ public class PlayerMovement : MonoBehaviour
     public bool CanUseDash()
     {
         return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Dash);
+    }
+    public bool CanUseSprint()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Sprint);
     }
 
     public bool CanUsePermHpBonus()

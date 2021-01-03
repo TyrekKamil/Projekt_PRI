@@ -21,9 +21,9 @@ public class UI_SkillTree : MonoBehaviour
 
         skillButtonList = new List<SkillButton>();
         //Add Blue Skills
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blankButton"), playerSkills, PlayerSkills.SkillType.TripleJump, skillLockedMaterial, skillUnlockableMaterial, "Allows you to use jump once more in the air"));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("sprintButton"), playerSkills, PlayerSkills.SkillType.Sprint, skillLockedMaterial, skillUnlockableMaterial, "Allows you to move faster by holding CTRL"));
+        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("tripleJumpButton"), playerSkills, PlayerSkills.SkillType.TripleJump, skillLockedMaterial, skillUnlockableMaterial, "Allows you to use jump once more in the air"));
         skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("dashButton"), playerSkills, PlayerSkills.SkillType.Dash, skillLockedMaterial, skillUnlockableMaterial , "Player dashes horizontally in the current direction."));
-        skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton"), playerSkills, PlayerSkills.SkillType.BlueSkill3, skillLockedMaterial, skillUnlockableMaterial, ""));
         skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton2"), playerSkills, PlayerSkills.SkillType.BlueSkill4, skillLockedMaterial, skillUnlockableMaterial, ""));
         skillButtonList.Add(new SkillButton(transform.Find("BlueSkills").Find("blueButton3"), playerSkills, PlayerSkills.SkillType.BlueSkill5, skillLockedMaterial, skillUnlockableMaterial, ""));
         //Add Red Skills
