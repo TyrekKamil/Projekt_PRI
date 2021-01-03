@@ -13,7 +13,6 @@ public class SaveLoad : MonoBehaviour
         {
             formatter.Serialize(fileStream, objectToSave);
         }
-        Debug.Log("saved!");
     }
 
     public static T Load<T>(string key)
