@@ -16,6 +16,11 @@ public class EnemyHP : MonoBehaviour
         currentHealth = maxHealth;
         GameEvents.SaveInitiated += SaveEnemyData;
         GameEvents.LoadInitiated += LoadEnemyData;
+
+        if (Statics.isLoadedGame)
+        {
+            LoadEnemyData();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -63,7 +68,6 @@ public class EnemyHP : MonoBehaviour
     {
         GameEvents.SaveInitiated -= SaveEnemyData;
         GameEvents.LoadInitiated -= LoadEnemyData;
-        Debug.Log("I'm dead");
         animator.Play("Rogue_death_01");
         GetComponent<Collider2D>().enabled = false;
         GetComponent<RespawnPlayer>().enabled = false;
@@ -129,6 +133,10 @@ public class EnemyHP : MonoBehaviour
             position.z = enemyData.positionZ;
 
             transform.position = position;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
     }

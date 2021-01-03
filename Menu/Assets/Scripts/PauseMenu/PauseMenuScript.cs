@@ -42,6 +42,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SaveGame()
     {
+        SaveLoad.SeriouslyDeleteAllSaveFiles();
         GameEvents.OnSaveSceneInitiated();
         GameEvents.OnSaveInitiated();
         Debug.Log("Game is saved");
