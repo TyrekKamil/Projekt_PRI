@@ -17,6 +17,8 @@ public class EnemyAnimationController : MonoBehaviour
 
     public float leftEdge;
     public float rightEdge;
+    private bool canAttack = true;
+    private float cooldownAttackTime = 0f;
     void Start() {
         anim = GetComponent<Animator>();
     }
@@ -47,8 +49,10 @@ public class EnemyAnimationController : MonoBehaviour
             }
             StartCoroutine("WaitForSec");
 
-        } if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5) {
+        } if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5 && canAttack) {
             anim.Play("Rogue_attack_01");
+            canAttack = false;
+            cooldownAttackTime = 2f;
         }  else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01")) {
             anim.Play("Rogue_idle_01");
         }
@@ -58,12 +62,27 @@ public class EnemyAnimationController : MonoBehaviour
     void Update() {
         reverse();
         isReadyToMove();
-    
+        cooldownAttackEnemy();
         if(move == true) {
             Vector3 movement = new Vector3(1f, 0f, 0f);
             transform.position += movement * Time.deltaTime * moveSpeed * direction;    
         }
     }
+
+    void cooldownAttackEnemy() {
+        if (cooldownAttackTime > 0)
+        {
+            cooldownAttackTime -= Time.deltaTime;
+        }
+        if (cooldownAttackTime < 0)
+        {
+            cooldownAttackTime = 0;
+        }
+        if (cooldownAttackTime == 0 && !canAttack)
+        {
+            canAttack = true;
+        }
+    }    
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(2);

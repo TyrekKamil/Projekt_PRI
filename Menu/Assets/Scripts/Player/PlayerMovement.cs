@@ -45,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isRegenerationHpActivated = false;
     public bool isImmortalityActivated = false;
     private static PlayerMovement instance;
-
+    // Cooldown attack for player
+    private bool canAttack = true;
+    private float cooldownAttackTime = 0f;
     private void Awake()
     {
         instance = this;
@@ -168,10 +170,12 @@ public class PlayerMovement : MonoBehaviour
                 isOnRope = false;
             }
         }
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton"))))
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("AttackButton"))) && canAttack)
         {
+            cooldownAttackTime = 0.4f;
             Attack();
         }
+        AttackCooldown();
         if (Input.GetKeyDown(KeyCode.E))
         {
             animator.SetBool("IsJumping", false);
@@ -264,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log(attackDamage);
+        canAttack = false;
         animator.SetTrigger("Attack");
         if (increaseDMGSkillActivated)
         {
@@ -277,6 +281,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void AttackCooldown() {
+        if (cooldownAttackTime > 0)
+        {
+            cooldownAttackTime -= Time.deltaTime;
+        }
+        if (cooldownAttackTime < 0)
+        {
+            cooldownAttackTime = 0;
+        }
+        if (cooldownAttackTime == 0 && !canAttack)
+        {
+            canAttack = true;
+        }
+    }
     void MoveObject()
     {
         if (Physics2D.OverlapCircleAll(actionPoint.position, boxMoveRange, boxLayer).Length > 0 && !animator.GetBool("IsJumping"))
