@@ -119,20 +119,20 @@ public class PlayerMovement : MonoBehaviour
             dash = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && canUseBulletSkill)
+        if (Input.GetKeyDown(KeyCode.P) && canUseBulletSkill && canUseBullet())
         {
             canUseBulletSkill = false;
             GetComponent<SkillsStr>().ShootBullet();
         }
 
-        if (Input.GetKeyDown(KeyCode.O) && canUseIncreaseStr)
+        if (Input.GetKeyDown(KeyCode.O) && canUseIncreaseStr && CanUseIncreaseDMG())
         {
             increaseDMGSkillActivated = true;
             canUseIncreaseStr = false;
             GetComponent<SkillsStr>().IncreaseDMG();
         }
 
-        if (Input.GetKeyDown(KeyCode.U) && canUseExplodeSkill)
+        if (Input.GetKeyDown(KeyCode.U) && canUseExplodeSkill && CanUseExplode())
         {
             canUseExplodeSkill = false;
             GetComponent<SkillsStr>().Explode();
@@ -222,7 +222,18 @@ public class PlayerMovement : MonoBehaviour
     {
         return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Immortality);
     }
-
+    public bool CanUseIncreaseDMG()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.IncreaseDMG);
+    }
+    public bool CanUseExplode()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Explode);
+    }
+    public bool canUseBullet()
+    {
+        return playerSkills.IsSkillTypeUnlocked(PlayerSkills.SkillType.Bullet);
+    }
     public void OnLanding()
     {
         animator.SetBool("IsJumping", false);
