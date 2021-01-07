@@ -10,7 +10,11 @@ public class AutoSave : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SaveLoad.SeriouslyDeleteAllSaveFiles();
+            if (SaveLoad.SaveExists("PlayerStats"))
+            {
+                SaveLoad.SeriouslyDeleteAllSaveFiles();
+            }
+            
             GameEvents.OnSaveSceneInitiated();
             GameEvents.OnSaveInitiated();
             saverInput.SetActive(true);

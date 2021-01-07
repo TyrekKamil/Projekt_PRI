@@ -64,10 +64,12 @@ public class RespawnPlayer : MonoBehaviour
                         playerStatsScript.respawnPlayerAtCheckpoint();
                         player.transform.position = respawnPoint.transform.position;
                         ifDamaged = false;
+
                     }
                     else
                     {
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        playerStatsScript.ResetPlayer();
                     }
                 } else {
                     loseObj.SetActive(true);

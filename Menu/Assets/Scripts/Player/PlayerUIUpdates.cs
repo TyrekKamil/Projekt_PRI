@@ -82,6 +82,12 @@ public class PlayerUIUpdates : MonoBehaviour
         GLOBAL_DATA.Instance.Level = playerLevelingSystem.currentLevel;
     }
 
+    public void ResetPlayer()
+    {
+        GLOBAL_DATA.Instance.HP = maxHealth;
+        respawnPlayerAtCheckpoint();
+    }
+
     public void OnRestoreHpFromPotion()
     {
         ps = Instantiate(onHpRestoreEffect, transform.position, Quaternion.identity);
@@ -105,11 +111,7 @@ public class PlayerUIUpdates : MonoBehaviour
 
     public bool respawnPlayer()
     {
-        if (currentHealth <= 0)
-        {
-            return true;
-        }
-        return false;
+        return currentHealth <= 0;
     }
 
     public void respawnPlayerAtCheckpoint()

@@ -42,7 +42,11 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveLoad.SeriouslyDeleteAllSaveFiles();
+        if (SaveLoad.SaveExists("PlayerStats"))
+        {
+            SaveLoad.SeriouslyDeleteAllSaveFiles();
+        }
+
         GameEvents.OnSaveSceneInitiated();
         GameEvents.OnSaveInitiated();
         Resume();
