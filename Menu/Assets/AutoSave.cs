@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class AutoSave : MonoBehaviour
 {
-    private GameObject saverInput;
-
-
-    private void Start()
-    {
-        saverInput = GameObject.Find("Game Saved info");
-        if(saverInput)
-            saverInput.SetActive(false);
-    }
+    public GameObject saverInput;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +14,7 @@ public class AutoSave : MonoBehaviour
             GameEvents.OnSaveSceneInitiated();
             GameEvents.OnSaveInitiated();
             saverInput.SetActive(true);
+            
             StartCoroutine("WaitForSec");
 
             if (gameObject.name == "Lights")
