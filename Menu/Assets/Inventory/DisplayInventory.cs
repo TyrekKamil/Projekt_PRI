@@ -39,7 +39,7 @@ public class DisplayInventory : MonoBehaviour
 
         UpdateSlots();
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DisplayInvetory"))))
         {
             if (image)
             {

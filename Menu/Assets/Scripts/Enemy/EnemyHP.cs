@@ -56,7 +56,6 @@ public class EnemyHP : MonoBehaviour
             }
             endAction = true;
         }
-        Debug.Log("Enemy was hit: " + currentHealth + " HP");
         if (currentHealth <= 0 && isAlive)
         {
             isAlive = false;

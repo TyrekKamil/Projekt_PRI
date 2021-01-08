@@ -104,35 +104,35 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Dash", false);
         }
 
-        if (CanUseSprint() && Input.GetKeyDown(KeyCode.B))
+        if (CanUseSprint() && Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SprintButton"))))
         {
             previousMoveSpeed = moveSpeed;
             moveSpeed *= 1.5f;
         }
-        else if(CanUseSprint() && Input.GetKeyUp(KeyCode.B) && moveSpeed != previousMoveSpeed){
+        else if(CanUseSprint() && Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SprintButton"))) && moveSpeed != previousMoveSpeed){
             moveSpeed = previousMoveSpeed;
         }
-        if (CanUseDash() && Input.GetKeyDown(KeyCode.R) && !dash)
+        if (CanUseDash() && Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DashButton"))) && !dash)
         {
             Instantiate(dashEffect, transform.position, Quaternion.identity);
             animator.SetBool("Dash", true);
             dash = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && canUseBulletSkill && canUseBullet())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("BulletSkillButton"))) && canUseBulletSkill && canUseBullet())
         {
             canUseBulletSkill = false;
             GetComponent<SkillsStr>().ShootBullet();
         }
 
-        if (Input.GetKeyDown(KeyCode.O) && canUseIncreaseStr && CanUseIncreaseDMG())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("IncreaseDMGButton"))) && canUseIncreaseStr && CanUseIncreaseDMG())
         {
             increaseDMGSkillActivated = true;
             canUseIncreaseStr = false;
             GetComponent<SkillsStr>().IncreaseDMG();
         }
 
-        if (Input.GetKeyDown(KeyCode.U) && canUseExplodeSkill && CanUseExplode())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ExplodeSkillButton"))) && canUseExplodeSkill && CanUseExplode())
         {
             canUseExplodeSkill = false;
             GetComponent<SkillsStr>().Explode();
@@ -143,13 +143,13 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SkillsPat>().IncreasedHpPermamentlySkill();
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && CanUseRegenHP())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RegenHPButton"))) && CanUseRegenHP())
         {
             isRegenerationHpActivated = true;
             GetComponent<SkillsPat>().RegenHP(25);
         }
 
-        if (Input.GetKeyDown(KeyCode.B) && CanUseImmortality())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ImmoralitySkillButton"))) && CanUseImmortality())
         {
             isImmortalityActivated = true;
             GetComponent<SkillsPat>().Immortality(true);
@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
             Attack();
         }
         AttackCooldown();
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))))
         {
             animator.SetBool("IsJumping", false);
             jump = false;

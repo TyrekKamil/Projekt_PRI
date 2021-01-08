@@ -25,7 +25,7 @@ public class RopeSwing : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isTouching)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && isTouching)
         {
             Debug.Log("I'm getting parent");
             col.transform.parent = this.transform;

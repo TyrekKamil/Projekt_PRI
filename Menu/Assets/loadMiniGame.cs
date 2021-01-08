@@ -34,7 +34,7 @@ public class loadMiniGame : MonoBehaviour
     {
 
         //Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton")))
-        if (Input.GetKeyDown(KeyCode.E) && Statics.canSwitchLever)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton"))) && Statics.canSwitchLever)
         {
             Debug.Log("switched");
             anim.SetBool("switchLever", true);
