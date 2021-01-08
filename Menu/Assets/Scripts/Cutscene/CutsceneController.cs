@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CutsceneController : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class CutsceneController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            LoadScene();
+        }
     }
 
     public void SecondScene()
@@ -30,12 +35,22 @@ public class CutsceneController : MonoBehaviour
         StartCoroutine(ThirdSceneDelay());
     }
 
-        IEnumerator ThirdSceneDelay()
+    IEnumerator ThirdSceneDelay()
     {
         yield return new WaitForSeconds(5);
         teleportAnim.SetBool("TeleportCutscene", true);
         Camera.main.transform.position = new Vector3(-8.74f, 4.35f, -14f);
         subtitles[1].SetActive(false);
         subtitles[2].SetActive(true);
+        StartCoroutine(DelayLoadLevelTutorial());
+    }
+    IEnumerator DelayLoadLevelTutorial()
+    {
+        yield return new WaitForSeconds(5);
+        LoadScene();
+    }
+    void LoadScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }
