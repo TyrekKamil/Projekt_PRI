@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -589,7 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bc3c71f4a9eaf4b981626882eada52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experience: 30
 --- !u!114 &127836059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,8 +756,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   Level: 1
+  SkillPoints: 0
   XP: 0
   areaBestScore: 0
+  expAfterPuzzle: 0
+  winPuzzle: 0
   chestOpened: 000000
   actualChestIndex: 0
 --- !u!4 &192142685
@@ -2333,7 +2335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bc3c71f4a9eaf4b981626882eada52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experience: 250
 --- !u!114 &413251063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2389,7 +2390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 833019736}
   direction: 1
-  leftEdge: 1890
+  leftEdge: 1892
   rightEdge: 1913
   firePoint: {fileID: 1340546771}
   bullet: {fileID: 669019408}
@@ -2440,7 +2441,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2329601, y: 3.4531379}
@@ -42065,6 +42066,7 @@ MonoBehaviour:
   moveWall: {fileID: 0}
   inventory: {fileID: 11400000, guid: f23982618d3bb114cb865502e8cfb7d6, type: 2}
   displayInventory: {fileID: 538228985}
+  dashEffect: {fileID: 0}
   moveSpeed: 30
   direction: 0
   actionPoint: {fileID: 1008018327}
@@ -42093,6 +42095,8 @@ MonoBehaviour:
   canUseIncreaseStr: 1
   canUseBulletSkill: 1
   canUseExplodeSkill: 1
+  isRegenerationHpActivated: 0
+  isImmortalityActivated: 0
 --- !u!95 &833019742
 Animator:
   serializedVersion: 3
@@ -43017,7 +43021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bc3c71f4a9eaf4b981626882eada52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experience: 30
 --- !u!114 &1043782155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43367,7 +43370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 328}
+  m_AnchoredPosition: {x: -3, y: 470}
   m_SizeDelta: {x: 963, y: 137.0321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1254037351
@@ -44468,10 +44471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -44931,7 +44934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bc3c71f4a9eaf4b981626882eada52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experience: 30
 --- !u!61 &2012919982
 BoxCollider2D:
   m_ObjectHideFlags: 0

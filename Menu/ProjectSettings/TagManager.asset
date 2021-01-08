@@ -9,6 +9,7 @@ TagManager:
   - MGround
   - FxTemporaire
   - Metaball_liquid
+  - Tilemap
   layers:
   - Default
   - TransparentFX

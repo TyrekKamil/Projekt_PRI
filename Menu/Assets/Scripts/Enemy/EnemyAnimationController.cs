@@ -7,8 +7,11 @@ public class EnemyAnimationController : MonoBehaviour
     Animator anim;
     float moveSpeed = 2.5f;
 
-    float distance = 30;   
-    bool move = false;
+    float distance = 30;
+    float distanceY = 1f;
+    float minDistanceX = 1.5f;
+
+    private bool move = false;
     public GameObject player;
 
     public float direction = 1;
@@ -19,57 +22,82 @@ public class EnemyAnimationController : MonoBehaviour
     public float rightEdge;
     private bool canAttack = true;
     private float cooldownAttackTime = 0f;
-    void Start() {
+    void Start()
+    {
         anim = GetComponent<Animator>();
     }
 
-    void isReadyToMove() {
-        if(move == true) {
+    void isReadyToMove()
+    {
+        if (move == true)
+        {
             //return;
             move = true;
-        } else if(Mathf.Abs(player.transform.position.x - transform.position.x) < distance) {
+        }
+        else if (Mathf.Abs(player.transform.position.x - transform.position.x) < distance)
+        {
             move = true;
         }
     }
 
-    void reverse() {
-        if (player.transform.position.x <= rightEdge && player.transform.position.x >= leftEdge) {
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < distance) { 
+    void reverse()
+    {
+        if (player.transform.position.x <= rightEdge && player.transform.position.x >= leftEdge)
+        {
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < distance && (Mathf.Abs(player.transform.position.x - transform.position.x)) > minDistanceX && Mathf.Abs(player.transform.position.y - transform.position.y) < distanceY)
+            {
                 prevDirection = direction;
                 enemyPlayerDistance = transform.position.x - player.transform.position.x;
                 direction = enemyPlayerDistance > 0 ? -1 : 1;
-                if (prevDirection != direction /* && direction != 0 && Math.Abs(enemyPlayerDistance) > 0.1 */) { 
-                    transform.Rotate(0, 180, 0, 0); 
+                if (prevDirection != direction /* && direction != 0 && Math.Abs(enemyPlayerDistance) > 0.1 */)
+                {
+                    transform.Rotate(0, 180, 0, 0);
                 }
             }
-        } else {
-            if (transform.position.x <= leftEdge || transform.position.x >= rightEdge) {
-                direction *= -1;
-                transform.Rotate(0, 180, 0, 0);
+        }
+        else
+        {
+            if (transform.position.x <= leftEdge)
+            {
+                direction = 1;
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+            else if (transform.position.x >= rightEdge)
+            {
+                direction = -1;
+                transform.rotation = new Quaternion(0, 180, 0, 0);
             }
             StartCoroutine("WaitForSec");
 
-        } if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5 && canAttack) {
+        }
+        if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5 && canAttack)
+        {
             anim.Play("Rogue_attack_01");
             canAttack = false;
             cooldownAttackTime = 2f;
-        }  else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01")) {
+        }
+        else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
+        {
             anim.Play("Rogue_idle_01");
         }
- 
+
+
 
     }
-    void Update() {
+    void Update()
+    {
         reverse();
         isReadyToMove();
         cooldownAttackEnemy();
-        if(move == true) {
+        if (move == true)
+        {
             Vector3 movement = new Vector3(1f, 0f, 0f);
-            transform.position += movement * Time.deltaTime * moveSpeed * direction;    
+            transform.position += movement * Time.deltaTime * moveSpeed * direction;
         }
     }
 
-    void cooldownAttackEnemy() {
+    void cooldownAttackEnemy()
+    {
         if (cooldownAttackTime > 0)
         {
             cooldownAttackTime -= Time.deltaTime;
@@ -82,7 +110,7 @@ public class EnemyAnimationController : MonoBehaviour
         {
             canAttack = true;
         }
-    }    
+    }
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(2);

@@ -9,6 +9,8 @@ public class BossController : MonoBehaviour
     float moveSpeed = 2.5f;
 
     float distance = 30;
+    float distanceY = 1f;
+    float minDistanceX = 1.5f;
     bool move = false;
     public GameObject player;
 
@@ -30,6 +32,8 @@ public class BossController : MonoBehaviour
     public GameObject UI;
 
     public bool areaLevel = false;
+    private bool canAttack = true;
+    private float cooldownAttackTime = 0f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -50,7 +54,7 @@ public class BossController : MonoBehaviour
 
     void Move()
     {
-        if (player.transform.position.x <= rightEdge && player.transform.position.x >= leftEdge)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) < distance && (Mathf.Abs(player.transform.position.x - transform.position.x)) > minDistanceX && Mathf.Abs(player.transform.position.y - transform.position.y) < distanceY)
         {
             if (Mathf.Abs(player.transform.position.x - transform.position.x) < distance)
             {
@@ -65,10 +69,15 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            if (transform.position.x <= leftEdge || transform.position.x >= rightEdge)
+            if (transform.position.x <= leftEdge)
             {
-                direction *= -1;
-                transform.Rotate(0, 180, 0, 0);
+                direction = 1;
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+            else if (transform.position.x >= rightEdge)
+            {
+                direction = -1;
+                transform.rotation = new Quaternion(0, 180, 0, 0);
             }
             StartCoroutine("WaitForSec");
 
@@ -78,9 +87,11 @@ public class BossController : MonoBehaviour
             anim.Play("Rogue_attack_01");
             Shoot();
         }
-        else if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 1)
+        else if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 1 && canAttack)
         {
             anim.Play("Rogue_attack_01");
+            canAttack = false;
+            cooldownAttackTime = 2f;
         }
         else if (!secondPhase && !anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
         {
@@ -104,6 +115,7 @@ public class BossController : MonoBehaviour
             StartSecondPhase();
             secondPhase = true;
         }
+        cooldownAttackEnemy();
     }
 
 
@@ -135,7 +147,21 @@ public class BossController : MonoBehaviour
         BigShoot();
     }
 
-
+    void cooldownAttackEnemy()
+    {
+        if (cooldownAttackTime > 0)
+        {
+            cooldownAttackTime -= Time.deltaTime;
+        }
+        if (cooldownAttackTime < 0)
+        {
+            cooldownAttackTime = 0;
+        }
+        if (cooldownAttackTime == 0 && !canAttack)
+        {
+            canAttack = true;
+        }
+    }
     IEnumerator WaitForSec()
     {
         yield return new WaitForSeconds(2);
