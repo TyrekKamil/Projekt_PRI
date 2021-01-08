@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         if (CanUseSprint() && Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SprintButton"))))
         {
             previousMoveSpeed = moveSpeed;
-            moveSpeed *= 1.5f;
+            moveSpeed = 30f;
         }
         else if(CanUseSprint() && Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SprintButton"))) && moveSpeed != previousMoveSpeed){
             moveSpeed = previousMoveSpeed;
