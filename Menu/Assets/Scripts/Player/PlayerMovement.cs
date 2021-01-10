@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RegenHPButton"))) && CanUseRegenHP())
         {
             isRegenerationHpActivated = true;
-            GetComponent<SkillsPat>().RegenHP(25);
+            GetComponent<SkillsPat>().RegenHP(15);
         }
 
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ImmoralitySkillButton"))) && CanUseImmortality())

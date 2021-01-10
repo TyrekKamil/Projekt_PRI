@@ -30,9 +30,9 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("bulletButton"), playerSkills, PlayerSkills.SkillType.Bullet, skillLockedMaterial, skillUnlockableMaterial, ""));
         skillButtonList.Add(new SkillButton(transform.Find("RedSkills").Find("explodeButton"), playerSkills, PlayerSkills.SkillType.Explode, skillLockedMaterial, skillUnlockableMaterial, ""));
         //Add Green Skills
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial, ""));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial, ""));
-        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial, ""));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial, "Adds permamently 25 more health points"));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial, "Regenerates 15 hp over time"));
+        skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial, "You are immortal for 2 seconds"));
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
