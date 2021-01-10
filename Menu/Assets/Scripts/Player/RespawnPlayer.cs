@@ -22,6 +22,7 @@ public class RespawnPlayer : MonoBehaviour
     public GameObject loseObj = null;
     public GameObject enemiesCountObj = null;
     public GameObject endMenuObj = null;
+    public bool isAcid = false;
     void Start()
     {
         playerStatsScript = player.GetComponent<PlayerUIUpdates>();
@@ -48,7 +49,7 @@ public class RespawnPlayer : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && animator.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
+        if (other.CompareTag("Player") && (animator.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01") || isAcid))
         {
             direction = (transform.position.x - player.transform.position.x) > 0 ? -1 : 1;
             endPos = player.position + new Vector3(direction * 5f, 1f, 2f);
