@@ -18,7 +18,7 @@ public class KeyBindScript : MonoBehaviour
         addToKeysConfig("LeftButton", "A");
         addToKeysConfig("RightButton", "D");
         addToKeysConfig("JumpButton", "Space");
-        addToKeysConfig("AttackButton", "Ctrl");
+        addToKeysConfig("AttackButton", "LeftControl");
         addToKeysConfig("ActionButton", "E");
         addToKeysConfig("SkillTreeButton", "P");
         addToKeysConfig("IncreaseDMGButton", "Alpha1");
@@ -48,6 +48,7 @@ public class KeyBindScript : MonoBehaviour
 
     void addToKeysConfig(string buttonName, string key)
     {
+        Debug.Log(PlayerPrefs.GetString(buttonName));
         if (PlayerPrefs.GetString(buttonName).Length > 0)
         {
             keysConfig.Add(buttonName, (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(buttonName, key)));
