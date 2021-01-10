@@ -140,6 +140,12 @@ public class EnemyHP : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        GameEvents.SaveInitiated -= SaveEnemyData;
+        GameEvents.LoadInitiated -= LoadEnemyData;
+    }
+
 
 }
 

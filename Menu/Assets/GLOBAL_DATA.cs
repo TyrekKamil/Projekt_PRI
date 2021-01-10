@@ -29,3 +29,4 @@ public class GLOBAL_DATA : MonoBehaviour
         }
     }
 }
+

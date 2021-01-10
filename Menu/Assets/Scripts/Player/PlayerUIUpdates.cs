@@ -133,18 +133,22 @@ public class PlayerUIUpdates : MonoBehaviour
     }
     private void SavePlayerData()
     {
-        SerializablePlayer serializedPlayer = new SerializablePlayer()
+        if(gameObject != null)
         {
-            health = this.currentHealth,
-            experience = playerLevelingSystem.experience,
-            level = playerLevelingSystem.currentLevel,
-            positionX = transform.position.x,
-            positionY = transform.position.y,
-            positionZ = transform.position.z,
+            SerializablePlayer serializedPlayer = new SerializablePlayer()
+            {
+                health = this.currentHealth,
+                experience = playerLevelingSystem.experience,
+                level = playerLevelingSystem.currentLevel,
+                positionX = transform.position.x,
+                positionY = transform.position.y,
+                positionZ = transform.position.z,
 
-        };
+            };
 
-        SaveLoad.Save<SerializablePlayer>(serializedPlayer, "PlayerStats");
+            SaveLoad.Save<SerializablePlayer>(serializedPlayer, "PlayerStats");
+        }
+        
     }
 
     private void LoadPlayerData()
@@ -178,7 +182,10 @@ public class PlayerUIUpdates : MonoBehaviour
     private void OnDestroy()
     {
         SavePlayerDataToGlobal();
+        GameEvents.SaveInitiated -= SavePlayerData;
+        GameEvents.LoadInitiated -= LoadPlayerData;
     }
+
 
 }
 
