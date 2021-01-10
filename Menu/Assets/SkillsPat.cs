@@ -17,7 +17,6 @@ public class SkillsPat : MonoBehaviour
         playerData.maxHealth = 125;
         playerData.slider.SetMaxHealth(125);
         Statics.isHpBoostedFromSkill = true;
-        Debug.Log("HP increased from 100 to 125!");
     }
 
     public void RegenHP(int hpRegenerated)

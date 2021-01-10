@@ -16,6 +16,7 @@ public class UI_SkillTree : MonoBehaviour
     string blueColor = "BlueSkills";
     string redColor = "RedSkills";
     string greenColor = "GreenSkills";
+    public GameObject skillIcons;
     public void SetPlayerSkills(PlayerSkills playerSkills) {
         this.playerSkills = playerSkills;
 
@@ -59,6 +60,7 @@ public class UI_SkillTree : MonoBehaviour
             }
 
         }
+        skillIcons.GetComponent<SkillTreeIcons>().checkSkills();
     }
     
     private class SkillButton {
