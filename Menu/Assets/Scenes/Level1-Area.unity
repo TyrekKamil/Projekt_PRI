@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -630,6 +630,7 @@ MonoBehaviour:
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
+  isAcid: 0
 --- !u!114 &127836061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,7 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2f5a900f3e48846b22e869678dfb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 500
   currentHealth: 0
   animator: {fileID: 413251059}
   isBoss: 1
@@ -2368,7 +2369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 0}
-  damageValue: 20
+  damageValue: 15
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
   animator: {fileID: 413251059}
@@ -2376,6 +2377,7 @@ MonoBehaviour:
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
+  isAcid: 0
 --- !u!114 &413251065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43042,6 +43044,7 @@ MonoBehaviour:
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
+  isAcid: 0
 --- !u!114 &1043782156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44902,6 +44905,7 @@ MonoBehaviour:
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
+  isAcid: 0
 --- !u!114 &2012919980
 MonoBehaviour:
   m_ObjectHideFlags: 0

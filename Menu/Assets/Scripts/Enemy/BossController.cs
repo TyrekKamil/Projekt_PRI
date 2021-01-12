@@ -10,7 +10,7 @@ public class BossController : MonoBehaviour
 
     float distance = 30;
     float distanceY = 1f;
-    float minDistanceX = 1.5f;
+    float minDistanceX = 2.5f;
     bool move = false;
     public GameObject player;
 
