@@ -24,7 +24,7 @@ public class BigBulletController : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Level1-Area");
+        SceneManager.LoadSceneAsync("Level1-Area");
     }
 
 }

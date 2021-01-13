@@ -36,8 +36,6 @@ public class EnemyHP : MonoBehaviour
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(powerAttack * GetComponent<BossController>().direction, powerAttackY), ForceMode2D.Force);
                 timePassed += Time.deltaTime;
             }
-            Debug.Log(10f * GetComponent<BossController>().direction);
-
         }
         else
         {

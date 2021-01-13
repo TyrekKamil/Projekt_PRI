@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Cooldown attack for player
     private bool canAttack = true;
     private float cooldownAttackTime = 0f;
+    private bool devMode = true;
     private void Awake()
     {
         instance = this;
@@ -191,6 +192,10 @@ public class PlayerMovement : MonoBehaviour
                 isOnRope = false;
             }
         }
+        if (devMode) {
+            devMoveMode();
+        }
+
     }
     public PlayerSkills GetPlayerSkills()
     {
@@ -237,6 +242,21 @@ public class PlayerMovement : MonoBehaviour
     public void OnLanding()
     {
         animator.SetBool("IsJumping", false);
+    }
+    private void devMoveMode() {
+        float speed = 0.5f;
+        if (Input.GetKey(KeyCode.Keypad6)) {
+            transform.position += new Vector3(speed, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.Keypad4)) {
+            transform.position += new Vector3(-speed, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.Keypad2)) {
+            transform.position += new Vector3(0, -speed, 0);
+        }
+        if (Input.GetKey(KeyCode.Keypad8)) {
+            transform.position += new Vector3(0f, speed, 0);
+        }
     }
     void FixedUpdate()
     {
