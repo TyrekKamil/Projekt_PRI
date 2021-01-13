@@ -17,7 +17,7 @@ public class RespawnPlayer : MonoBehaviour
     private bool ifDamaged = false;
     private Vector3 movement;
     private float direction;
-    public Animator animator;
+    private Animator animator;
     public bool isAreaLevel = false;
     public GameObject loseObj = null;
     public GameObject enemiesCountObj = null;
@@ -25,9 +25,10 @@ public class RespawnPlayer : MonoBehaviour
     public bool isAcid = false;
     void Start()
     {
+        animator = player.GetComponent<Animator>();
         playerStatsScript = player.GetComponent<PlayerUIUpdates>();
         movement = new Vector3(1f, -0.7f, 0f);
-
+        player = GameObject.Find("Player").transform; 
     }
 
     void Update()

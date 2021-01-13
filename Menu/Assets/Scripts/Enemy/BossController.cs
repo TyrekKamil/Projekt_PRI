@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     float distanceY = 1f;
     float minDistanceX = 2.5f;
     bool move = false;
-    public GameObject player;
+    private GameObject player;
 
     public float direction = 1;
     float prevDirection = 1;
@@ -36,6 +36,7 @@ public class BossController : MonoBehaviour
     private float cooldownAttackTime = 0f;
     void Start()
     {
+        player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
     }
 

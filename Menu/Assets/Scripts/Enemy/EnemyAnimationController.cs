@@ -12,7 +12,7 @@ public class EnemyAnimationController : MonoBehaviour
     float minDistanceX = 1.5f;
 
     private bool move = false;
-    public GameObject player;
+    private GameObject player;
 
     public float direction = 1;
     float prevDirection = 1;
@@ -24,6 +24,7 @@ public class EnemyAnimationController : MonoBehaviour
     private float cooldownAttackTime = 0f;
     void Start()
     {
+        player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
     }
 
