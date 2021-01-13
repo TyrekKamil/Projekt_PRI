@@ -20,14 +20,11 @@ public class GLOBAL_DATA : MonoBehaviour
     {
         if (Instance == null)
         {
-            Debug.Log("if");
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
         {
-                        Debug.Log("elif");
-
             Destroy(gameObject);
         }
     }
