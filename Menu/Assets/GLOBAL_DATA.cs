@@ -5,7 +5,6 @@ using UnityEngine;
 public class GLOBAL_DATA : MonoBehaviour
 {
     public static GLOBAL_DATA Instance;
-
     public int HP;
     public int Level;
     public int SkillPoints;
@@ -15,6 +14,7 @@ public class GLOBAL_DATA : MonoBehaviour
     public bool winPuzzle;
     public bool[] chestOpened = new bool[3];
     public int actualChestIndex;
+    public List<PlayerSkills.SkillType> unlockedSkillTypeList = new List<PlayerSkills.SkillType>();
 
     void Awake()
     {

@@ -27,13 +27,21 @@ public class PlayerSkills
     private List<SkillType> unlockedSkillTypeList;
 
     public PlayerSkills() {
-        unlockedSkillTypeList = new List<SkillType>();
+        if (GLOBAL_DATA.Instance.unlockedSkillTypeList.Count > 0)
+        {
+            unlockedSkillTypeList = GLOBAL_DATA.Instance.unlockedSkillTypeList;
+        }
+        else
+        {
+            unlockedSkillTypeList = new List<SkillType>();
+        }
     }
     private void UnlockSkill(SkillType skillType) {
         // later add  && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count
         if (!IsSkillTypeUnlocked(skillType))
         {
             unlockedSkillTypeList.Add(skillType);
+            GLOBAL_DATA.Instance.unlockedSkillTypeList = unlockedSkillTypeList;
             OnSkillUnlocked?.Invoke(this, new OnSkillUnlockedEventArgs {skillType = skillType});
         }
     }
