@@ -26054,59 +26054,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849525693}
   m_CullTransparentMesh: 0
---- !u!1 &905957776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 905957778}
-  - component: {fileID: 905957777}
-  m_Layer: 0
-  m_Name: DATA_SAVER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &905957777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905957776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4d9c77535ea0441937350bab4cd9e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 100
-  Level: 1
-  SkillPoints: 0
-  XP: 0
-  areaBestScore: 0
-  expAfterPuzzle: 0
-  winPuzzle: 0
-  chestOpened: 000000
-  actualChestIndex: 0
-  unlockedSkillTypeList: 
---- !u!4 &905957778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905957776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 320, y: 240, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942728343
 GameObject:
   m_ObjectHideFlags: 0
@@ -26328,12 +26275,12 @@ PrefabInstance:
     - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1475.8
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -222.29999
+      value: 415
       objectReference: {fileID: 0}
     - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
         type: 3}
@@ -26374,6 +26321,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.71764
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.71764
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182280452204722984, guid: a19bef4c2b19e574493bec69be651575,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.71764
       objectReference: {fileID: 0}
     - target: {fileID: 7182280452204722987, guid: a19bef4c2b19e574493bec69be651575,
         type: 3}
@@ -26711,12 +26673,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1005780740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7182280452204722987, guid: a19bef4c2b19e574493bec69be651575,
-    type: 3}
-  m_PrefabInstance: {fileID: 966557991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006508795
 GameObject:
   m_ObjectHideFlags: 0
@@ -27387,6 +27343,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262495195}
   m_CullTransparentMesh: 0
+--- !u!1 &1276635264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1276635266}
+  - component: {fileID: 1276635265}
+  m_Layer: 0
+  m_Name: DATA_SAVER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1276635265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276635264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4d9c77535ea0441937350bab4cd9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  Level: 1
+  SkillPoints: 0
+  XP: 0
+  areaBestScore: 0
+  expAfterPuzzle: 0
+  winPuzzle: 0
+  chestOpened: 000000
+  actualChestIndex: 0
+  unlockedSkillTypeList: 
+--- !u!4 &1276635266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276635264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 320, y: 240, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412363960
 GameObject:
   m_ObjectHideFlags: 0
@@ -28755,7 +28764,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skillIcons
       value: 
-      objectReference: {fileID: 1005780740}
+      objectReference: {fileID: 1779674265}
     - target: {fileID: 72400738207609288, guid: 3589e0af18732b64da46135e50375ece,
         type: 3}
       propertyPath: m_Name
