@@ -5,11 +5,11 @@ public class EndCredits : MonoBehaviour
 {
     void Start()
     {
-        Invoke("WaitSec", 10);
+        Invoke("WaitSec", 6);
     }
 
     void WaitSec()
     {
-        SceneManager.LoadScene("Main Menu Scene");
+        SceneManager.LoadScene("Level_Selection");
     }
 }

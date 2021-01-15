@@ -12,7 +12,7 @@ public class LoadLevel1 : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadSceneAsync("Level_Selection");
 
         }
     }
