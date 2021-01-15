@@ -7,13 +7,14 @@ public class PauseMenuScript : MonoBehaviour
     public static bool gameIsPaused = false;
     private GameObject mouse;
     public bool mouseOnScene = false;
+    public bool endSelectionMenu = false;
     void Start() { 
         mouse = GameObject.Find("normalCursor");
         mouseOnScene = mouse.GetComponent<MouseCursor>().mouseOnScene; 
     }
     public GameObject pauseMenu;
     void Update() {
-        if (Input.GetKeyDown("escape")) {
+        if (Input.GetKeyDown("escape") && !endSelectionMenu) {
             if(gameIsPaused) {
                 Resume();
             } else {
@@ -38,6 +39,10 @@ public class PauseMenuScript : MonoBehaviour
     public void Exit() {
         Resume();
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadSelectionLevel() {
+        SceneManager.LoadSceneAsync(11);
     }
 
     public void SaveGame()
