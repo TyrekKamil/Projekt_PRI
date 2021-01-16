@@ -88,10 +88,10 @@ public class BossController : MonoBehaviour
             anim.Play("Rogue_attack_01");
             Shoot();
         }
-        else if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 1 && canAttack)
+        else if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 1 && GetComponent<RespawnPlayer>().canAttack)
         {
             anim.Play("Rogue_attack_01");
-            canAttack = false;
+            GetComponent<RespawnPlayer>().canAttack = false;
             cooldownAttackTime = 2f;
         }
         else if (!secondPhase && !anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
@@ -158,13 +158,18 @@ public class BossController : MonoBehaviour
         {
             cooldownAttackTime = 0;
         }
-        if (cooldownAttackTime == 0 && !canAttack)
+        if (cooldownAttackTime == 0 && !GetComponent<RespawnPlayer>().canAttack)
         {
-            canAttack = true;
+            GetComponent<RespawnPlayer>().canAttack = true;
+            GetComponent<RespawnPlayer>().attacked = false;
+        }
+        if (cooldownAttackTime > 0 && cooldownAttackTime < 2 && GetComponent<RespawnPlayer>().canAttack)
+        {
+            GetComponent<RespawnPlayer>().attacked = true;
         }
     }
-    IEnumerator WaitForSec()
-    {
-        yield return new WaitForSeconds(2);
-    }
+IEnumerator WaitForSec()
+{
+    yield return new WaitForSeconds(2);
+}
 }

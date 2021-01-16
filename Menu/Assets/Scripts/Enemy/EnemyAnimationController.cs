@@ -20,7 +20,6 @@ public class EnemyAnimationController : MonoBehaviour
 
     public float leftEdge;
     public float rightEdge;
-    private bool canAttack = true;
     private float cooldownAttackTime = 0f;
     void Start()
     {
@@ -56,7 +55,7 @@ public class EnemyAnimationController : MonoBehaviour
                 }
             }
         }
-        else
+        else 
         {
             if (transform.position.x <= leftEdge)
             {
@@ -71,10 +70,10 @@ public class EnemyAnimationController : MonoBehaviour
             StartCoroutine("WaitForSec");
 
         }
-        if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5 && canAttack)
+        if (Math.Abs(player.transform.position.x - transform.position.x) < 2.5 && GetComponent<RespawnPlayer>().canAttack)
         {
             anim.Play("Rogue_attack_01");
-            canAttack = false;
+            GetComponent<RespawnPlayer>().canAttack = false;
             cooldownAttackTime = 2f;
         }
         else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
@@ -107,9 +106,15 @@ public class EnemyAnimationController : MonoBehaviour
         {
             cooldownAttackTime = 0;
         }
-        if (cooldownAttackTime == 0 && !canAttack)
+        if (cooldownAttackTime == 0 && !GetComponent<RespawnPlayer>().canAttack)
         {
-            canAttack = true;
+            GetComponent<RespawnPlayer>().canAttack = true;
+            GetComponent<RespawnPlayer>().attacked = false;
+
+        }
+        if (cooldownAttackTime > 0 && cooldownAttackTime < 2 && GetComponent<RespawnPlayer>().canAttack)
+        {
+            GetComponent<RespawnPlayer>().attacked = true;
         }
     }
     IEnumerator WaitForSec()

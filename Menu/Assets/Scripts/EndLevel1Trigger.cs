@@ -6,7 +6,7 @@ public class EndLevel1Trigger : MonoBehaviour
     public bool isBossAlive = true;
     void OnTriggerStay2D(Collider2D col)
     {
-        if (!isBossAlive)
+        if (!isBossAlive && col.CompareTag("Player"))
         {
            SceneManager.LoadScene("Credits");
         }

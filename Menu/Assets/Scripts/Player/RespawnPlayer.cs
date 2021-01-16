@@ -23,6 +23,8 @@ public class RespawnPlayer : MonoBehaviour
     public GameObject enemiesCountObj = null;
     public GameObject endMenuObj = null;
     public bool isAcid = false;
+    public bool canAttack = true;
+    public bool attacked = true;
     void Start()
     {
         animator = player.GetComponent<Animator>();
@@ -50,8 +52,11 @@ public class RespawnPlayer : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && (animator.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01") || isAcid))
+
+        if (other.CompareTag("Player") && ((!canAttack && !attacked) || isAcid))
         {
+
+            canAttack = true;
             direction = (transform.position.x - player.transform.position.x) > 0 ? -1 : 1;
             endPos = player.position + new Vector3(direction * 5f, 1f, 2f);
             ifDamaged = true;

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -625,7 +625,6 @@ MonoBehaviour:
   damageValue: 15
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
-  animator: {fileID: 127836065}
   isAreaLevel: 0
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
@@ -643,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 833019736}
   direction: 1
   leftEdge: 1850
   rightEdge: 1870
@@ -2373,7 +2371,6 @@ MonoBehaviour:
   damageValue: 15
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
-  animator: {fileID: 413251059}
   isAreaLevel: 0
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
@@ -2391,7 +2388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac15d726e34d1a47b4f4e81293c8c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 833019736}
   direction: 1
   leftEdge: 1892
   rightEdge: 1913
@@ -42135,7 +42131,7 @@ Animator:
   m_GameObject: {fileID: 833019736}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b069097f36f5d684d8efe709479b54c7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a9f599c49797434485c0e1d9e99f200, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -43412,7 +43408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 833019736}
   direction: 1
   leftEdge: 1830
   rightEdge: 1849
@@ -43444,7 +43439,6 @@ MonoBehaviour:
   damageValue: 15
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
-  animator: {fileID: 1043782161}
   isAreaLevel: 0
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
@@ -45778,7 +45772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d85f65011547e4facc362befff0d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   direction: 1
   leftEdge: 1816
   rightEdge: 1829
@@ -45798,7 +45791,6 @@ MonoBehaviour:
   damageValue: 15
   player: {fileID: 833019728}
   respawnPoint: {fileID: 1412363961}
-  animator: {fileID: 2012919985}
   isAreaLevel: 0
   loseObj: {fileID: 0}
   enemiesCountObj: {fileID: 0}
