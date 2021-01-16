@@ -66,7 +66,7 @@ public class RespawnPlayer : MonoBehaviour
             {
                 if (!isAreaLevel)
                 {
-                    if (respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2" || respawnPoint.transform.name == "RespawnPointMovingObj")
+                    if (respawnPoint.transform.name == "RespawnPoint" || respawnPoint.transform.name == "RespawnPointMid" || respawnPoint.transform.name == "RespawnPoint2" || respawnPoint.transform.name == "RespawnPointMovingObj")
                     {
                         playerStatsScript.respawnPlayerAtCheckpoint();
                         player.transform.position = respawnPoint.transform.position;
