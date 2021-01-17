@@ -32,11 +32,17 @@ public class SaveCurrentScene : MonoBehaviour
             SeriazableScene serializedScene = SaveLoad.Load<SeriazableScene>("Scene");
             int savedScene = serializedScene.currentScene;
 
-            SceneManager.LoadScene(savedScene);
+            SceneManager.LoadSceneAsync(savedScene);
             Statics.isLoadedGame = true;
           
             
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.SaveSceneInitiated -= SaveScene;
+        GameEvents.LoadSceneInitiated -= LoadScene;
     }
 }
 

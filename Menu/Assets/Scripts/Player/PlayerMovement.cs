@@ -72,6 +72,12 @@ public class PlayerMovement : MonoBehaviour
         GameEvents.SaveInitiated += inventory.Save;
         GameEvents.LoadInitiated += inventory.Load;
     }
+
+    private void OnDestroy()
+    {
+        GameEvents.SaveInitiated -= inventory.Save;
+        GameEvents.LoadInitiated -= inventory.Load;
+    }
     float dashValue = 0f;
     void Dash()
     {
