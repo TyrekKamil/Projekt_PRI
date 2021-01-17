@@ -156,7 +156,6 @@ MonoBehaviour:
   XP: 0
   areaBestScore: 0
   expAfterPuzzle: 0
-  winPuzzle: 0
   chestOpened: 000000
   actualChestIndex: 0
   unlockedSkillTypeList: 
@@ -25740,7 +25739,7 @@ MonoBehaviour:
   actionPoint: {fileID: 1008018327}
   Walls:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   attackRange: 0.5
   playerLayer:
     serializedVersion: 2
@@ -26873,7 +26872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006508795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1857.4952, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1857.4928, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -28180,7 +28179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688809489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1857.4952, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1857.4928, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1512020543}

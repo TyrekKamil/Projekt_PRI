@@ -761,7 +761,6 @@ MonoBehaviour:
   XP: 0
   areaBestScore: 0
   expAfterPuzzle: 0
-  winPuzzle: 0
   chestOpened: 000000
   actualChestIndex: 0
   unlockedSkillTypeList: 
@@ -42100,7 +42099,7 @@ MonoBehaviour:
   actionPoint: {fileID: 1008018327}
   Walls:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   attackRange: 0.5
   playerLayer:
     serializedVersion: 2
@@ -43143,7 +43142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006508795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3552, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.3528, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44893,7 +44892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688809489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3552, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.3528, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1512020543}
@@ -45752,7 +45751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 149.11877, y: -51.9657}
+  m_AnchoredPosition: {x: 149.11865, y: -51.965576}
   m_SizeDelta: {x: 586.36145, y: 198.27808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2012919975 stripped
