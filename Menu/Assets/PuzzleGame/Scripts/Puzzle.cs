@@ -205,7 +205,7 @@ public class Puzzle : MonoBehaviour
         if(onExit && puzzleMidground.transform.position.x >= 0 ) {
             puzzleMidground.transform.position += (new Vector3(-2f, 0, 0) * Time.deltaTime);
         } else if (onExit) {
-            SceneManager.LoadSceneAsync(Statics.lastSceneId);        
+            SceneManager.LoadScene(Statics.lastSceneId);        
         }
     }
 }

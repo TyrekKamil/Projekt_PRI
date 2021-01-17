@@ -6,7 +6,7 @@ public class AfterPuzzleActions : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log(Statics.winPuzzle);
+
         if (Statics.winPuzzle)
         {
             GetComponent<PlayerUIUpdates>().updateExperience(GLOBAL_DATA.Instance.expAfterPuzzle);
