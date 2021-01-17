@@ -6,11 +6,13 @@ public class AfterPuzzleActions : MonoBehaviour
 {
     void Start()
     {
-        if (GLOBAL_DATA.Instance.winPuzzle)
+        Debug.Log(Statics.winPuzzle);
+        if (Statics.winPuzzle)
         {
             GetComponent<PlayerUIUpdates>().updateExperience(GLOBAL_DATA.Instance.expAfterPuzzle);
             GetComponent<PlayerUIUpdates>().SavePlayerDataToGlobal();
-            GLOBAL_DATA.Instance.winPuzzle = false;
+            Statics.winPuzzle = false;
+
         }
     }
 }

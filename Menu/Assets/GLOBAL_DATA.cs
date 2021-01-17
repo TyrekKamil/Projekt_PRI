@@ -11,7 +11,6 @@ public class GLOBAL_DATA : MonoBehaviour
     public int XP;
     public int areaBestScore = 0;
     public int expAfterPuzzle = 0;
-    public bool winPuzzle;
     public bool[] chestOpened = new bool[3];
     public int actualChestIndex;
     public List<PlayerSkills.SkillType> unlockedSkillTypeList = new List<PlayerSkills.SkillType>();

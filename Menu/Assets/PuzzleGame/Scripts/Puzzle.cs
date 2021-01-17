@@ -189,7 +189,7 @@ public class Puzzle : MonoBehaviour
 
     public void exitPuzzle() { 
         if (success) {
-            GLOBAL_DATA.Instance.winPuzzle = true;
+            Statics.winPuzzle = true;
             Statics.puzzle[SceneManager.GetActiveScene().name] = true;
             int exp = 100 - (counterPuzzle.GetComponent<PuzzleCounter>().count / 25) * 10;
             GLOBAL_DATA.Instance.expAfterPuzzle = exp <= 0 ? 5 : exp;
@@ -205,7 +205,7 @@ public class Puzzle : MonoBehaviour
         if(onExit && puzzleMidground.transform.position.x >= 0 ) {
             puzzleMidground.transform.position += (new Vector3(-2f, 0, 0) * Time.deltaTime);
         } else if (onExit) {
-            SceneManager.LoadScene(Statics.lastSceneId);        
+            SceneManager.LoadSceneAsync(Statics.lastSceneId);        
         }
     }
 }
