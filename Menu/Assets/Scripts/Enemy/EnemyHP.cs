@@ -20,7 +20,14 @@ public class EnemyHP : MonoBehaviour
         if (Statics.isLoadedGame)
         {
             LoadEnemyData();
+            Statics.isLoadedGame = false;
+
+            if (!SaveLoad.SaveExists("Enemy" + this.name))
+            {
+                Destroy(gameObject);
+            }
         }
+
     }
 
     public void TakeDamage(int damage)
@@ -130,10 +137,6 @@ public class EnemyHP : MonoBehaviour
             position.z = enemyData.positionZ;
 
             transform.position = position;
-        }
-        else
-        {
-            Destroy(gameObject);
         }
 
     }
