@@ -20,6 +20,7 @@ public class PlayerUIUpdates : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(Statics.isLoadedGame);
         GameEvents.SaveInitiated += SavePlayerData;
         GameEvents.LoadInitiated += LoadPlayerData;
 

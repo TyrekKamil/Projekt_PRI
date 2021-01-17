@@ -20,7 +20,6 @@ public class EnemyHP : MonoBehaviour
         if (Statics.isLoadedGame)
         {
             LoadEnemyData();
-            Statics.isLoadedGame = false;
 
             if (!SaveLoad.SaveExists("Enemy" + this.name))
             {

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -630,6 +630,8 @@ MonoBehaviour:
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
   isAcid: 0
+  canAttack: 1
+  attacked: 1
 --- !u!114 &127836061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2376,6 +2378,8 @@ MonoBehaviour:
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
   isAcid: 0
+  canAttack: 1
+  attacked: 1
 --- !u!114 &413251065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43007,6 +43011,7 @@ GameObject:
   - component: {fileID: 1006508798}
   - component: {fileID: 1006508797}
   - component: {fileID: 1006508796}
+  - component: {fileID: 1006508801}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -43138,12 +43143,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006508795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3533, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.3552, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1006508801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006508795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9c4cfeb97fd5f4981b45ad5d99abf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1008018326
 GameObject:
   m_ObjectHideFlags: 0
@@ -43444,6 +43461,8 @@ MonoBehaviour:
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
   isAcid: 0
+  canAttack: 1
+  attacked: 1
 --- !u!114 &1043782156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44874,7 +44893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688809489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1818.3533, y: -9.57, z: -37.976143}
+  m_LocalPosition: {x: 1818.3552, y: -9.57, z: -37.976143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1512020543}
@@ -45796,6 +45815,8 @@ MonoBehaviour:
   enemiesCountObj: {fileID: 0}
   endMenuObj: {fileID: 0}
   isAcid: 0
+  canAttack: 1
+  attacked: 1
 --- !u!114 &2012919980
 MonoBehaviour:
   m_ObjectHideFlags: 0

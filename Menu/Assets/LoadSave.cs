@@ -11,7 +11,7 @@ public class LoadSave : MonoBehaviour
         if (SaveLoad.SaveExists("Scene"))
         {
             SeriazableScene serializedScene = SaveLoad.Load<SeriazableScene>("Scene");
-            string savedScene = serializedScene.currentScene;
+            int savedScene = serializedScene.currentScene;
             SceneManager.LoadScene(savedScene);
             Statics.isLoadedGame = true;
 

@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SaveCurrentScene : MonoBehaviour
 {
-    private string _currentScene;
+    private int _currentScene;
 
     private void Start()
     {
         GameEvents.SaveSceneInitiated += SaveScene;
         GameEvents.LoadSceneInitiated += LoadScene;
-        _currentScene = SceneManager.GetActiveScene().name;
+        _currentScene = SceneManager.GetActiveScene().buildIndex;
 
     }
 
@@ -30,9 +30,8 @@ public class SaveCurrentScene : MonoBehaviour
         if (SaveLoad.SaveExists("Scene"))
         {
             SeriazableScene serializedScene = SaveLoad.Load<SeriazableScene>("Scene");
-            string savedScene = serializedScene.currentScene;
+            int savedScene = serializedScene.currentScene;
 
-            //TODO: check the current map and loadSave instead of LoadScene if scene is the same
             SceneManager.LoadScene(savedScene);
             Statics.isLoadedGame = true;
           
@@ -44,6 +43,6 @@ public class SaveCurrentScene : MonoBehaviour
 [System.Serializable]
 public class SeriazableScene
 {
-    public string currentScene { get; set; }
+    public int currentScene { get; set; }
 }
 
