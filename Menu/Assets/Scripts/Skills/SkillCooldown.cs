@@ -112,7 +112,7 @@ public class SkillCooldown : MonoBehaviour
         {
             patImmortalityCooldown = 0;
         }
-        if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().isImmortalityActivated == true)
+        if (patImmortalityCooldown == 0 && GetComponent<PlayerMovement>().isImmortalityActivated)
         {
             GetComponent<PlayerMovement>().isImmortalityActivated = false;
         }
@@ -129,7 +129,7 @@ public class SkillCooldown : MonoBehaviour
         {
             patRegenerationCooldown = 0;
         }
-        if (patRegenerationCooldown == 0 && GetComponent<PlayerMovement>().isRegenerationHpActivated == true)
+        if (patRegenerationCooldown == 0 && GetComponent<PlayerMovement>().isRegenerationHpActivated)
         {
             GetComponent<PlayerMovement>().isRegenerationHpActivated = false;
         }

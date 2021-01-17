@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         dashValue += 0.2f;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x + (direction * 0.2f), gameObject.transform.position.y, gameObject.transform.position.z);
     }
-
+    int i = 0;
 
     void Update()
     {
@@ -145,18 +145,19 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SkillsStr>().Explode();
         }
 
-        if (CanUsePermHpBonus())
+        if (CanUsePermHpBonus() && i == 0)
         {
+            i += 1;
             GetComponent<SkillsPat>().IncreasedHpPermamentlySkill();
         }
 
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RegenHPButton"))) && CanUseRegenHP())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RegenHPButton"))) && CanUseRegenHP() && !isRegenerationHpActivated)
         {
             isRegenerationHpActivated = true;
             GetComponent<SkillsPat>().RegenHP(15);
         }
 
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ImmoralitySkillButton"))) && CanUseImmortality())
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ImmoralitySkillButton"))) && CanUseImmortality() && !isImmortalityActivated)
         {
             isImmortalityActivated = true;
             GetComponent<SkillsPat>().Immortality(true);
