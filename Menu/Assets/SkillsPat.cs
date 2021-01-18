@@ -6,6 +6,7 @@ public class SkillsPat : MonoBehaviour
 {
     private PlayerUIUpdates playerData;
     private SkillCooldown skillCooldown;
+    public ParticleSystem immortalityEffect;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class SkillsPat : MonoBehaviour
     {
         skillCooldown.patImmortalityCooldown = skillCooldown.patImmortalityCooldownTime;
         Statics.isImmortal = option;
+        Instantiate(immortalityEffect, transform.position, Quaternion.identity);
         StartCoroutine("WaitForSec");
     }
 
