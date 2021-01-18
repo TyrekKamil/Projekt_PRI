@@ -7,7 +7,7 @@ public class TeleportToLevel : MonoBehaviour
 {
 
     [SerializeField]
-    private string sceneName;
+    private int sceneId;
 
 
     private GameObject textBox;
@@ -27,7 +27,8 @@ public class TeleportToLevel : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ActionButton")))) {
-            SceneManager.LoadSceneAsync(sceneName);
+            GameObject loader = GameObject.Find("LevelLoader");
+            loader.GetComponent<LevelLoader>().LoadLevel(sceneId);
 
         }
     }
