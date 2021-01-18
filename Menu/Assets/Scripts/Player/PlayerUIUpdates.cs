@@ -41,7 +41,10 @@ public class PlayerUIUpdates : MonoBehaviour
         if (Statics.isHpBoostedFromSkill)
         {
             maxHealth = 125;
+            slider.SetMaxHealth(maxHealth);
         }
+
+        setExpSliderMaxValue();
 
     }
 

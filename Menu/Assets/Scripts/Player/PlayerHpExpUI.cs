@@ -27,4 +27,9 @@ public class PlayerHpExpUI : MonoBehaviour
     {
         sliderEXP.value = exp;
     }
+
+    public float getMaxEXP()
+    {
+        return sliderEXP.maxValue;
+    }
 }
