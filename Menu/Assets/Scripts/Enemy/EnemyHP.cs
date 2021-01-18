@@ -76,7 +76,7 @@ public class EnemyHP : MonoBehaviour
         GetComponent<RespawnPlayer>().enabled = false;
         
         //TODO: sprawdzic ifologie
-        if (!isBoss)
+        if (!isBoss && !isAreaLevel)
         {
             GameObject.Find("Player").GetComponent<PlayerUIUpdates>().updateExperience(30);
         }
