@@ -94,9 +94,9 @@ public class InventoryObject : ScriptableObject
         if (item.Name == "HealthPotion")
         {
             PlayerUIUpdates playerUI = player.GetComponent<PlayerUIUpdates>();
-            if(playerUI.currentHealth >= 81)
+            if(playerUI.currentHealth + 20 >= playerUI.maxHealth)
             {
-                playerUI.currentHealth = 100;
+                playerUI.currentHealth = playerUI.maxHealth;
             }
             else
             {
