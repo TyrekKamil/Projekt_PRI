@@ -83,18 +83,18 @@ public class BossController : MonoBehaviour
             StartCoroutine("WaitForSec");
 
         }
-        if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 10 && Math.Abs(player.transform.position.x - transform.position.x) > 1)
+        if (Math.Abs(player.transform.position.x - transform.position.x) < 10 && Math.Abs(player.transform.position.x - transform.position.x) > 1.9f)
         {
             anim.Play("Rogue_attack_01");
             Shoot();
         }
-        else if (!secondPhase && Math.Abs(player.transform.position.x - transform.position.x) < 1 && GetComponent<RespawnPlayer>().canAttack)
+        else if (Math.Abs(player.transform.position.x - transform.position.x) <= 1.9f && GetComponent<RespawnPlayer>().canAttack)
         {
             anim.Play("Rogue_attack_01");
             GetComponent<RespawnPlayer>().canAttack = false;
-            cooldownAttackTime = 2f;
+            cooldownAttackTime = 1f;
         }
-        else if (!secondPhase && !anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
+        else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Rogue_attack_01"))
         {
             anim.Play("Rogue_idle_01");
         }
