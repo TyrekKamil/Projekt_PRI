@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Cooldown attack for player
     private bool canAttack = true;
     private float cooldownAttackTime = 0f;
-    private bool devMode = true;
+    private bool devMode = false;
     private void Awake()
     {
         instance = this;
