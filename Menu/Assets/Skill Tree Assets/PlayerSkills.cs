@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerSkills
 {
+    private bool devMode = false;
     public event EventHandler<OnSkillUnlockedEventArgs> OnSkillUnlocked;
     public class OnSkillUnlockedEventArgs : EventArgs {
         public SkillType skillType;
@@ -37,8 +38,7 @@ public class PlayerSkills
         }
     }
     private void UnlockSkill(SkillType skillType) {
-        // later add  && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count
-        if (!IsSkillTypeUnlocked(skillType))
+        if ((!IsSkillTypeUnlocked(skillType) && GLOBAL_DATA.Instance.Level - 1 > unlockedSkillTypeList.Count) || devMode)
         {
             unlockedSkillTypeList.Add(skillType);
             GLOBAL_DATA.Instance.unlockedSkillTypeList = unlockedSkillTypeList;

@@ -12,11 +12,20 @@ public class UI_SkillTree : MonoBehaviour
 
     private PlayerSkills playerSkills;
     private List<SkillButton> skillButtonList;
-
+    private Transform skillpoints;
     string blueColor = "BlueSkills";
     string redColor = "RedSkills";
     string greenColor = "GreenSkills";
+    static int unlockedSkills = 0;
+    int previousSkillValue = 0;
     public GameObject skillIcons;
+    private void Update()
+    {
+        if (previousSkillValue != GLOBAL_DATA.Instance.Level - 1 - unlockedSkills) {
+            skillpoints.GetComponent<UnityEngine.UI.Text>().text = (GLOBAL_DATA.Instance.Level - 1 - unlockedSkills).ToString();
+            previousSkillValue = GLOBAL_DATA.Instance.Level - 1 - unlockedSkills;
+        }
+    }
     public void SetPlayerSkills(PlayerSkills playerSkills) {
         this.playerSkills = playerSkills;
 
@@ -33,12 +42,14 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("extraHpButton"), playerSkills, PlayerSkills.SkillType.ExtraHP, skillLockedMaterial, skillUnlockableMaterial, "Adds permamently 25 more health points"));
         skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("regenerationHpButton"), playerSkills, PlayerSkills.SkillType.RegenerationHP, skillLockedMaterial, skillUnlockableMaterial, "Regenerates 15 hp over time"));
         skillButtonList.Add(new SkillButton(transform.Find("GreenSkills").Find("immortalityButton"), playerSkills, PlayerSkills.SkillType.Immortality, skillLockedMaterial, skillUnlockableMaterial, "You are immortal for 2 seconds"));
+        skillpoints = transform.Find("skill points").Find("Text");
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
     private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnSkillUnlockedEventArgs e) {
         UpdateVisuals();
     }
+
     private void UpdateVisuals() {
         foreach (SkillButton skillButton in skillButtonList) {
             skillButton.UpdateVisual();
@@ -49,9 +60,12 @@ public class UI_SkillTree : MonoBehaviour
                 linkImage.color = new Color(.5f, .5f, .5f);
             }
         }
-
+        unlockedSkills = 0;
         foreach (SkillUnlockPath skillUnlockPath in skillUnlkockPathArray)
         {
+            if (playerSkills.IsSkillTypeUnlocked(skillUnlockPath.skillType)) {
+                unlockedSkills += 1;
+            }
             if (playerSkills.IsSkillTypeUnlocked(skillUnlockPath.skillType) || playerSkills.CanUnlock(skillUnlockPath.skillType)) {
                 foreach (Image linkImage in skillUnlockPath.linkImageArray)
                 {
@@ -60,6 +74,7 @@ public class UI_SkillTree : MonoBehaviour
             }
 
         }
+        skillpoints.GetComponent<UnityEngine.UI.Text>().text = (GLOBAL_DATA.Instance.Level - 1 - unlockedSkills).ToString();
         skillIcons.GetComponent<SkillTreeIcons>().checkSkills();
     }
     
